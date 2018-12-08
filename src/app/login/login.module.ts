@@ -5,6 +5,7 @@ import { MaterialModule } from '../material/material.module';
 import { GravatarModule } from 'ngx-gravatar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { MatProgressButtonsModule } from 'mat-progress-buttons';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -13,7 +14,8 @@ import { FormsModule } from '@angular/forms';
     MaterialModule,
     GravatarModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatProgressButtonsModule
   ],
   exports: [
     LoginComponent

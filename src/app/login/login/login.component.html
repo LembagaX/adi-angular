@@ -34,8 +34,8 @@
       <mat-card-actions>
         <mat-grid-list cols="1" rowHeight="50px">
           <mat-grid-tile>
-            <button mat-flat-button>Forgot Password</button>
-            <button mat-raised-button color="primary" (click)="submit()">Login</button>
+            <button [disabled]="disabled" mat-flat-button>Forgot Password</button>
+            <mat-spinner-button (click)="submit()" [options]="buttonOptions"></mat-spinner-button>
           </mat-grid-tile>
         </mat-grid-list>
       </mat-card-actions>

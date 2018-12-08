@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
+import { ServerService } from 'src/app/server.service';
+import { Credential } from 'src/app/credential';
+import { MatProgressButtonOptions } from 'mat-progress-buttons';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -13,10 +18,16 @@ export class LoginComponent {
   public emailControl: FormControl;
   public passwordControl: FormControl;
   public gravatar: String;
+  public disabled: Boolean;
+  public buttonOptions: MatProgressButtonOptions;
 
   constructor(
-    public snackbar: MatSnackBar
+    public snackbar: MatSnackBar,
+    public server: ServerService,
+    private route: Router,
+    private cookie: CookieService
   ) {
+    // TODO : Middleware Auth
     this.emailControl = new FormControl('', [
       Validators.required,
       Validators.email
@@ -26,11 +37,26 @@ export class LoginComponent {
       Validators.required
     ]);
 
+    this.buttonOptions = {
+      active: false,
+      text: 'Login',
+      spinnerSize: 19,
+      raised: true,
+      stroked: true,
+      buttonColor: 'primary',
+      spinnerColor: 'accent',
+      fullWidth: false,
+      disabled: false,
+      mode: 'indeterminate',
+    };
+
     this.gravatar = 'admin@example.com';
+    this.disabled = false;
   }
 
   public submit() {
     this.evaluateForm();
+    this.sendForm();
   }
 
   private evaluateForm() {
@@ -43,4 +69,47 @@ export class LoginComponent {
     }
   }
 
+  private sendForm() {
+    this.toggleButton(true);
+    const credential: Credential = {
+      user: {
+        email: this.emailControl.value,
+        password: this.passwordControl.value
+      }
+    };
+    this.server.generateToken(credential)
+      .subscribe(response => {
+        switch (response.code) {
+          case 203:
+            this.toggleButton(false);
+            this.passwordControl.reset();
+            this.snackbar.open('Wrong email or password', 'close', {
+              duration: 5000
+            });
+            break;
+          case 200:
+            // TODO : Redirect to Dashboard
+            this.writeCookie(response);
+            this.route.navigate(['/']);
+            break;
+          default:
+            this.toggleButton(false);
+            this.passwordControl.reset();
+            this.snackbar.open('Unknown error occure', 'close', {
+              duration: 5000
+            });
+            break;
+        }
+      });
+  }
+
+  private toggleButton(value: boolean) {
+    this.buttonOptions.active = value;
+  }
+
+  private writeCookie(response) {
+    this.cookie.set('user.token', response.token);
+    this.cookie.set('user.name', response.user.name);
+    this.cookie.set('user.email', response.user.email);
+  }
 }

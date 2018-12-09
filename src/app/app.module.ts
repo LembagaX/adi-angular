@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MatProgressButtonsModule } from 'mat-progress-buttons';
 import { CookieService } from 'ngx-cookie-service';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CookieService } from 'ngx-cookie-service';
     BrowserAnimationsModule,
     LoginModule,
     HttpClientModule,
-    MatProgressButtonsModule.forRoot()
+    MatProgressButtonsModule.forRoot(),
+    AuthModule
   ],
   providers: [
     CookieService

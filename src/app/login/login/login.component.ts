@@ -6,6 +6,7 @@ import { Credential } from 'src/app/credential';
 import { MatProgressButtonOptions } from 'mat-progress-buttons';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { AuthMiddlewareService } from 'src/app/auth-middleware.service';
 
 @Component({
   selector: 'app-login',
@@ -15,19 +16,18 @@ import { CookieService } from 'ngx-cookie-service';
 
 export class LoginComponent {
 
-  public emailControl: FormControl;
-  public passwordControl: FormControl;
   public gravatar: String;
   public disabled: Boolean;
+  public emailControl: FormControl;
+  public passwordControl: FormControl;
   public buttonOptions: MatProgressButtonOptions;
 
   constructor(
+    private router: Router,
     public snackbar: MatSnackBar,
     public server: ServerService,
-    private route: Router,
-    private cookie: CookieService
+    private cookie: CookieService,
   ) {
-    // TODO : Middleware Auth
     this.emailControl = new FormControl('', [
       Validators.required,
       Validators.email
@@ -88,9 +88,8 @@ export class LoginComponent {
             });
             break;
           case 200:
-            // TODO : Redirect to Dashboard
             this.writeCookie(response);
-            this.route.navigate(['/']);
+            this.router.navigate(['/dashboard']);
             break;
           default:
             this.toggleButton(false);
@@ -108,8 +107,8 @@ export class LoginComponent {
   }
 
   private writeCookie(response) {
-    this.cookie.set('user.token', response.token);
-    this.cookie.set('user.name', response.user.name);
-    this.cookie.set('user.email', response.user.email);
+    this.cookie.set('user_token', response.token);
+    this.cookie.set('user_name', response.user.name);
+    this.cookie.set('user_email', response.user.email);
   }
 }

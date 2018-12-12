@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { ServerService } from 'src/app/server.service';
-import { Credential } from 'src/app/credential';
+import { Credential } from 'src/app/interfaces/credential';
 import { MatProgressButtonOptions } from 'mat-progress-buttons';
+import { User } from 'src/app/interfaces/user';
+import { AuthService } from 'src/app/auth.service';
 import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
-import { AuthMiddlewareService } from 'src/app/auth-middleware.service';
 
 @Component({
   selector: 'app-login',
@@ -23,10 +23,10 @@ export class LoginComponent {
   public buttonOptions: MatProgressButtonOptions;
 
   constructor(
-    private router: Router,
     public snackbar: MatSnackBar,
     public server: ServerService,
-    private cookie: CookieService,
+    private auth: AuthService,
+    private router: Router
   ) {
     this.emailControl = new FormControl('', [
       Validators.required,
@@ -50,7 +50,7 @@ export class LoginComponent {
       mode: 'indeterminate',
     };
 
-    this.gravatar = 'admin@example.com';
+    this.gravatar = '';
     this.disabled = false;
   }
 
@@ -88,7 +88,12 @@ export class LoginComponent {
             });
             break;
           case 200:
-            this.writeCookie(response);
+            const user: User = {
+              name: response.user.name,
+              email: response.user.email,
+              token: response.token
+            };
+            this.auth.login(user);
             this.router.navigate(['/dashboard']);
             break;
           default:
@@ -104,11 +109,5 @@ export class LoginComponent {
 
   private toggleButton(value: boolean) {
     this.buttonOptions.active = value;
-  }
-
-  private writeCookie(response) {
-    this.cookie.set('user_token', response.token);
-    this.cookie.set('user_name', response.user.name);
-    this.cookie.set('user_email', response.user.email);
   }
 }

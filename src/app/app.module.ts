@@ -7,8 +7,8 @@ import { LoginModule } from './login/login.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MatProgressButtonsModule } from 'mat-progress-buttons';
-import { CookieService } from 'ngx-cookie-service';
 import { AuthModule } from './auth/auth.module';
+import { StorageServiceModule } from 'ngx-webstorage-service';
 
 @NgModule({
   declarations: [
@@ -21,10 +21,10 @@ import { AuthModule } from './auth/auth.module';
     LoginModule,
     HttpClientModule,
     MatProgressButtonsModule.forRoot(),
-    AuthModule
+    AuthModule,
+    StorageServiceModule
   ],
   providers: [
-    CookieService
   ],
   bootstrap: [AppComponent]
 })

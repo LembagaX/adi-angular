@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Credential } from './credential';
-import { CredentialResponse } from './credential-response';
-import { PlainResponse } from './plain-response';
-import { Token } from './token';
+import { Credential } from './interfaces/credential';
+import { CredentialResponse } from './interfaces/credential-response';
+import { PlainResponse } from './interfaces/plain-response';
+import { Token } from './interfaces/token';
 
 @Injectable({
   providedIn: 'root'

@@ -1,15 +1,14 @@
-<mat-grid-list cols="1" rowHeight="1:2">
-  <mat-grid-tile>
-    <mat-card class="card">
-      <mat-card-content>
-        <mat-grid-list cols="1" rowHeight="300px">
-          <mat-grid-tile>
-            <img class="card-avatar" ngxGravatar [(email)]="gravatar" size="150" fallback="identicon"/>
-          </mat-grid-tile>
-        </mat-grid-list>
-        
-        <mat-grid-list cols="1" rowHeight="75px">
-          <mat-grid-tile>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 offset-md-4 col-sm-8 offset-sm-1">
+      <mat-card class="card">
+        <mat-card-content class="row">
+
+          <div class="col-6 offset-3">
+            <img class="card-avatar spacer" ngxGravatar [(email)]="gravatar" size="150" fallback="identicon" />
+          </div>
+
+          <div class="col-10 offset-1 spacer">
             <mat-form-field class="full-width">
               <input matInput type="email" placeholder="Email" [formControl]="emailControl" autofocus>
               <mat-error *ngIf="emailControl.hasError('email') && !emailControl.hasError('required')">
@@ -19,27 +18,25 @@
                 Email is <strong>required</strong>
               </mat-error>
             </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile>
+          </div>
+          
+          <div class="col-10 offset-1">
             <mat-form-field class="full-width">
               <input matInput type="password" placeholder="Password" [formControl]="passwordControl">
               <mat-error *ngIf="passwordControl.hasError('required')">
                 Password is <strong>required</strong>
               </mat-error>
             </mat-form-field>
-          </mat-grid-tile>
-        </mat-grid-list>
-      </mat-card-content>
+          </div>
 
-      <mat-card-actions>
-        <mat-grid-list cols="1" rowHeight="50px">
-          <mat-grid-tile>
-            <button [disabled]="disabled" mat-flat-button>Forgot Password</button>
-            <mat-spinner-button (click)="submit()" [options]="buttonOptions"></mat-spinner-button>
-          </mat-grid-tile>
-        </mat-grid-list>
-      </mat-card-actions>
-
-    </mat-card>
-  </mat-grid-tile>
-</mat-grid-list>
+          <div class="col-10 offset-1 spacer">
+            <mat-card-actions>
+              <button [disabled]="disabled" mat-flat-button>Forgot Password</button>
+              <mat-spinner-button (click)="submit()" [options]="buttonOptions" class="float-right"></mat-spinner-button>
+            </mat-card-actions>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

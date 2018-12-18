@@ -1,0 +1,132 @@
+<app-toolbar></app-toolbar>
+<div class="container body">
+  <div class="row">
+    <div class="col-md-3">
+      <mat-card>
+        <mat-card-subtitle>Signed Users</mat-card-subtitle>
+        <mat-card-content>
+          <div class="row">
+            <mat-icon class="icon" color="primary">account_circle</mat-icon>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="col-md-3">
+      <mat-card>
+        <mat-card-subtitle>Signed Users</mat-card-subtitle>
+        <mat-card-content>
+          <div class="row">
+            <mat-icon class="icon" color="primary">account_circle</mat-icon>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="col-md-3">
+      <mat-card>
+        <mat-card-subtitle>Signed Users</mat-card-subtitle>
+        <mat-card-content>
+          <div class="row">
+            <mat-icon class="icon" color="primary">account_circle</mat-icon>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="col-md-3">
+      <mat-card>
+        <mat-card-subtitle>Signed Users</mat-card-subtitle>
+        <mat-card-content>
+          <div class="row">
+            <mat-icon class="icon" color="primary">account_circle</mat-icon>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<div class="container space-top">
+  <div class="row">
+    <div class="col-md-8">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-width">
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="weight">
+          <th mat-header-cell *matHeaderCellDef> Weight </th>
+          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="symbol">
+          <th mat-header-cell *matHeaderCellDef> Symbol </th>
+          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" class="mat-elevation-z8">
+      </mat-paginator>
+    </div>
+
+    <div class="col-md-4">
+      <mat-card>
+        <mat-card-subtitle>Create new Signed User</mat-card-subtitle>
+        <mat-card-content>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Name" type="text" [formControl]="nameControl">
+            <mat-error *ngIf="nameControl.hasError('required')">
+              Name is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="nameControl.hasError('minlength') || nameControl.hasError('maxlength')">
+              Name length should be <strong>6 to 45</strong> characters
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput type="email" placeholder="Email" [formControl]="emailControl">
+            <mat-error *ngIf="emailControl.hasError('email') && !emailControl.hasError('required')">
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="emailControl.hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="emailControl.hasError('minlength')">
+              Email length should be greater than <strong>6 characters</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Enter your password" [type]="hidePassword ? 'password' : 'text'" [formControl]="passwordControl">
+            <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            <mat-error *ngIf="passwordControl.hasError('required')">
+              Password is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="passwordControl.hasError('minlength')">
+              Password length should be greater than <strong>6 characters</strong>
+            </mat-error>
+          </mat-form-field>
+          <div class="form-group">
+            <label class="label-control col-md-12">User Role: </label>
+            <mat-radio-group>
+              <mat-radio-button class="col-md-12" checked value="administrator">Administrator</mat-radio-button>
+              <mat-radio-button class="col-md-12"  value="warehouse_staff">Warehouse Staff</mat-radio-button>
+              <mat-radio-button class="col-md-12"  value="operational_director">Operational Director</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <mat-card-actions>
+            <mat-spinner-button [options]="createUserBtnOption" class="float-right"></mat-spinner-button>
+          </mat-card-actions>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

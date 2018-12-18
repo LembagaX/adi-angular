@@ -19,7 +19,7 @@ export class ServerService {
    * generateToken
    */
   public generateToken(body: Credential): Observable<CredentialResponse> {
-    const suffix = 'users/generate.json';
+    const suffix = 'users/token.json';
     const header = {
       headers: new HttpHeaders({
         'Content-type' : 'application/json'

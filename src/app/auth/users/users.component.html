@@ -1,4 +1,3 @@
-<app-toolbar></app-toolbar>
 <div class="container body">
   <div class="row">
     <div class="col-md-3">
@@ -50,33 +49,50 @@
 <div class="container space-top">
   <div class="row">
     <div class="col-md-8">
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-width">
-        <ng-container matColumnDef="position">
-          <th mat-header-cell *matHeaderCellDef> No. </th>
-          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-        </ng-container>
-  
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> Name </th>
-          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
-  
-        <ng-container matColumnDef="weight">
-          <th mat-header-cell *matHeaderCellDef> Weight </th>
-          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-        </ng-container>
-  
-        <ng-container matColumnDef="symbol">
-          <th mat-header-cell *matHeaderCellDef> Symbol </th>
-          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-        </ng-container>
-  
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-
-      <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" class="mat-elevation-z8">
-      </mat-paginator>
+      <mat-card>
+        <mat-card-content>
+          <mat-form-field class="full-width">
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search ...">
+          </mat-form-field>
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-width" matSort>
+            <ng-container matColumnDef="position">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
+              <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+              <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="options">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element">
+                <button mat-button [matMenuTriggerFor]="menu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="editUser(element.position)">
+                    <mat-icon>edit</mat-icon> Edit
+                  </button>
+                  <button mat-menu-item (click)="dialogDeleteUser(element.id)" *ngIf="currentUser.email !== element.email">
+                    <mat-icon>delete</mat-icon> Delete
+                  </button>
+                </mat-menu>
+              </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <mat-paginator [pageSizeOptions]="[7, 15, 25]" showFirstLastButtons class="mat-elevation-z8"></mat-paginator>
+        </mat-card-content>
+      </mat-card>
     </div>
 
     <div class="col-md-4">
@@ -108,7 +124,7 @@
             <input matInput placeholder="Enter your password" [type]="hidePassword ? 'password' : 'text'" [formControl]="passwordControl">
             <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
             <mat-error *ngIf="passwordControl.hasError('required')">
-              Password is <strong>required</strong>
+              Password is require for <strong>Create and Update</strong>
             </mat-error>
             <mat-error *ngIf="passwordControl.hasError('minlength')">
               Password length should be greater than <strong>6 characters</strong>
@@ -116,14 +132,15 @@
           </mat-form-field>
           <div class="form-group">
             <label class="label-control col-md-12">User Role: </label>
-            <mat-radio-group>
-              <mat-radio-button class="col-md-12" checked value="administrator">Administrator</mat-radio-button>
-              <mat-radio-button class="col-md-12"  value="warehouse_staff">Warehouse Staff</mat-radio-button>
-              <mat-radio-button class="col-md-12"  value="operational_director">Operational Director</mat-radio-button>
+            <mat-radio-group [(ngModel)]="roleId">
+              <mat-radio-button *ngFor="let role of roles" [value]="role.id" class="col-md-12">
+                {{ role.name }}
+              </mat-radio-button>
             </mat-radio-group>
           </div>
           <mat-card-actions>
-            <mat-spinner-button [options]="createUserBtnOption" class="float-right"></mat-spinner-button>
+            <mat-spinner-button [options]="createUserBtnOption" (click)="submitForm()" class="float-right"></mat-spinner-button>
+            <button mat-raised-button color="primary" class="float-right" *ngIf="current" (click)="formToPristine()">Cancel</button>
           </mat-card-actions>
         </mat-card-content>
       </mat-card>

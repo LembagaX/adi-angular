@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatProgressButtonsModule } from 'mat-progress-buttons';
 import { AuthModule } from './auth/auth.module';
 import { StorageServiceModule } from 'ngx-webstorage-service';
+import { PartialsModule } from './partials/partials.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { StorageServiceModule } from 'ngx-webstorage-service';
     HttpClientModule,
     MatProgressButtonsModule.forRoot(),
     AuthModule,
-    StorageServiceModule
+    StorageServiceModule,
+    PartialsModule
   ],
   providers: [
   ],

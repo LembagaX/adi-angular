@@ -1,8 +1,8 @@
 export interface CredentialResponse {
     user: {
-        name: String,
-        email: String
+        name: string,
+        email: string
     };
-    token: String;
-    code: Number;
+    token?: string;
+    code: number;
 }

@@ -15,7 +15,15 @@ export class AuthService {
     this.webStorage.set('user', user);
   }
 
+  public logout() {
+    this.webStorage.remove('user');
+  }
+
   public  isAuthenticated(): boolean {
     return this.webStorage.has('user');
+  }
+
+  public currentUser(): User {
+    return this.webStorage.get('user');
   }
 }

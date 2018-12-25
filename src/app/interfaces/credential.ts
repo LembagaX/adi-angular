@@ -1,6 +1,6 @@
 export interface Credential {
     user: {
-        email: String,
-        password: String
+        email: string,
+        password: string
     };
 }

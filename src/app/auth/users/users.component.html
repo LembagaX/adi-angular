@@ -1,23 +1,10 @@
 <div class="container body">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-6">
       <mat-card>
-        <mat-card-subtitle>Signed Users</mat-card-subtitle>
+        <mat-card-subtitle>Currently signed in with</mat-card-subtitle>
         <mat-card-content>
-          <div class="row">
-            <mat-icon class="icon" color="primary">account_circle</mat-icon>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </div>
-
-    <div class="col-md-3">
-      <mat-card>
-        <mat-card-subtitle>Signed Users</mat-card-subtitle>
-        <mat-card-content>
-          <div class="row">
-            <mat-icon class="icon" color="primary">account_circle</mat-icon>
-          </div>
+          <p class="text-secondary text-primary">{{ currentUser.email }}</p>
         </mat-card-content>
       </mat-card>
     </div>
@@ -51,9 +38,16 @@
     <div class="col-md-8">
       <mat-card>
         <mat-card-content>
-          <mat-form-field class="full-width">
-            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search ...">
-          </mat-form-field>
+          <div class="row">
+            <div class="col-md-9">
+              <mat-form-field class="full-width">
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search ...">
+              </mat-form-field>
+            </div>
+            <div class="col-md-3">
+              <button color="accent" mat-raised-button (click)="refreshTable()">Refresh Table</button>
+            </div>
+          </div>
           <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-width" matSort>
             <ng-container matColumnDef="position">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>

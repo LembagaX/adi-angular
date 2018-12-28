@@ -1,13 +1,12 @@
+import { User } from '../../models/user';
+import { MatDialog } from '@angular/material';
+import { AuthService } from 'src/app/auth.service';
+import { ServerService } from 'src/app/server.service';
+import { FormControl, Validators } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatProgressButtonOptions } from 'mat-progress-buttons';
-import { FormControl, Validators } from '@angular/forms';
-import { User } from '../../models/user';
 import { MatPaginator, MatTableDataSource, MatSort, MatSnackBar } from '@angular/material';
-import { ServerService } from 'src/app/server.service';
-import { MatDialog } from '@angular/material';
 import { DialogDeleteUserComponent } from '../dialog-delete-user/dialog-delete-user.component';
-import { AuthService } from 'src/app/auth.service';
-import { MatRadioButton } from '@angular/material';
 
 @Component({
   selector: 'app-users',
@@ -20,6 +19,7 @@ export class UsersComponent implements OnInit {
   public roleId: number;
   public current: number;
   public iterate: number;
+  public currentUser: User;
   private formValid: boolean;
   public hidePassword: boolean;
   public nameControl: FormControl;
@@ -28,24 +28,24 @@ export class UsersComponent implements OnInit {
   public passwordControl: FormControl;
   public dataSource: MatTableDataSource<User>;
   public createUserBtnOption: MatProgressButtonOptions;
-  public currentUser: User;
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
-    private snackbar: MatSnackBar,
-    private server: ServerService,
     public dialog: MatDialog,
-    private auth: AuthService
+    private auth: AuthService,
+    private snackbar: MatSnackBar,
+    private server: ServerService
   ) {
     this.currentUser = this.auth.currentUser();
     this.current = null;
     this.formValid = true;
     this.roleId = 1;
     this.roles = [
-      { id: 1, name: 'Administrator' },
-      { id: 2, name: 'Staff Gudang' }
+      { id: 1, name: 'Administrasi' },
+      { id: 2, name: 'Staff Gudang' },
+      { id: 3, name: 'Direktur Operasional' }
     ];
     this.hidePassword = true;
     this.createUserBtnOption = {
@@ -79,6 +79,10 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.initTable();
+  }
+
+  public initTable() {
     const ELEMENT_DATA = [];
     this.server.userAll().subscribe((users) => {
       users.forEach(user => {
@@ -94,6 +98,11 @@ export class UsersComponent implements OnInit {
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     });
+  }
+
+  public refreshTable() {
+    this.iterate = 1;
+    this.initTable();
   }
 
   public applyFilter(filterValue: string) {
@@ -120,27 +129,33 @@ export class UsersComponent implements OnInit {
   }
 
   public updateUser(position: number) {
-    const user: User = {
-      id: this.dataSource.data[position].id,
-      name: this.nameControl.value,
-      email: this.emailControl.value,
-      password: this.passwordControl.value,
-    };
-    this.createUserBtnOption.active = true;
-    this.server.updateUser(user).subscribe((response) => {
-      switch (response.code) {
-        case 200:
-          this.createUserBtnOption.active = false;
-          this.snackbar.open('Successfully update a User', 'Close', {
-            duration: 3000
-          });
-          const data = this.dataSource.data;
-          data[position].name = this.nameControl.value;
-          this.dataSource.data = data;
-          this.formToPristine();
-          break;
-      }
-    });
+    if (this.formIsValid()) {
+      const user: User = {
+        id: this.dataSource.data[position].id,
+        name: this.nameControl.value,
+        email: this.emailControl.value,
+        password: this.passwordControl.value,
+        role_id: this.roleId
+      };
+      this.createUserBtnOption.active = true;
+      this.server.updateUser(user).subscribe((response) => {
+        switch (response.code) {
+          case 200:
+            this.createUserBtnOption.active = false;
+            this.snackbar.open('Successfully update a User', 'Close', {
+              duration: 3000
+            });
+            const data = this.dataSource.data;
+            data[position].name = response.user.name;
+            data[position].role_id = this.roleId;
+            this.dataSource.data = data;
+            this.formToPristine();
+            break;
+        }
+      });
+    } else {
+      this.formToDirty();
+    }
   }
 
   public createUser() {
@@ -208,7 +223,7 @@ export class UsersComponent implements OnInit {
   }
 
   private rebuildDataSource(user: User) {
-    const newUser = { position: this.iterate++, id: user.id, name: user.name, email: user.email };
+    const newUser = { position: this.iterate++, id: user.id, name: user.name, email: user.email, role_id: user.role.id };
     const data = this.dataSource.data;
     data.push(newUser);
     this.dataSource.data = data;

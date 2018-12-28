@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChartModule } from 'angular-highcharts';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PartialsModule } from '../partials/partials.module';
 import { UsersComponent } from './users/users.component';
@@ -16,7 +17,8 @@ import { DialogDeleteUserComponent } from './dialog-delete-user/dialog-delete-us
     MaterialModule,
     MatProgressButtonsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ChartModule
   ],
   entryComponents: [
     DialogDeleteUserComponent

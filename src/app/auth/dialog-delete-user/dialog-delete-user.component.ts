@@ -12,7 +12,7 @@ export class DialogDeleteUserComponent implements OnInit {
   protected response: number;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: number,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private server: ServerService
   ) { }
 

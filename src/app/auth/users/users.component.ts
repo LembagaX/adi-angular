@@ -1,4 +1,5 @@
 import { User } from '../../models/user';
+import { Chart } from 'angular-highcharts';
 import { MatDialog } from '@angular/material';
 import { AuthService } from 'src/app/auth.service';
 import { ServerService } from 'src/app/server.service';
@@ -16,10 +17,13 @@ import { DialogDeleteUserComponent } from '../dialog-delete-user/dialog-delete-u
 export class UsersComponent implements OnInit {
 
   public roles: any;
+  public chart: Chart;
+  public users: number;
   public roleId: number;
   public current: number;
   public iterate: number;
   public currentUser: User;
+  public showChart: boolean;
   private formValid: boolean;
   public hidePassword: boolean;
   public nameControl: FormControl;
@@ -38,6 +42,7 @@ export class UsersComponent implements OnInit {
     private snackbar: MatSnackBar,
     private server: ServerService
   ) {
+    this.showChart = false;
     this.currentUser = this.auth.currentUser();
     this.current = null;
     this.formValid = true;
@@ -76,10 +81,41 @@ export class UsersComponent implements OnInit {
     ]);
     this.iterate = 1;
     this.displayedColumns = ['position', 'name', 'email', 'options'];
+    this.users = 0;
   }
 
   ngOnInit() {
     this.initTable();
+    this.initChart();
+  }
+
+  public initChart() {
+    this.chart = new Chart({
+      chart: {
+        type: 'pie'
+      },
+      title: {
+        text: 'User Group by Role'
+      },
+      credits: {
+        enabled: false
+      },
+      series: [{
+        name: 'Users',
+        data: [{
+          name: 'Administrasi',
+          y: 4,
+        }, {
+          name: 'Staff Gudang',
+          y: 14
+        }, {
+          name: 'Direktur Operasional',
+          y: 2,
+          sliced: true,
+          selected: true
+        }]
+      }]
+    });
   }
 
   public initTable() {
@@ -97,6 +133,7 @@ export class UsersComponent implements OnInit {
       this.dataSource = new MatTableDataSource<User>(ELEMENT_DATA);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
+      this.users = this.dataSource.data.length;
     });
   }
 
@@ -227,6 +264,7 @@ export class UsersComponent implements OnInit {
     const data = this.dataSource.data;
     data.push(newUser);
     this.dataSource.data = data;
+    this.users = data.length;
     this.snackbar.open('Successfully create new User', 'Close', {
       duration: 3000
     });

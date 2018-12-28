@@ -1,143 +1,156 @@
 <div class="container body">
   <div class="row">
-    <div class="col-md-6">
-      <mat-card>
-        <mat-card-subtitle>Currently signed in with</mat-card-subtitle>
-        <mat-card-content>
-          <p class="text-secondary text-primary">{{ currentUser.email }}</p>
-        </mat-card-content>
-      </mat-card>
-    </div>
-
-    <div class="col-md-3">
-      <mat-card>
-        <mat-card-subtitle>Signed Users</mat-card-subtitle>
-        <mat-card-content>
-          <div class="row">
-            <mat-icon class="icon" color="primary">account_circle</mat-icon>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </div>
-
-    <div class="col-md-3">
-      <mat-card>
-        <mat-card-subtitle>Signed Users</mat-card-subtitle>
-        <mat-card-content>
-          <div class="row">
-            <mat-icon class="icon" color="primary">account_circle</mat-icon>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  </div>
-</div>
-
-<div class="container space-top">
-  <div class="row">
     <div class="col-md-8">
-      <mat-card>
-        <mat-card-content>
+      <div class="row">
+        <div class="col-md-12">
           <div class="row">
-            <div class="col-md-9">
-              <mat-form-field class="full-width">
-                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search ...">
-              </mat-form-field>
+            <div class="col-md-6">
+              <mat-card>
+                <mat-card-subtitle>Signed Users</mat-card-subtitle>
+                <mat-card-content>
+                  <mat-progress-spinner *ngIf="users === 0" mode="indeterminate" diameter="15"></mat-progress-spinner>
+                  <p *ngIf="users !== 0">
+                    All User :
+                    <strong class="text-primary">{{ users }}</strong>
+                  </p>
+                </mat-card-content>
+              </mat-card>
             </div>
-            <div class="col-md-3">
-              <button color="accent" mat-raised-button (click)="refreshTable()">Refresh Table</button>
+            
+            <div class="col-md-6">
+              <mat-card>
+                <mat-card-subtitle>Currently signed in with</mat-card-subtitle>
+                <mat-card-content>
+                  <p class="text-primary text-primary">{{ currentUser.email }}</p>
+                </mat-card-content>
+              </mat-card>
             </div>
           </div>
-          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-width" matSort>
-            <ng-container matColumnDef="position">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
-              <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-            </ng-container>
-          
-            <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-            </ng-container>
-          
-            <ng-container matColumnDef="email">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
-              <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-            </ng-container>
-          
-            <ng-container matColumnDef="options">
-              <th mat-header-cell *matHeaderCellDef></th>
-              <td mat-cell *matCellDef="let element">
-                <button mat-button [matMenuTriggerFor]="menu">
-                  <mat-icon>more_vert</mat-icon>
-                </button>
-                <mat-menu #menu="matMenu">
-                  <button mat-menu-item (click)="editUser(element.position)">
-                    <mat-icon>edit</mat-icon> Edit
-                  </button>
-                  <button mat-menu-item (click)="dialogDeleteUser(element.id)" *ngIf="currentUser.email !== element.email">
-                    <mat-icon>delete</mat-icon> Delete
-                  </button>
-                </mat-menu>
-              </td>
-            </ng-container>
-          
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table>
-          <mat-paginator [pageSizeOptions]="[7, 15, 25]" showFirstLastButtons class="mat-elevation-z8"></mat-paginator>
-        </mat-card-content>
-      </mat-card>
+        </div>
+        <div class="col-md-12 space-top">
+          <mat-card>
+            <mat-card-content>
+              <div class="row">
+                <div class="col-md-7">
+                  <mat-form-field class="full-width">
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search ...">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                  <button color="accent" mat-raised-button (click)="refreshTable()">Refresh Table</button>
+                </div>
+                <div class="col-md-2">
+                  <mat-slide-toggle (change)="showChart = !showChart">Chart</mat-slide-toggle>
+                </div>
+                <div class="col-md-12">
+                  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-width" matSort>
+                    <ng-container matColumnDef="position">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
+                      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="email">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="options">
+                      <th mat-header-cell *matHeaderCellDef></th>
+                      <td mat-cell *matCellDef="let element">
+                        <button mat-button [matMenuTriggerFor]="menu">
+                          <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                          <button mat-menu-item (click)="editUser(element.position)">
+                            <mat-icon>edit</mat-icon> Edit
+                          </button>
+                          <button mat-menu-item (click)="dialogDeleteUser(element.id)" *ngIf="currentUser.email !== element.email">
+                            <mat-icon>delete</mat-icon> Delete
+                          </button>
+                        </mat-menu>
+                      </td>
+                    </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+                  <mat-progress-bar *ngIf="users === 0" mode="indeterminate"></mat-progress-bar>
+                  <mat-paginator [pageSizeOptions]="[7, 15, 25]" showFirstLastButtons class="mat-elevation-z8"></mat-paginator>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
     </div>
 
     <div class="col-md-4">
-      <mat-card>
-        <mat-card-subtitle>Create new Signed User</mat-card-subtitle>
-        <mat-card-content>
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Name" type="text" [formControl]="nameControl">
-            <mat-error *ngIf="nameControl.hasError('required')">
-              Name is <strong>required</strong>
-            </mat-error>
-            <mat-error *ngIf="nameControl.hasError('minlength') || nameControl.hasError('maxlength')">
-              Name length should be <strong>6 to 45</strong> characters
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="full-width">
-            <input matInput type="email" placeholder="Email" [formControl]="emailControl">
-            <mat-error *ngIf="emailControl.hasError('email') && !emailControl.hasError('required')">
-              Please enter a valid email address
-            </mat-error>
-            <mat-error *ngIf="emailControl.hasError('required')">
-              Email is <strong>required</strong>
-            </mat-error>
-            <mat-error *ngIf="emailControl.hasError('minlength')">
-              Email length should be greater than <strong>6 characters</strong>
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Enter your password" [type]="hidePassword ? 'password' : 'text'" [formControl]="passwordControl">
-            <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
-            <mat-error *ngIf="passwordControl.hasError('required')">
-              Password is require for <strong>Create and Update</strong>
-            </mat-error>
-            <mat-error *ngIf="passwordControl.hasError('minlength')">
-              Password length should be greater than <strong>6 characters</strong>
-            </mat-error>
-          </mat-form-field>
-          <div class="form-group">
-            <label class="label-control col-md-12">User Role: </label>
-            <mat-radio-group [(ngModel)]="roleId">
-              <mat-radio-button *ngFor="let role of roles" [value]="role.id" class="col-md-12">
-                {{ role.name }}
-              </mat-radio-button>
-            </mat-radio-group>
-          </div>
-          <mat-card-actions>
-            <mat-spinner-button [options]="createUserBtnOption" (click)="submitForm()" class="float-right"></mat-spinner-button>
-            <button mat-raised-button color="primary" class="float-right" *ngIf="current" (click)="formToPristine()">Cancel</button>
-          </mat-card-actions>
-        </mat-card-content>
-      </mat-card>
+      <div class="row">
+        <div class="col-md-12" *ngIf="showChart">
+          <mat-card>
+            <mat-card-content>
+              <div class="row">
+                <div class="col-md-12" [chart]="chart"></div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div class="col-md-12 {{ showChart === false ? '' : 'space-top' }}">
+          <mat-card>
+            <mat-card-subtitle>Create new Signed User</mat-card-subtitle>
+            <mat-card-content>
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Name" type="text" [formControl]="nameControl">
+                <mat-error *ngIf="nameControl.hasError('required')">
+                  Name is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="nameControl.hasError('minlength') || nameControl.hasError('maxlength')">
+                  Name length should be <strong>6 to 45</strong> characters
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="full-width">
+                <input matInput type="email" placeholder="Email" [formControl]="emailControl">
+                <mat-error *ngIf="emailControl.hasError('email') && !emailControl.hasError('required')">
+                  Please enter a valid email address
+                </mat-error>
+                <mat-error *ngIf="emailControl.hasError('required')">
+                  Email is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="emailControl.hasError('minlength')">
+                  Email length should be greater than <strong>6 characters</strong>
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Enter your password" [type]="hidePassword ? 'password' : 'text'" [formControl]="passwordControl">
+                <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                <mat-error *ngIf="passwordControl.hasError('required')">
+                  Password is require for <strong>Create and Update</strong>
+                </mat-error>
+                <mat-error *ngIf="passwordControl.hasError('minlength')">
+                  Password length should be greater than <strong>6 characters</strong>
+                </mat-error>
+              </mat-form-field>
+              <div class="form-group">
+                <label class="label-control col-md-12">User Role: </label>
+                <mat-radio-group [(ngModel)]="roleId">
+                  <mat-radio-button *ngFor="let role of roles" [value]="role.id" class="col-md-12">
+                    {{ role.name }}
+                  </mat-radio-button>
+                </mat-radio-group>
+              </div>
+              <mat-card-actions>
+                <mat-spinner-button [options]="createUserBtnOption" (click)="submitForm()" class="float-right"></mat-spinner-button>
+                <button mat-raised-button color="primary" class="float-right" *ngIf="current" (click)="formToPristine()">Cancel</button>
+              </mat-card-actions>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
     </div>
   </div>
 </div>

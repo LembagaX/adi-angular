@@ -44,7 +44,7 @@ export class LoginComponent {
       raised: true,
       stroked: true,
       buttonColor: 'primary',
-      spinnerColor: 'accent',
+      spinnerColor: 'warn',
       fullWidth: false,
       disabled: false,
       mode: 'indeterminate',

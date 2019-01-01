@@ -8,9 +8,10 @@ import { MaterialModule } from '../material/material.module';
 import { MatProgressButtonsModule } from 'mat-progress-buttons';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DialogDeleteUserComponent } from './dialog-delete-user/dialog-delete-user.component';
+import { OrderComponent } from './order/order.component';
 
 @NgModule({
-  declarations: [DashboardComponent, UsersComponent, DialogDeleteUserComponent],
+  declarations: [DashboardComponent, UsersComponent, DialogDeleteUserComponent, OrderComponent],
   imports: [
     CommonModule,
     PartialsModule,

@@ -1,0 +1,98 @@
+<div class="container body">
+  <div class="row">
+    <div class="col-md-12">
+      <mat-card>
+        <mat-card-content>
+          <mat-horizontal-stepper [linear]="false" #stepper>
+            <mat-step [stepControl]="productFormGroup">
+              <form [formGroup]="productFormGroup">
+                <ng-template matStepLabel>Add Products</ng-template>
+                <button mat-raised-button color="primary">
+                  <mat-icon>add</mat-icon> Products
+                </button>
+                <button mat-flat-button matStepperNext>Next</button>
+              </form>
+            </mat-step>
+            <mat-step [stepControl]="customerFormGroup">
+              <form [formGroup]="customerFormGroup">
+                <ng-template matStepLabel>Fill out your address</ng-template>
+                <button mat-raised-button color="primary">
+                  <mat-icon>add</mat-icon> Customer
+                </button>
+                <button mat-flat-button matStepperPrevious>Back</button>
+                <button mat-flat-button matStepperNext>Next</button>
+              </form>
+            </mat-step>
+            <mat-step>
+              <ng-template matStepLabel>Done</ng-template>
+              <p class="lead">Are You sure ?</p>
+              <button mat-raised-button color="primary">Yes</button>
+              <button mat-flat-button matStepperPrevious>Go Back</button>
+            </mat-step>
+          </mat-horizontal-stepper>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="col-md-12 space-top">
+      <mat-card>
+        <mat-card-content>
+          <div class="row">
+            <div class="col-md-12">
+              <p class="lead text-center">Delivery Order</p>
+              <mat-divider></mat-divider>
+            </div>
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-8 space-top">
+                  <table mat-table [dataSource]="dataSource" class="full-width">
+                    <ng-container matColumnDef="position">
+                      <th mat-header-cell *matHeaderCellDef> No. </th>
+                      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef> Name </th>
+                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="price">
+                      <th mat-header-cell *matHeaderCellDef> Price </th>
+                      <td mat-cell *matCellDef="let element"> {{ element.price | currency : 'Rp. ' }} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="quantity">
+                      <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                      <td mat-cell *matCellDef="let element"> @ {{  element.quantity }} </td>
+                    </ng-container>
+                    <tr mat-row *matRowDef="let row; columns: tableHeader;"></tr>
+                  </table>
+                </div>
+                <div class="col-md-4 space-top">
+                  <p class="text-secondary text-center">Customer</p>
+                  <div class="row">
+                    <div class="col-md-3">Name</div>
+                    <div class="col-md-9">{{ customerFormGroup.value.customerName }}</div>
+                    <div class="col-md-3">Address</div>
+                    <div class="col-md-9">{{ customerFormGroup.value.customerAddress }}</div>
+                    <div class="col-md-3">Phone</div>
+                    <div class="col-md-9">{{ customerFormGroup.value.customerPhone }}</div>
+                    <div class="col-md-3">Payment</div>
+                    <div class="col-md-9">Cash</div>
+                    <div class="col-md-12 space-top"><mat-divider></mat-divider></div>
+                    <div class="col-md-3 space-top">Sub Total</div>
+                    <div class="col-md-9 space-top">{{ subTotal | currency : 'Rp. ' }}</div>
+                    <div class="col-md-3">Discount</div>
+                    <div class="col-md-9">{{ discount | currency : 'Rp. ' }}</div>
+                    <div class="col-md-3 space-top">Total</div>
+                    <div class="col-md-9 space-top"><strong>{{ total | currency : 'Rp. '}}</strong></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 space-top">
+                <mat-divider></mat-divider>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

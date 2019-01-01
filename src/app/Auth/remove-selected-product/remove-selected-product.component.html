@@ -1,0 +1,15 @@
+<form>
+  <mat-form-field>
+    <input matInput [formControl]="quantityControl" class="full-width" type="number">
+  </mat-form-field>
+  <mat-error *ngIf="quantityControl.hasError('required')">
+    Quantity is <strong>required</strong>
+  </mat-error>
+  <mat-error *ngIf="quantityControl.hasError('max')">
+    Quantity < <strong>{{ data.quantity }}</strong>
+  </mat-error>
+</form>
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="data.quantity">All</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="quantityControl.value" [disabled]="quantityControl.hasError('max') || quantityControl.hasError('required')">Done</button>
+</mat-dialog-actions>

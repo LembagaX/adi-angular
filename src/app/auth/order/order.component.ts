@@ -30,9 +30,6 @@ export class OrderComponent implements OnInit {
 
   ngOnInit() {
     this.iterate = 1;
-    this.total = 0;
-    this.subTotal = 0;
-    this.discount = 0;
     this.tableHeader = ['position', 'name', 'price', 'quantity', 'options'];
     const products: Product[] = [
       { position: this.iterate++, id: 1, name: 'Lubricants', price: 45000, quantity: 0, stock: 100 },
@@ -47,16 +44,27 @@ export class OrderComponent implements OnInit {
     this.productFormGroup = this.formBuilder.group({
     });
     this.customerFormGroup = this.formBuilder.group({
-      customerName: ['Toko Berkah Abadi', Validators.required],
-      customerPhone: ['Jln. Borobudur Raya no. 13 Kelapa Dua Kabupaten Tangerang', Validators.required],
-      customerAddress: ['0823 1987 8833', Validators.required]
+      customerName: ['Toko Berkah Abadi', [Validators.required, Validators.maxLength(45), Validators.minLength(6)]],
+      customerAddress: ['Jln. Borobudur Raya no. 13 Kelapa Dua Kabupaten Tangerang', [Validators.required, Validators.maxLength(255)]],
+      customerPhone: ['0823 1987 8833', [Validators.required, Validators.maxLength(14), Validators.minLength(8)]],
+      customerPayment: ['1',  Validators.required ],
+      customerDiscount: [false,  Validators.required ],
+      customerDiscountPercent: [0]
     });
   }
 
   public sumTotal() {
+    this.total = 0;
+    this.subTotal = 0;
+    this.discount = 0;
     this.selectedProducts.data.forEach((data) => {
       this.subTotal += data.price * data.quantity;
     });
+    if (this.customerFormGroup.value.customerDiscount) {
+      this.discount = (this.customerFormGroup.value.customerDiscountPercent * this.subTotal) / 100;
+    } else {
+      this.discount = 0;
+    }
     this.total = this.subTotal - this.discount;
   }
 

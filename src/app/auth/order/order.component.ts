@@ -4,6 +4,7 @@ import { MatTableDataSource, MatDialog } from '@angular/material';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { SelectProductDialogComponent } from 'src/app/Auth/select-product-dialog/select-product-dialog.component';
 import { RemoveSelectedProductComponent } from 'src/app/Auth/remove-selected-product/remove-selected-product.component';
+import { DiscountDialogComponent } from 'src/app/Auth/discount-dialog/discount-dialog.component';
 
 @Component({
   selector: 'app-order',
@@ -30,13 +31,13 @@ export class OrderComponent implements OnInit {
 
   ngOnInit() {
     this.iterate = 1;
-    this.tableHeader = ['position', 'name', 'price', 'quantity', 'options'];
+    this.tableHeader = ['code', 'name', 'price', 'quantity', 'sum', 'discount', 'id'];
     const products: Product[] = [
-      { position: this.iterate++, id: 1, name: 'Lubricants', price: 45000, quantity: 0, stock: 100 },
-      { position: this.iterate++, id: 2, name: 'Chain Cleaner', price: 25000, quantity: 0, stock: 300 },
-      { position: this.iterate++, id: 3, name: 'Chain Lube', price: 30000, quantity: 0, stock: 150 },
-      { position: this.iterate++, id: 4, name: 'Paint Remover', price: 50000, quantity: 0, stock: 300 },
-      { position: this.iterate++, id: 5, name: 'Catalyst', price: 15000, quantity: 0, stock: 450 }
+      { position: this.iterate++, id: 1, code: 'A1', name: 'Lubricants', price: 45000, quantity: 0, stock: 100, discount: 0 },
+      { position: this.iterate++, id: 2, code: 'A2', name: 'Chain Cleaner', price: 25000, quantity: 0, stock: 300, discount: 0 },
+      { position: this.iterate++, id: 3, code: 'A3', name: 'Chain Lube', price: 30000, quantity: 0, stock: 150, discount: 0 },
+      { position: this.iterate++, id: 4, code: 'A4', name: 'Paint Remover', price: 50000, quantity: 0, stock: 300, discount: 0 },
+      { position: this.iterate++, id: 5, code: 'A5', name: 'Catalyst', price: 15000, quantity: 0, stock: 450, discount: 0 }
     ];
     const selectedProducts: Product[] = [];
     this.products = new MatTableDataSource<Product>(products);
@@ -105,5 +106,16 @@ export class OrderComponent implements OnInit {
       this.selectedProducts.data = selected;
       this.products.data = products;
     });
+  }
+
+  public discountDialog(id: number) {
+    const data = this.selectedProducts.data;
+    data.map( product => {
+      if (product.id === id) {
+        const dialog = this.dialog.open(DiscountDialogComponent, { data: product });
+        dialog.afterClosed().subscribe((result) => product.discount = result);
+      }
+    });
+    this.selectedProducts.data = data;
   }
 }

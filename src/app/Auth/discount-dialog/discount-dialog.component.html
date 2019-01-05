@@ -1,0 +1,28 @@
+<form [formGroup]="discount">
+  <div class="row">
+    <div class="col-md-12">
+      <mat-form-field class="full-width" *ngIf="discount.value.percent === 0">
+        <input matInput placeholder="Amount" type="number" class="number" formControlName="amount">
+        <mat-hint align="end">Max discount : {{ price | currency: 'Rp. ' }}</mat-hint>
+        <mat-hint align="start">To use percent, set to 0</mat-hint>
+        <span matPrefix>RP.&nbsp;</span>
+        <span matSuffix>.00</span>
+      </mat-form-field>
+    </div>
+    <div class="col-md-12 text-center" *ngIf="discount.value.percent === 0 && discount.value.amount === 0">
+      <strong class="text-primary">Or</strong>
+    </div>
+    <div class="col-md-12" *ngIf="discount.value.amount === 0">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Percent" type="number" class="number" formControlName="percent">
+        <span matSuffix>%</span>
+        <mat-hint align="start">To use amount, set to 0</mat-hint>
+        <mat-hint align="end">Max discount : 100 %</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="col-md-12 space-top">
+      <button mat-flat-button [mat-dialog-close]="0">Cancel</button>
+      <button mat-raised-button [mat-dialog-close]="sumPrice()" [disabled]="discount.invalid" color="primary">Done</button>
+    </div>
+  </div>
+</form>

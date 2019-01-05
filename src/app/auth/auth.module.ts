@@ -12,6 +12,7 @@ import { OrderComponent } from './order/order.component';
 import { SelectProductDialogComponent } from '../Auth/select-product-dialog/select-product-dialog.component';
 import { RequestedProductDialogComponent } from '../Auth/requested-product-dialog/requested-product-dialog.component';
 import { RemoveSelectedProductComponent } from '../Auth/remove-selected-product/remove-selected-product.component';
+import { DiscountDialogComponent } from '../Auth/discount-dialog/discount-dialog.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { RemoveSelectedProductComponent } from '../Auth/remove-selected-product/
     OrderComponent,
     SelectProductDialogComponent,
     RequestedProductDialogComponent,
-    RemoveSelectedProductComponent
+    RemoveSelectedProductComponent,
+    DiscountDialogComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +38,8 @@ import { RemoveSelectedProductComponent } from '../Auth/remove-selected-product/
     DialogDeleteUserComponent,
     SelectProductDialogComponent,
     RequestedProductDialogComponent,
-    RemoveSelectedProductComponent
+    RemoveSelectedProductComponent,
+    DiscountDialogComponent
   ]
 })
 export class AuthModule { }

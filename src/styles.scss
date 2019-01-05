@@ -17,3 +17,11 @@ body{
 .full-width {
   width: 100%;
 }
+
+input.number {
+  -moz-appearance: textfield;
+}
+input.number::-webkit-outer-spin-button,
+input.number::-webkit-inner-spin-button {
+  display: none;
+}

@@ -97,59 +97,51 @@
         <mat-card-content>
           <div class="row">
             <div class="col-md-12">
-              <p class="lead text-center">Delivery Order</p>
-              <mat-divider></mat-divider>
+              <p class="lead text-center">Order Information</p>
             </div>
             <div class="col-md-12">
               <div class="row">
-                <div class="col-md-8 space-top">
-                  <table mat-table [dataSource]="selectedProducts" class="full-width">
-                    <ng-container matColumnDef="position">
-                      <td mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </td>
+                <div class="col-md-12 space-top">
+                  <table mat-table [dataSource]="selectedProducts" class="full-width mat-elevation-z8">
+                    <ng-container matColumnDef="code">
+                      <th mat-header-cell *matHeaderCellDef> Item </th>
+                      <td mat-cell *matCellDef="let element"> {{ element.code }} </td>
                     </ng-container>
                     <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef> Description </th>
                       <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
                     </ng-container>
                     <ng-container matColumnDef="price">
+                      <th mat-header-cell *matHeaderCellDef> Unit Price </th>
                       <td mat-cell *matCellDef="let element"> {{ element.price | currency : 'Rp. ' }} </td>
                     </ng-container>
                     <ng-container matColumnDef="quantity">
-                      <td mat-cell *matCellDef="let element"> @ {{  element.quantity }} </td>
+                      <th mat-header-cell *matHeaderCellDef> Qty </th>
+                      <td mat-cell *matCellDef="let element">{{  element.quantity }} </td>
                     </ng-container>
-                    <ng-container matColumnDef="options">
+                    <ng-container matColumnDef="sum">
+                      <th mat-header-cell *matHeaderCellDef> Price </th>
+                      <td mat-cell *matCellDef="let element">{{ element.price * element.quantity | currency: 'Rp. '}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="discount">
+                      <th mat-header-cell *matHeaderCellDef> Discount </th>
+                      <td mat-cell *matCellDef="let element">{{ element.discount | currency: 'Rp. ' }} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="id">
+                      <th mat-header-cell *matHeaderCellDef> Action </th>
                       <td mat-cell *matCellDef="let element">
-                        <button mat-flat-button (click)="showRemoveDialog(element.id)"><mat-icon>remove</mat-icon></button>
+                        <button mat-flat-button matTooltip="Remove from list" (click)="showRemoveDialog(element.id)">
+                          <mat-icon>remove</mat-icon>
+                        </button>
+                        <button mat-flat-button matTooltip="Set Discount" (click)="discountDialog(element.id)">
+                          <mat-icon>label_off</mat-icon>
+                        </button>
                       </td>
                     </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="tableHeader"></tr>
                     <tr mat-row *matRowDef="let row; columns: tableHeader;"></tr>
                   </table>
                 </div>
-                <div class="col-md-4 space-top">
-                  <p class="text-secondary text-center">Customer Information</p>
-                  <div class="row">
-                    <div class="col-md-3">Name</div>
-                    <div class="col-md-9">{{ customerFormGroup.value.customerName }}</div>
-                    <div class="col-md-3">Address</div>
-                    <div class="col-md-9">{{ customerFormGroup.value.customerAddress }}</div>
-                    <div class="col-md-3">Phone</div>
-                    <div class="col-md-9">{{ customerFormGroup.value.customerPhone }}</div>
-                    <div class="col-md-3">Payment</div>
-                    <div class="col-md-9">
-                      <span *ngIf="customerFormGroup.value.customerPayment == 1">Cash</span>
-                      <span *ngIf="customerFormGroup.value.customerPayment == 0">Non Cash</span>
-                    </div>
-                    <div class="col-md-12 space-top"><mat-divider></mat-divider></div>
-                    <div class="col-md-3 space-top">Sub Total</div>
-                    <div class="col-md-9 space-top">{{ subTotal | currency : 'Rp. ' }}</div>
-                    <div class="col-md-3">Discount</div>
-                    <div class="col-md-9">{{ discount | currency : 'Rp. ' }}</div>
-                    <div class="col-md-3 space-top">Total</div>
-                    <div class="col-md-9 space-top"><strong>{{ total | currency : 'Rp. '}}</strong></div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-12 space-top">
-                <mat-divider></mat-divider>
               </div>
             </div>
           </div>

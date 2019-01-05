@@ -13,6 +13,7 @@ import { SelectProductDialogComponent } from '../Auth/select-product-dialog/sele
 import { RequestedProductDialogComponent } from '../Auth/requested-product-dialog/requested-product-dialog.component';
 import { RemoveSelectedProductComponent } from '../Auth/remove-selected-product/remove-selected-product.component';
 import { DiscountDialogComponent } from '../Auth/discount-dialog/discount-dialog.component';
+import { MaterialsComponent } from '../Auth/materials/materials.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DiscountDialogComponent } from '../Auth/discount-dialog/discount-dialog
     SelectProductDialogComponent,
     RequestedProductDialogComponent,
     RemoveSelectedProductComponent,
-    DiscountDialogComponent
+    DiscountDialogComponent,
+    MaterialsComponent
   ],
   imports: [
     CommonModule,

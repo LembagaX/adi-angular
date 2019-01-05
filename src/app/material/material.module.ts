@@ -20,7 +20,8 @@ import {
   MatProgressBarModule,
   MatDividerModule,
   MatStepperModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatChipsModule
 } from '@angular/material';
 
 @NgModule({
@@ -46,7 +47,8 @@ import {
     MatProgressBarModule,
     MatDividerModule,
     MatStepperModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatChipsModule
   ],
   exports: [
     MatCardModule,
@@ -68,7 +70,8 @@ import {
     MatProgressBarModule,
     MatDividerModule,
     MatStepperModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatChipsModule
   ]
 })
 export class MaterialModule { }

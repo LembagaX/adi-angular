@@ -1,0 +1,19 @@
+<mat-card>
+  <mat-card-content>
+    <div class="row">
+      <div class="col-md-12">
+        <p class="lead">{{ title }}</p>
+      </div>
+      <div class="col-md-2 text-center">
+        <mat-icon [color]="type" class="card-icon">{{ icon }}</mat-icon>
+      </div>
+      <div class="col-md-9 offset-md-1">
+        <p class="text-secondary">
+          {{ body }}
+          <br>
+          <span class="lead text-{{ type }}">{{ point }}</span>
+        </p>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

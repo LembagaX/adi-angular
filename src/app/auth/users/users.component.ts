@@ -8,6 +8,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatProgressButtonOptions } from 'mat-progress-buttons';
 import { MatPaginator, MatTableDataSource, MatSort, MatSnackBar } from '@angular/material';
 import { DialogDeleteUserComponent } from '../dialog-delete-user/dialog-delete-user.component';
+import { UserByRole } from 'src/app/chart/user-by-role';
 
 @Component({
   selector: 'app-users',
@@ -25,6 +26,7 @@ export class UsersComponent implements OnInit {
   public currentUser: User;
   public showChart: boolean;
   private formValid: boolean;
+  public series: UserByRole[];
   public hidePassword: boolean;
   public nameControl: FormControl;
   public emailControl: FormControl;
@@ -82,6 +84,13 @@ export class UsersComponent implements OnInit {
     this.iterate = 1;
     this.displayedColumns = ['position', 'name', 'email', 'options'];
     this.users = 0;
+    this.series = [];
+    this.server.chartUserByRole().subscribe((response) => {
+      response.forEach((item) => {
+        const slice: boolean = item.display_name === 'Direktur Operational';
+        this.series.push({ name: item.display_name, y: item.users_count, sliced: slice, selected: slice });
+      });
+    });
   }
 
   ngOnInit() {
@@ -102,18 +111,7 @@ export class UsersComponent implements OnInit {
       },
       series: [{
         name: 'Users',
-        data: [{
-          name: 'Administrasi',
-          y: 4,
-        }, {
-          name: 'Staff Gudang',
-          y: 14
-        }, {
-          name: 'Direktur Operasional',
-          y: 2,
-          sliced: true,
-          selected: true
-        }]
+        data: this.series
       }]
     });
   }

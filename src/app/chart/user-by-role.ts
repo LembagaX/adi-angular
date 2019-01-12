@@ -1,4 +1,6 @@
 export interface UserByRole {
-    name: number;
+    name: string;
     y: number;
+    sliced?: boolean;
+    selected?: boolean;
 }

@@ -16,8 +16,8 @@ export class MaterialsComponent implements OnInit {
   ngOnInit() {
     this.cards = [
       { icon: 'view_comfy', title: 'Providers', body: 'All materials Provider', point: '120', type: '' },
-      { icon: 'trending_up', title: 'Purchasing Growth', body: 'Increase From last month', point: '45%', type: 'primary' },
-      { icon: 'trending_down', title: 'Materials depreciation', body: 'decrease From last month', point: '5%', type: 'accent' },
+      { icon: 'trending_up', title: 'Purchasing Growth', body: 'Increase from last month', point: '45%', type: 'primary' },
+      { icon: 'trending_down', title: 'Materials depreciation', body: 'Decrease from last month', point: '5%', type: 'accent' },
     ];
     this.thead = ['position', 'name', 'providers', 'stock'];
     this.tbody = [

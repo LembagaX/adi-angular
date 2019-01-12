@@ -21,8 +21,12 @@ import {
   MatDividerModule,
   MatStepperModule,
   MatTooltipModule,
-  MatChipsModule
+  MatChipsModule,
+  MatSidenavModule,
+  MatListModule
 } from '@angular/material';
+
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [],
@@ -48,7 +52,10 @@ import {
     MatDividerModule,
     MatStepperModule,
     MatTooltipModule,
-    MatChipsModule
+    MatChipsModule,
+    LayoutModule,
+    MatSidenavModule,
+    MatListModule
   ],
   exports: [
     MatCardModule,
@@ -71,7 +78,10 @@ import {
     MatDividerModule,
     MatStepperModule,
     MatTooltipModule,
-    MatChipsModule
+    MatChipsModule,
+    LayoutModule,
+    MatSidenavModule,
+    MatListModule
   ]
 })
 export class MaterialModule { }

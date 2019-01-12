@@ -1,6 +1,8 @@
-<div class="container body">
+<app-drawer></app-drawer>
+
+<div class="container-fluid body">
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-7 offset-md-2">
       <div class="row">
         <div class="col-md-12">
           <div class="row">
@@ -40,7 +42,8 @@
                   <button color="accent" mat-raised-button (click)="refreshTable()">Refresh Table</button>
                 </div>
                 <div class="col-md-2">
-                  <mat-slide-toggle (change)="showChart = !showChart">Chart</mat-slide-toggle>
+                  <mat-slide-toggle (change)="showChart = !showChart"></mat-slide-toggle>
+                  <button mat-flat-button><mat-icon>donut_small</mat-icon></button>
                 </div>
                 <div class="col-md-12">
                   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-width" matSort>
@@ -89,7 +92,7 @@
       </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-3">
       <div class="row">
         <div class="col-md-12" *ngIf="showChart">
           <mat-card>

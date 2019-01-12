@@ -1,0 +1,54 @@
+<mat-sidenav-container class="sidenav-container full-width">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+    <div class="col-md-3 offset-md-3 space-top">
+      <img ngxGravatar [email]="user.email" size="100" fallback="mp" />
+    </div>
+    <div class="col-md-12">
+      <p class="text-primary text-center">{{ user.name }}</p>
+      <p class="text-center"><small class="text-secondary text-center">{{ user.email }}</small></p>
+    </div>
+    <mat-divider></mat-divider>
+    <mat-nav-list>
+      <mat-list-item>
+        <mat-icon matListIcon>dashboard</mat-icon>
+        <a routerLink="/dashboard" matLine>Dashboard</a>
+      </mat-list-item>
+      
+      <mat-list-item>
+        <mat-icon matListIcon>supervised_user_circle</mat-icon>
+        <a routerLink="/users" matLine>Users Management</a>
+      </mat-list-item>
+
+      <mat-list-item>
+        <mat-icon matListIcon>ballot</mat-icon>
+        <a routerLink="/materials" matLine>Warehouse</a>
+      </mat-list-item>
+
+      <mat-list-item>
+        <mat-icon matListIcon>local_grocery_store</mat-icon>
+        <a routerLink="/users" matLine>Order</a>
+      </mat-list-item>
+
+      <mat-list-item>
+        <mat-icon matListIcon>donut_small</mat-icon>
+        <a routerLink="/users" matLine>Analytics</a>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

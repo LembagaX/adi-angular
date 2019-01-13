@@ -7,13 +7,15 @@ import { OrderComponent } from './auth/order/order.component';
 import { LoginComponent } from './login/login/login.component';
 import { DashboardComponent } from './auth/dashboard/dashboard.component';
 import { MaterialsComponent } from './Auth/materials/materials.component';
+import { MaterialPurchasingComponent } from './warehouse/material-purchasing/material-purchasing.component';
 
 const routes: Routes = [
   { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent, canActivate: [GuestGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'order', component: OrderComponent, canActivate: [AuthGuard] },
-  { path: 'materials', component: MaterialsComponent, canActivate: [AuthGuard] }
+  { path: 'materials', component: MaterialsComponent, canActivate: [AuthGuard] },
+  { path: 'materials/purchasing', component: MaterialPurchasingComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

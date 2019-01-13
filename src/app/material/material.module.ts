@@ -23,7 +23,10 @@ import {
   MatTooltipModule,
   MatChipsModule,
   MatSidenavModule,
-  MatListModule
+  MatListModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatAutocompleteModule
 } from '@angular/material';
 
 import { LayoutModule } from '@angular/cdk/layout';
@@ -55,7 +58,10 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatChipsModule,
     LayoutModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatAutocompleteModule
   ],
   exports: [
     MatCardModule,
@@ -81,7 +87,10 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatChipsModule,
     LayoutModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatAutocompleteModule
   ]
 })
 export class MaterialModule { }

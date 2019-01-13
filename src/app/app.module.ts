@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { PartialsModule } from './partials/partials.module';
 import { StorageServiceModule } from 'ngx-webstorage-service';
+import { WarehouseModule } from './warehouse/warehouse.module';
 import { MatProgressButtonsModule } from 'mat-progress-buttons';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -23,7 +24,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatProgressButtonsModule.forRoot(),
     AuthModule,
     StorageServiceModule,
-    PartialsModule
+    PartialsModule,
+    WarehouseModule
   ],
   providers: [
   ],

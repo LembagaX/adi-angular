@@ -1,12 +1,14 @@
+import { User } from './models/user';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Credential } from './interfaces/credential';
-import { CredentialResponse } from './interfaces/credential-response';
 import { AuthService } from './auth.service';
 import { ArrayResponse } from './array-response';
-import { User } from './models/user';
+import { Credential } from './interfaces/credential';
 import { PlainResponse } from './interfaces/plain-response';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ChartUserByRole } from './response/chart-user-by-role';
+import { MaterialPuchasing } from './response/material-puchasing';
+import { CredentialResponse } from './interfaces/credential-response';
+import { MaterialPuchasing as MaterialPuchasingRequest } from './request/material-puchasing';
 
 @Injectable({
   providedIn: 'root'
@@ -91,5 +93,16 @@ export class ServerService {
       })
     };
     return this.http.get<ChartUserByRole[]>(this.base + suffix, header);
+  }
+
+  public materialPurchasing(request: MaterialPuchasingRequest) {
+    const suffix = 'purchases.json';
+    const header = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'token': this.auth.currentUser().token
+      })
+    };
+    return this.http.post<MaterialPuchasing>(this.base + suffix, request, header);
   }
 }

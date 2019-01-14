@@ -10,7 +10,12 @@
       <p class="text-primary text-center">{{ user.name }}</p>
       <p class="text-center"><small class="text-secondary text-center">{{ user.email }}</small></p>
     </div>
-    <mat-divider></mat-divider>
+    <div class="col-md-12 text-center">
+      <button mat-raised-button>Logout</button>
+    </div>
+    <div class="col-md-12 space-top">
+      <mat-divider></mat-divider>
+    </div>
     <mat-nav-list>
       <mat-list-item>
         <mat-icon matListIcon>dashboard</mat-icon>
@@ -28,8 +33,8 @@
       </mat-list-item>
 
       <mat-list-item>
-        <mat-icon matListIcon>local_grocery_store</mat-icon>
-        <a routerLink="/users" matLine>Order</a>
+        <mat-icon matListIcon>assignment</mat-icon>
+        <a routerLink="/users" matLine>Sales Docs</a>
       </mat-list-item>
 
       <mat-list-item>

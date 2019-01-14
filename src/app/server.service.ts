@@ -9,6 +9,7 @@ import { ChartUserByRole } from './response/chart-user-by-role';
 import { MaterialPuchasing } from './response/material-puchasing';
 import { CredentialResponse } from './interfaces/credential-response';
 import { MaterialPuchasing as MaterialPuchasingRequest } from './request/material-puchasing';
+import { MaterialIndex } from './response/material-index';
 
 @Injectable({
   providedIn: 'root'
@@ -104,5 +105,16 @@ export class ServerService {
       })
     };
     return this.http.post<MaterialPuchasing>(this.base + suffix, request, header);
+  }
+
+  public materialIndex() {
+    const suffix = 'materials.json';
+    const header = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'token': this.auth.currentUser().token
+      })
+    };
+    return this.http.get<MaterialIndex[]>(this.base + suffix, header);
   }
 }

@@ -21,7 +21,7 @@ export class DashboardComponent  {
 
   chart = new Chart({
     chart: {
-      type: 'line'
+      type: 'spline'
     },
     title: {
       text: 'Linechart'

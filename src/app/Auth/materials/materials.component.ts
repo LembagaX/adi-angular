@@ -26,7 +26,6 @@ export class MaterialsComponent implements OnInit {
       { icon: 'trending_down', title: 'Materials depreciation', body: 'Decrease from last month', point: '5%', type: 'accent' },
     ];
     this.buildTable();
-    this.server.materialIndex().subscribe((response) => console.log(response));
   }
 
   public buildTable() {
@@ -44,6 +43,7 @@ export class MaterialsComponent implements OnInit {
         });
         this.showTable = true;
       });
+      console.log(this.tbody);
     });
   }
 }

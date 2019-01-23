@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { Material } from 'src/app/response/material';
 
 @Component({
   selector: 'app-material-table',
@@ -8,17 +9,17 @@ import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 })
 export class MaterialTableComponent implements OnInit {
 
-  public datasource: MatTableDataSource<any>;
+  public datasource: MatTableDataSource<Material>;
 
-  @Input() tbody: any[];
   @Input() thead: string[];
+  @Input() tbody: Material[];
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor() { }
 
   ngOnInit() {
-    this.datasource = new MatTableDataSource<any>(this.tbody);
+    this.datasource = new MatTableDataSource<Material>(this.tbody);
     this.datasource.sort = this.sort;
     this.datasource.paginator = this.paginator;
   }

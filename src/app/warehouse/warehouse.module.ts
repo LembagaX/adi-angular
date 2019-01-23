@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChartModule } from 'angular-highcharts';
 import { AppRoutingModule } from '../app-routing.module';
 import { PartialsModule } from '../partials/partials.module';
 import { MaterialModule } from '../material/material.module';
 import { MatProgressButtonsModule } from 'mat-progress-buttons';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialPurchasingComponent } from './material-purchasing/material-purchasing.component';
+import { MaterialDetailComponent } from './material-detail/material-detail.component';
 
 @NgModule({
-  declarations: [MaterialPurchasingComponent],
+  declarations: [MaterialPurchasingComponent, MaterialDetailComponent],
   imports: [
     CommonModule,
     MaterialModule,
@@ -16,7 +18,8 @@ import { MaterialPurchasingComponent } from './material-purchasing/material-purc
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    MatProgressButtonsModule
+    MatProgressButtonsModule,
+    ChartModule
   ]
 })
 export class WarehouseModule { }

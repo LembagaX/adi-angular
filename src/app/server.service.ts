@@ -9,7 +9,8 @@ import { ChartUserByRole } from './response/chart-user-by-role';
 import { MaterialPuchasing } from './response/material-puchasing';
 import { CredentialResponse } from './interfaces/credential-response';
 import { MaterialPuchasing as MaterialPuchasingRequest } from './request/material-puchasing';
-import { MaterialIndex } from './response/material-index';
+import { Material } from './response/material';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -115,6 +116,28 @@ export class ServerService {
         'token': this.auth.currentUser().token
       })
     };
-    return this.http.get<MaterialIndex[]>(this.base + suffix, header);
+    return this.http.get<Material[]>(this.base + suffix, header);
+  }
+
+  public materialShow(slug: string) {
+    const suffix = `materials/${slug}.json`;
+    const header = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'token': this.auth.currentUser().token
+      })
+    };
+    return this.http.get<Material>(this.base + suffix, header);
+  }
+
+  public materialUpdate(slug: string, material: FormGroup) {
+    const suffix = `materials/${slug}.json`;
+    const header = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'token': this.auth.currentUser().token
+      })
+    };
+    return this.http.patch<Material>(this.base + suffix, material.value, header);
   }
 }

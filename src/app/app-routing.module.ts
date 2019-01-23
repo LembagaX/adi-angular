@@ -7,6 +7,7 @@ import { OrderComponent } from './auth/order/order.component';
 import { LoginComponent } from './login/login/login.component';
 import { DashboardComponent } from './auth/dashboard/dashboard.component';
 import { MaterialsComponent } from './Auth/materials/materials.component';
+import { MaterialDetailComponent } from './warehouse/material-detail/material-detail.component';
 import { MaterialPurchasingComponent } from './warehouse/material-purchasing/material-purchasing.component';
 
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'order', component: OrderComponent, canActivate: [AuthGuard] },
   { path: 'materials', component: MaterialsComponent, canActivate: [AuthGuard] },
-  { path: 'materials/purchasing', component: MaterialPurchasingComponent, canActivate: [AuthGuard] }
+  { path: 'materials/purchasing', component: MaterialPurchasingComponent, canActivate: [AuthGuard] },
+  { path: 'materials/:slug/analytics', component: MaterialDetailComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

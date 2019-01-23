@@ -1,0 +1,104 @@
+<app-drawer></app-drawer>
+<div class="container-fluid space-top">
+  <div class="row">
+    <mat-progress-bar *ngIf="load" mode="indeterminate"></mat-progress-bar>
+    <div class="col-md-10 offset-md-2" *ngIf="!load">
+      <mat-card>
+        <mat-card-content>
+          <div class="row">
+            <div class="col-md-6">
+              <mat-progress-bar *ngIf="submitting" mode="indeterminate"></mat-progress-bar>
+              <mat-card>
+                <mat-card-subtitle>Material information</mat-card-subtitle>
+                <mat-card-content>
+                  <dl class="row">
+                    <dt class="col-md-5">Name : </dt>
+                    <dd class="col-md-7">{{ material.name }}</dd>
+                    <dt class="col-md-5">Available stock : </dt>
+                    <dd class="col-md-7">{{ material.stock }}</dd>
+                    <dt class="col-md-5">Last purchasing price : </dt>
+                    <dd class="col-md-7">{{ material.price | currency : 'Rp. ' }}</dd>
+                    <dt class="col-md-5">Recorded price changes : </dt>
+                    <dd class="col-md-7">{{ material.prices.length }} records</dd>
+                    <dt class="col-md-5">Bought from provider : </dt>
+                    <dd class="col-md-7">{{ material.providers.length }} providers </dd>
+                  </dl>
+                </mat-card-content>
+              </mat-card>
+            </div>
+
+            <div class="col-md-6">
+              <mat-progress-bar *ngIf="submitting" mode="indeterminate"></mat-progress-bar>
+              <mat-card>
+                <mat-card-subtitle>Material Update</mat-card-subtitle>
+                <mat-card-content>
+                  <form [formGroup]="materialForm" (ngSubmit)="materialUpdate()">
+                    <mat-form-field class="full-width">
+                      <mat-label>Name</mat-label>
+                      <input matInput type="text" required formControlName="name" maxlength="120" minlength="6">
+                      <mat-error *ngIf="materialForm.controls['name'].hasError('required')">
+                        Name is <strong>required</strong>
+                      </mat-error>
+                      <mat-error *ngIf="materialForm.controls['name'].hasError('maxlength') || materialForm.controls['name'].hasError('minlength')">
+                        Name should between 6 and 120 characters
+                      </mat-error>
+                    </mat-form-field>
+
+                    <button *ngIf="!submitting" [disabled]="materialForm.invalid" mat-raised-button color="primary">Update Material</button>
+                  </form>
+                </mat-card-content>
+              </mat-card>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid space-top">
+  <div class="row">
+    <div class="col-md-10 offset-md-2" *ngIf="!load">
+      <mat-card>
+        <mat-card-subtitle>
+          Material recorded price by Provider
+        </mat-card-subtitle>
+        <mat-card-content>
+          <div class="row">
+            <div class="col-md-10">
+              <div [chart]="chart"></div>
+            </div>
+            <div class="col-md-2">
+              <button mat-raised-button class="btn-block" (click)="redbuildChart('area')">Area Chart</button>
+              <button mat-raised-button class="btn-block" (click)="redbuildChart('bar')">Bar Chart</button>
+              <button mat-raised-button class="btn-block" (click)="redbuildChart('spline')">Line Chart</button>
+              <button mat-raised-button class="btn-block" (click)="redbuildChart('column')">Column Chart</button>
+              <button mat-raised-button class="btn-block" (click)="redbuildChart('scatter')">Scatter Chart</button>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid space-top">
+  <div class="row">
+    <div class="col-md-10 offset-md-2" *ngIf="!load">
+      <mat-card>
+        <mat-card-subtitle>
+          Material bought from
+        </mat-card-subtitle>
+        <mat-card-content>
+          <div class="row">
+            <div class="col-md-3" *ngFor="let provider of material.providers">
+              <mat-card>
+                <mat-card-subtitle><strong>{{ provider.name }}</strong></mat-card-subtitle>
+              </mat-card>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

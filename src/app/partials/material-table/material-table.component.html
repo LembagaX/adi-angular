@@ -5,7 +5,7 @@
 <table mat-table [dataSource]="datasource" class="mat-elevation-z8 full-width" matSort>
   <ng-container matColumnDef="id">
     <th mat-sort-header mat-header-cell *matHeaderCellDef> No </th>
-    <td mat-cell *matCellDef="let element"> {{ element.id }} </td>
+    <td mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </td>
   </ng-container>
 
   <ng-container matColumnDef="name">
@@ -37,7 +37,7 @@
   <ng-container matColumnDef="action">
     <th mat-sort-header mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let element">
-      <mat-icon color="primary" matTooltip="Details and Analytics">launch</mat-icon>
+      <a [routerLink]="['/materials', element.slug, 'analytics']"><mat-icon color="primary" matTooltip="Details and Analytics">launch</mat-icon></a>
     </td>
   </ng-container>
 

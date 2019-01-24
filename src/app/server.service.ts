@@ -11,6 +11,8 @@ import { CredentialResponse } from './interfaces/credential-response';
 import { MaterialPuchasing as MaterialPuchasingRequest } from './request/material-puchasing';
 import { Material } from './response/material';
 import { FormGroup } from '@angular/forms';
+import { Provider } from './response/provider';
+import { PurchasingGrowth } from './response/purchasing-growth';
 
 @Injectable({
   providedIn: 'root'
@@ -139,5 +141,27 @@ export class ServerService {
       })
     };
     return this.http.patch<Material>(this.base + suffix, material.value, header);
+  }
+
+  public provderIndex() {
+    const suffix = 'providers.json';
+    const header = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'token': this.auth.currentUser().token
+      })
+    };
+    return this.http.get<Provider[]>(this.base + suffix, header);
+  }
+
+  public purchasingGrowth() {
+    const suffix = 'charts/purchasing_growth.json';
+    const header = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'token': this.auth.currentUser().token
+      })
+    };
+    return this.http.get<PurchasingGrowth>(this.base + suffix, header);
   }
 }

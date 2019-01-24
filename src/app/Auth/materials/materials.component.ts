@@ -10,8 +10,10 @@ import { ServerService } from 'src/app/server.service';
 export class MaterialsComponent implements OnInit {
 
   public cards: any[];
+  protected growth: string;
   protected thead: string[];
   protected tbody: Material[];
+  protected providers: number;
   protected showTable: boolean;
 
   constructor(
@@ -20,11 +22,6 @@ export class MaterialsComponent implements OnInit {
 
   ngOnInit() {
     this.showTable = false;
-    this.cards = [
-      { icon: 'view_comfy', title: 'Providers', body: 'All materials Provider', point: '120', type: '' },
-      { icon: 'trending_up', title: 'Purchasing Growth', body: 'Increase from last month', point: '45%', type: 'primary' },
-      { icon: 'trending_down', title: 'Materials depreciation', body: 'Decrease from last month', point: '5%', type: 'accent' },
-    ];
     this.buildTable();
   }
 
@@ -41,9 +38,30 @@ export class MaterialsComponent implements OnInit {
           price: material.price,
           providers: material.providers
         });
-        this.showTable = true;
       });
-      console.log(this.tbody);
+      this.fetchCards();
+    });
+  }
+
+  public fetchCards() {
+    this.server.provderIndex().subscribe((response) => {
+      this.providers = response.length;
+    });
+
+    this.server.purchasingGrowth().subscribe((response) => {
+      let percent = 0;
+      if (response.last_month_purchases === 0) {
+        this.growth = response.message;
+      } else {
+        this.growth = 'Increase from last month';
+        percent = response.growth_percentage;
+      }
+      this.cards = [
+        { icon: 'view_comfy', title: 'Providers', body: 'Material Provider bought from', point: `${this.providers} providers`, type: '' },
+        { icon: 'trending_up', title: 'Purchasing Growth', body: `${this.growth}`, point: `${percent} %`, type: 'primary' },
+        { icon: 'trending_down', title: 'Materials Depreciation', body: 'Decrease from last month', point: '5%', type: 'accent' },
+      ];
+      this.showTable = true;
     });
   }
 }

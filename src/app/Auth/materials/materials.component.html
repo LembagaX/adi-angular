@@ -4,8 +4,7 @@
     <div class="col-md-10 offset-md-2">
       <div class="row">
         <div class="col-md-4" *ngFor="let card of cards">
-          <app-card-icon [icon]="card.icon" [title]="card.title" [body]="card.body" [point]="card.point" [type]="card.type"></app-card-icon>
-          <mat-progress-bar *ngIf="!showTable" mode="indeterminate"></mat-progress-bar>
+          <app-card-icon *ngIf="showTable" [icon]="card.icon" [title]="card.title" [body]="card.body" [point]="card.point" [type]="card.type"></app-card-icon>
         </div>
       </div>
     </div>
@@ -23,7 +22,6 @@
             <div class="col-md-2">
               <button routerLink="/materials/purchasing" class="btn-block" mat-raised-button color="primary">Purchasing</button>
               <button class="btn-block" mat-raised-button color="accent">Deprecation</button>
-              <button class="btn-block" mat-raised-button>Analytics</button>
             </div>
           </div>
         </mat-card-content>

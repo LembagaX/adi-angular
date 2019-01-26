@@ -9,6 +9,7 @@ import { DashboardComponent } from './auth/dashboard/dashboard.component';
 import { MaterialsComponent } from './Auth/materials/materials.component';
 import { MaterialDetailComponent } from './warehouse/material-detail/material-detail.component';
 import { MaterialPurchasingComponent } from './warehouse/material-purchasing/material-purchasing.component';
+import { MaterialDepreciationComponent } from './warehouse/material-depreciation/material-depreciation.component';
 
 const routes: Routes = [
   { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'order', component: OrderComponent, canActivate: [AuthGuard] },
   { path: 'materials', component: MaterialsComponent, canActivate: [AuthGuard] },
   { path: 'materials/purchasing', component: MaterialPurchasingComponent, canActivate: [AuthGuard] },
-  { path: 'materials/:slug/analytics', component: MaterialDetailComponent, canActivate: [AuthGuard] }
+  { path: 'materials/:slug/analytics', component: MaterialDetailComponent, canActivate: [AuthGuard] },
+  { path: 'materials/depreciations', component: MaterialDepreciationComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

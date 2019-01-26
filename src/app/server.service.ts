@@ -1,18 +1,20 @@
 import { User } from './models/user';
 import { Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { AuthService } from './auth.service';
+import { Material } from './response/material';
+import { Provider } from './response/provider';
 import { ArrayResponse } from './array-response';
 import { Credential } from './interfaces/credential';
+import { Depreciation } from './request/depreciation';
 import { PlainResponse } from './interfaces/plain-response';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { PurchasingGrowth } from './response/purchasing-growth';
 import { ChartUserByRole } from './response/chart-user-by-role';
 import { MaterialPuchasing } from './response/material-puchasing';
 import { CredentialResponse } from './interfaces/credential-response';
+import { Depreciation as DepreciationResponse } from './response/depreciation';
 import { MaterialPuchasing as MaterialPuchasingRequest } from './request/material-puchasing';
-import { Material } from './response/material';
-import { FormGroup } from '@angular/forms';
-import { Provider } from './response/provider';
-import { PurchasingGrowth } from './response/purchasing-growth';
 
 @Injectable({
   providedIn: 'root'
@@ -163,5 +165,16 @@ export class ServerService {
       })
     };
     return this.http.get<PurchasingGrowth>(this.base + suffix, header);
+  }
+
+  public depreciationCreate(request: Depreciation) {
+    const suffix = 'depreciations.json';
+    const header = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'token': this.auth.currentUser().token
+      })
+    };
+    return this.http.post<DepreciationResponse>(this.base + suffix, request, header);
   }
 }

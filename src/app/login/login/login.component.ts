@@ -89,6 +89,7 @@ export class LoginComponent {
             break;
           case 200:
             const user: User = {
+              id: response.user.id,
               name: response.user.name,
               email: response.user.email,
               token: response.token

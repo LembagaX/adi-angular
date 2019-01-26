@@ -10,6 +10,7 @@ import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/auth.service';
 import { SubmitPopupComponent } from 'src/app/partials/submit-popup/submit-popup.component';
 import { Router } from '@angular/router';
+import { Depreciation } from 'src/app/request/depreciation';
 
 @Component({
   selector: 'app-material-depreciation',
@@ -120,9 +121,23 @@ export class MaterialDepreciationComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
         this.dialog.open(LoadingPopupComponent, { data: 'Creating Deprecation Report' });
-        this.dialog.closeAll();
-        this.router.navigate(['/materials']);
-        this.snackbar.open('Sussessfully create Deprecation Report', 'close', { duration: 2000 });
+        const request: Depreciation = {
+          note: this.deprecationForm.controls['note'].value,
+          quantity: this.deprecationForm.controls['quantity'].value,
+          amount: this.deprecationForm.controls['depreciation'].value,
+          user_id: this.user.id,
+          material_id: this.current.id,
+          provider_id: this.deprecationForm.controls['provider'].value.id
+        };
+        this.server.depreciationCreate(request).subscribe(response => {
+          if (response.id != null) {
+            this.dialog.closeAll();
+            this.router.navigate(['/materials']);
+            this.snackbar.open('Sussessfully create Deprecation Report', 'close', { duration: 2000 });
+          } else {
+            this.snackbar.open('Oops, please re-submit the form', 'close', { duration: 2000 });
+          }
+        });
       }
     });
   }

@@ -88,11 +88,13 @@ export class LoginComponent {
             });
             break;
           case 200:
+          console.log(response);
             const user: User = {
               id: response.user.id,
               name: response.user.name,
               email: response.user.email,
-              token: response.token
+              token: response.token,
+              role_id: response.user.role.id
             };
             this.auth.login(user);
             this.router.navigate(['/dashboard']);

@@ -19,11 +19,35 @@ export class AuthService {
     this.webStorage.remove('user');
   }
 
-  public  isAuthenticated(): boolean {
+  public isAuthenticated(): boolean {
     return this.webStorage.has('user');
   }
 
   public currentUser(): User {
     return this.webStorage.get('user');
+  }
+
+  public isAdmin(): boolean {
+    if (this.currentUser().role_id === 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public isWarehouse(): boolean {
+    if (this.currentUser().role_id === 2) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public isManager(): boolean {
+    if (this.currentUser().role_id === 3) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

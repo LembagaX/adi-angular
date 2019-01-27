@@ -26,7 +26,7 @@ export class MaterialsComponent implements OnInit {
   }
 
   public buildTable() {
-    this.thead = ['id', 'name', 'providers', 'stock', 'price', 'action'];
+    this.thead = ['id', 'name', 'providers', 'stock', 'price', 'purchase', 'depreciation'];
     this.tbody = [];
     this.server.materialIndex().subscribe((response) => {
       response.forEach(material => {
@@ -58,8 +58,8 @@ export class MaterialsComponent implements OnInit {
       }
       this.cards = [
         { icon: 'view_comfy', title: 'Providers', body: 'Material Provider bought from', point: `${this.providers} providers`, type: '' },
-        { icon: 'trending_up', title: 'Purchasing Growth', body: `${this.growth}`, point: `${percent} %`, type: 'primary' },
-        { icon: 'trending_down', title: 'Materials Depreciation', body: 'Decrease from last month', point: '5%', type: 'accent' },
+        { icon: 'show_chart', title: 'Purchasing Growth', body: `${this.growth}`, point: `${percent} %`, type: 'primary' },
+        { icon: 'multiline_chart', title: 'Materials Depreciation', body: 'Decrease from last month', point: '5%', type: 'accent' },
       ];
       this.showTable = true;
     });

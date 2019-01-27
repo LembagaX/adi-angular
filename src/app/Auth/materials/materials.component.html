@@ -20,8 +20,8 @@
               <mat-progress-bar *ngIf="!showTable" mode="indeterminate"></mat-progress-bar>
             </div>
             <div class="col-md-2">
-              <button routerLink="/materials/purchasing" class="btn-block" mat-raised-button color="primary">Purchasing</button>
-              <button routerLink="/materials/depreciations" class="btn-block" mat-raised-button color="accent">Deprecation</button>
+              <button matTooltip="Create Material Purchasing report" routerLink="/materials/purchasing" class="btn-block" mat-raised-button color="primary">Purchasing</button>
+              <button matTooltip="Create Material Deprecation report" routerLink="/materials/depreciations" class="btn-block" mat-raised-button color="accent">Deprecation</button>
             </div>
           </div>
         </mat-card-content>

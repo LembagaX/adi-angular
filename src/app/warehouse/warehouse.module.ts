@@ -12,6 +12,9 @@ import { MaterialDepreciationComponent } from './material-depreciation/material-
 import { MaterialShowCardComponent } from './material-show-card/material-show-card.component';
 import { MaterialEditCardComponent } from './material-edit-card/material-edit-card.component';
 import { MaterialRecordedPriceComponent } from './material-recorded-price/material-recorded-price.component';
+import { MaterialDepreciationAnalyticsComponent } from './material-depreciation-analytics/material-depreciation-analytics.component';
+import { MaterialDepreciationGraphComponent } from './material-depreciation-graph/material-depreciation-graph.component';
+import { MaterialBoughtFromComponent } from './material-bought-from/material-bought-from.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { MaterialRecordedPriceComponent } from './material-recorded-price/materi
     MaterialDepreciationComponent,
     MaterialShowCardComponent,
     MaterialEditCardComponent,
-    MaterialRecordedPriceComponent
+    MaterialRecordedPriceComponent,
+    MaterialDepreciationAnalyticsComponent,
+    MaterialDepreciationGraphComponent,
+    MaterialBoughtFromComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,7 @@
+<mat-card>
+  <mat-card-subtitle>Material Deprecation Analytics</mat-card-subtitle>
+  <mat-card-content>
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+    <div *ngIf="!loading" [chart]="graph"></div>
+  </mat-card-content>
+</mat-card>

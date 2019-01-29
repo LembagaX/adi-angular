@@ -25,7 +25,7 @@ export class MaterialRecordedPriceComponent implements OnInit {
       series.push({
         id: provider.id,
         name: provider.name,
-        data: []
+        data: [0]
       });
     });
     this.material.prices.forEach(price => {
@@ -38,6 +38,11 @@ export class MaterialRecordedPriceComponent implements OnInit {
       yAxis: {
         title: {
           text: 'Prices'
+        }
+      },
+      xAxis: {
+        title: {
+          text: 'Purchasing Records'
         }
       },
       title: {

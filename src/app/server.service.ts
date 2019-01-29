@@ -15,6 +15,7 @@ import { MaterialPuchasing } from './response/material-puchasing';
 import { CredentialResponse } from './interfaces/credential-response';
 import { Depreciation as DepreciationResponse } from './response/depreciation';
 import { MaterialPuchasing as MaterialPuchasingRequest } from './request/material-puchasing';
+import { Purchase } from './response/purchase';
 
 @Injectable({
   providedIn: 'root'
@@ -168,7 +169,7 @@ export class ServerService {
   }
 
   public depreciationCreate(request: Depreciation) {
-    const suffix = 'depreciations.json';
+    const suffix = `materials/${request.material_id}/depreciations.json`;
     const header = {
       headers: new HttpHeaders({
         'Content-type': 'application/json',
@@ -176,5 +177,27 @@ export class ServerService {
       })
     };
     return this.http.post<DepreciationResponse>(this.base + suffix, request, header);
+  }
+
+  public depreciationIndex(material: Material) {
+    const suffix = `materials/${material.id}/depreciations.json`;
+    const header = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'token': this.auth.currentUser().token
+      })
+    };
+    return this.http.get<DepreciationResponse[]>(this.base + suffix, header);
+  }
+
+  public purchasesIndex(material: Material) {
+    const suffix = `materials/${material.id}/purchases.json`;
+    const header = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'token': this.auth.currentUser().token
+      })
+    };
+    return this.http.get<Purchase[]>(this.base + suffix, header);
   }
 }

@@ -1,0 +1,14 @@
+<mat-card>
+  <mat-card-subtitle>
+    {{ material.name }} bought from
+  </mat-card-subtitle>
+  <mat-card-content>
+    <div class="row">
+      <div class="col-md-3" *ngFor="let provider of material.providers">
+        <mat-card>
+          <mat-card-subtitle><strong>{{ provider.name }}</strong></mat-card-subtitle>
+        </mat-card>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

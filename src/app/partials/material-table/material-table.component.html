@@ -46,7 +46,7 @@
   <ng-container matColumnDef="depreciation">
     <th mat-sort-header mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let element">
-      <a [routerLink]="['/materials', element.slug, 'analytics']">
+      <a [routerLink]="['/materials', element.slug, 'depreciations']">
         <mat-icon color="warn" matTooltip="Depreciation and Analytics">multiline_chart</mat-icon>
       </a>
     </td>

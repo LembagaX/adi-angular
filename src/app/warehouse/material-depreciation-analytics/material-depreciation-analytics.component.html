@@ -1,0 +1,37 @@
+<app-drawer></app-drawer>
+<div class="container-fluid space-top">
+    <div class="row">
+        <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+        <div class="col-md-10 offset-md-2" *ngIf="!loading">
+            <mat-card>
+                <mat-card-content>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <app-material-show-card [material]="material"></app-material-show-card>
+                        </div>
+
+                        <div class="col-md-6">
+                            <app-material-edit-card [form]="materialForm" [material]="material" (updated)="updateMaterial($event)"></app-material-edit-card>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid space-top">
+    <div class="row">
+        <div class="col-md-10 offset-md-2" *ngIf="!loading">
+            <app-material-bought-from [material]="material"></app-material-bought-from>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid space-top">
+    <div class="row">
+        <div class="col-md-10 offset-md-2" *ngIf="!loading">
+            <app-material-depreciation-graph [material]="material"></app-material-depreciation-graph>
+        </div>
+    </div>
+</div>

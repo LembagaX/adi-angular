@@ -37,7 +37,9 @@ export class MaterialDepreciationGraphComponent implements OnInit {
     this.server.purchasesIndex(this.material).subscribe(purchases => {
       purchases.forEach(purchase => {
         purchase.material_purchases.forEach(material_purchase => {
-          series.find(serie => serie.name === 'Purchasing').data.push(material_purchase.quantity);
+          if (material_purchase.material_id === this.material.id) {
+            series.find(serie => serie.name === 'Purchasing').data.push(material_purchase.quantity);
+          }
         });
       });
       this.buildGraph(data, series);

@@ -1,0 +1,19 @@
+<mat-card>
+  <mat-card-subtitle>
+    Material recorded price by Provider
+  </mat-card-subtitle>
+  <mat-card-content>
+    <div class="row">
+      <div class="col-md-10">
+        <div [chart]="chart"></div>
+      </div>
+      <div class="col-md-2">
+        <button mat-raised-button class="btn-block" (click)="redbuildChart('area')">Area Chart</button>
+        <button mat-raised-button class="btn-block" (click)="redbuildChart('bar')">Bar Chart</button>
+        <button mat-raised-button class="btn-block" (click)="redbuildChart('spline')">Line Chart</button>
+        <button mat-raised-button class="btn-block" (click)="redbuildChart('column')">Column Chart</button>
+        <button mat-raised-button class="btn-block" (click)="redbuildChart('scatter')">Scatter Chart</button>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

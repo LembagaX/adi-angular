@@ -9,12 +9,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialDetailComponent } from './material-detail/material-detail.component';
 import { MaterialPurchasingComponent } from './material-purchasing/material-purchasing.component';
 import { MaterialDepreciationComponent } from './material-depreciation/material-depreciation.component';
+import { MaterialShowCardComponent } from './material-show-card/material-show-card.component';
+import { MaterialEditCardComponent } from './material-edit-card/material-edit-card.component';
+import { MaterialRecordedPriceComponent } from './material-recorded-price/material-recorded-price.component';
 
 @NgModule({
   declarations: [
     MaterialPurchasingComponent,
     MaterialDetailComponent,
-    MaterialDepreciationComponent
+    MaterialDepreciationComponent,
+    MaterialShowCardComponent,
+    MaterialEditCardComponent,
+    MaterialRecordedPriceComponent
   ],
   imports: [
     CommonModule,

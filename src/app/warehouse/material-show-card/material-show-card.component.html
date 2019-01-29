@@ -1,0 +1,17 @@
+<mat-card>
+  <mat-card-subtitle>Material information</mat-card-subtitle>
+  <mat-card-content>
+    <dl class="row">
+      <dt class="col-md-5">Name : </dt>
+      <dd class="col-md-7">{{ material.name }}</dd>
+      <dt class="col-md-5">Available stock : </dt>
+      <dd class="col-md-7">{{ material.stock }}</dd>
+      <dt class="col-md-5">Last purchasing price : </dt>
+      <dd class="col-md-7">{{ material.price | currency : 'Rp. ' }}</dd>
+      <dt class="col-md-5">Recorded price changes : </dt>
+      <dd class="col-md-7">{{ material.prices.length }} records</dd>
+      <dt class="col-md-5">Bought from provider : </dt>
+      <dd class="col-md-7">{{ material.providers.length }} providers </dd>
+    </dl>
+  </mat-card-content>
+</mat-card>

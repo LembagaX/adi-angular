@@ -12,7 +12,8 @@
         <div class="col-md-12 space-top">
           <mat-card>
             <mat-card-content>
-              <form [formGroup]="materialPurchase" (ngSubmit)="sendForm()">
+              <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+              <form [formGroup]="materialPurchase" (ngSubmit)="sendForm()" *ngIf="!loading">
                 <div class="row">
                   <div class="col-md-6">
                     <div class="row">

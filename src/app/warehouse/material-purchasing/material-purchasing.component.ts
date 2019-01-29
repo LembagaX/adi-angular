@@ -16,11 +16,13 @@ import { Router } from '@angular/router';
 })
 export class MaterialPurchasingComponent implements OnInit {
 
+  public loading: boolean;
   public name: FormControl;
   public price: FormControl;
-  protected headers: string[];
-  protected options: string[];
   public quantity: FormControl;
+
+  protected options: string[];
+  protected headers: string[];
   protected data: MaterialPurchased[];
   protected materialPurchase: FormGroup;
   protected filteredOptions: Observable<string[]>;
@@ -31,28 +33,24 @@ export class MaterialPurchasingComponent implements OnInit {
     private server: ServerService,
     private router: Router,
     private snackbar: MatSnackBar
-    ) {}
+  ) { }
 
   ngOnInit() {
-    this.options = ['One', 'Two', 'Three'];
+    this.loading = true;
+    this.fetchProviders();
     this.headers = ['position', 'name', 'quantity', 'price', 'action'];
     this.data = [];
-    this.datasource = new MatTableDataSource<MaterialPurchased>(this.data);
-    this.materialPurchase = new FormGroup({
-      provider: new FormControl('', [Validators.required]),
-      date: new FormControl('', [Validators.required]),
-      invoice: new FormControl('', [Validators.required, Validators.max(45)]),
-      amount: new FormControl('', [Validators.required]),
-      note: new FormControl('', [])
-    });
-    this.name = new FormControl('', [Validators.required]);
-    this.price = new FormControl('', [Validators.required]);
-    this.quantity = new FormControl('', [Validators.required]);
+    this.options = [];
+    this.buildForms();
     this.filteredOptions = this.materialPurchase.controls['provider'].valueChanges
       .pipe(
         startWith(''),
         map(value => this._filter(value))
       );
+    this.buildSubmitButton();
+  }
+
+  private buildSubmitButton() {
     this.spinner = {
       active: false,
       text: 'Submit Purchasing',
@@ -65,6 +63,29 @@ export class MaterialPurchasingComponent implements OnInit {
       disabled: false,
       mode: 'indeterminate',
     };
+  }
+
+  private buildForms() {
+    this.datasource = new MatTableDataSource<MaterialPurchased>(this.data);
+    this.materialPurchase = new FormGroup({
+      provider: new FormControl('', [Validators.required]),
+      date: new FormControl('', [Validators.required]),
+      invoice: new FormControl('', [Validators.required, Validators.max(45)]),
+      amount: new FormControl('', [Validators.required]),
+      note: new FormControl('', [])
+    });
+    this.name = new FormControl('', [Validators.required]);
+    this.price = new FormControl('', [Validators.required]);
+    this.quantity = new FormControl('', [Validators.required]);
+  }
+
+  public fetchProviders() {
+    this.server.provderIndex().subscribe(providers => {
+      providers.forEach(provider => {
+        this.options.push(provider.name);
+      });
+      this.loading = false;
+    });
   }
 
   private _filter(value: string): string[] {

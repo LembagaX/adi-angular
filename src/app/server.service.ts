@@ -200,4 +200,15 @@ export class ServerService {
     };
     return this.http.get<Purchase[]>(this.base + suffix, header);
   }
+
+  public materialDestroy(material: Material) {
+    const suffix = `materials/${material.slug}.json`;
+    const header = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'token': this.auth.currentUser().token
+      })
+    };
+    return this.http.delete<Material>(this.base + suffix, header);
+  }
 }

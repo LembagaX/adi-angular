@@ -26,7 +26,7 @@ export class MaterialsComponent implements OnInit {
   }
 
   public buildTable() {
-    this.thead = ['id', 'name', 'providers', 'stock', 'price', 'purchase', 'depreciation'];
+    this.thead = ['id', 'name', 'providers', 'stock', 'price', 'purchase', 'depreciation', 'destroy'];
     this.tbody = [];
     this.server.materialIndex().subscribe((response) => {
       response.forEach(material => {

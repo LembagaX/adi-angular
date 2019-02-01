@@ -51,13 +51,13 @@ export class MaterialsComponent implements OnInit {
         if (purchasing.last_month_purchases === 0) {
           this.growth = purchasing.message;
         } else {
-          this.growth = 'Increase from last month';
+          this.growth = 'Compare with last month';
           percent = purchasing.growth_percentage;
         }
         this.cards = [
           { icon: 'view_comfy', title: 'Providers', body: 'Material Provider bought from', point: `${this.providers} providers`, type: '' },
           { icon: 'show_chart', title: 'Purchasing Growth', body: `${this.growth}`, point: `${percent} %`, type: 'primary' },
-          { icon: 'multiline_chart', title: 'Materials Depreciation', body: 'Decrease from last month', point: '5%', type: 'accent' },
+          { icon: 'multiline_chart', title: 'Materials Depreciation', body: 'Compare with last month', point: '5%', type: 'accent' },
         ];
         this.showTable = true;
       });

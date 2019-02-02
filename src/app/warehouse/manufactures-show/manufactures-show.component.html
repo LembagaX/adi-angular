@@ -5,12 +5,12 @@
       <div class="row">
         <div class="col-md-12">
           <mat-card>
-            <mat-card-subtitle>Manufactures Create</mat-card-subtitle>
+            <mat-card-subtitle>Manufactures Show</mat-card-subtitle>
             <mat-divider [inset]="true"></mat-divider>
             <mat-card-content class="space-top">
               <div class="row">
                 <div class="col-md-12">
-                  <app-manufactures-form (result)="manufactureListener($event)" [create]="true"></app-manufactures-form>
+                  <app-manufactures-form (result)="manufactureListener($event)" [create]="false" [code]="code"></app-manufactures-form>
                 </div>
                 <div class="col-md-12" *ngIf="manufacture">
                 </div>

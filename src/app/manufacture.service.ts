@@ -38,6 +38,17 @@ export class ManufactureService {
     return this.http.post<Manufacture>(this.base + suffix, {}, header);
   }
 
+  public show(code: string) {
+    const suffix = `manufactures/${code}.json`;
+    const header = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'token': this.auth.currentUser().token
+      })
+    };
+    return this.http.get<Manufacture>(this.base + suffix, header);
+  }
+
   public destroy(manufacture: Manufacture) {
     const suffix = `manufactures/${manufacture.code}.json`;
     const header = {

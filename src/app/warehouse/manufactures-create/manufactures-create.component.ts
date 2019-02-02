@@ -17,6 +17,5 @@ export class ManufacturesCreateComponent implements OnInit {
 
   public manufactureListener(manufacture: Manufacture) {
     this.manufacture = manufacture;
-    console.log(this.manufacture);
   }
 }

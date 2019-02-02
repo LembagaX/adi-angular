@@ -24,6 +24,7 @@ import { ProductsComponent } from './products/products.component';
 import { ProductsTableComponent } from './products-table/products-table.component';
 import { AttachProductComponent } from './attach-product/attach-product.component';
 import { ManifestCreateComponent } from './manifest-create/manifest-create.component';
+import { ManufacturesShowComponent } from './manufactures-show/manufactures-show.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ManifestCreateComponent } from './manifest-create/manifest-create.compo
     ProductsComponent,
     ProductsTableComponent,
     AttachProductComponent,
-    ManifestCreateComponent
+    ManifestCreateComponent,
+    ManufacturesShowComponent
   ],
   imports: [
     CommonModule,

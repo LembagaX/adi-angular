@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/auth.service';
 import { ManufactureService } from 'src/app/manufacture.service';
@@ -15,6 +15,8 @@ import { AttachProductComponent } from '../attach-product/attach-product.compone
 })
 export class ManufacturesFormComponent implements OnInit {
 
+  @Input() code: string;
+  @Input() create: boolean;
   @Output() result =  new EventEmitter<Manufacture>();
 
   protected loading: boolean;
@@ -30,11 +32,21 @@ export class ManufacturesFormComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true;
-    this.fetchManufacture();
+    if (this.create) {
+      this.createManufacture();
+    } else {
+      this.showManufacture();
+    }
   }
 
+  private showManufacture() {
+    this.service.show(this.code).subscribe(response => {
+      this.current = response;
+      this.buildForm();
+    });
+  }
 
-  public fetchManufacture() {
+  public createManufacture() {
     this.service.create().subscribe(response => {
       this.current = response;
       this.buildForm();

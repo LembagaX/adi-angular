@@ -26,7 +26,7 @@
   <ng-container matColumnDef="attach">
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let element">
-      <button matTooltip="Attach more Products" mat-button><mat-icon color="primary">dns</mat-icon></button>
+      <button [routerLink]="['/manufactures', element.code, 'manifests']" matTooltip="Attach more Products" mat-button><mat-icon color="primary">dns</mat-icon></button>
     </td>
   </ng-container>
 

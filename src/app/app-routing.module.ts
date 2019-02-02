@@ -17,6 +17,7 @@ import {
 } from './warehouse/material-depreciation-analytics/material-depreciation-analytics.component';
 import { ManufacturesComponent } from './warehouse/manufactures/manufactures.component';
 import { ManufacturesCreateComponent } from './warehouse/manufactures-create/manufactures-create.component';
+import { ManufacturesShowComponent } from './warehouse/manufactures-show/manufactures-show.component';
 
 const routes: Routes = [
   { path: 'users', component: UsersComponent, canActivate: [AuthGuard, AdminGuard] },
@@ -29,7 +30,8 @@ const routes: Routes = [
   { path: 'materials/:slug/analytics', component: MaterialDetailComponent, canActivate: [AuthGuard, WarehouseGuard] },
   { path: 'materials/:slug/depreciations', component: MaterialDepreciationAnalyticsComponent, canActivate: [AuthGuard, WarehouseGuard] },
   { path: 'manufactures', component: ManufacturesComponent, canActivate: [AuthGuard, WarehouseGuard] },
-  { path: 'manufactures/create', component: ManufacturesCreateComponent, canActivate: [AuthGuard, WarehouseGuard] }
+  { path: 'manufactures/create', component: ManufacturesCreateComponent, canActivate: [AuthGuard, WarehouseGuard] },
+  { path: 'manufactures/:code/manifests', component: ManufacturesShowComponent, canActivate: [AuthGuard, WarehouseGuard] }
 ];
 
 @NgModule({

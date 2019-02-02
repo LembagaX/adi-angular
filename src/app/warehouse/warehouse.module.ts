@@ -15,6 +15,8 @@ import { MaterialRecordedPriceComponent } from './material-recorded-price/materi
 import { MaterialDepreciationAnalyticsComponent } from './material-depreciation-analytics/material-depreciation-analytics.component';
 import { MaterialDepreciationGraphComponent } from './material-depreciation-graph/material-depreciation-graph.component';
 import { MaterialBoughtFromComponent } from './material-bought-from/material-bought-from.component';
+import { ManufacturesComponent } from './manufactures/manufactures.component';
+import { ManufacturesTableComponent } from './manufactures-table/manufactures-table.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { MaterialBoughtFromComponent } from './material-bought-from/material-bou
     MaterialRecordedPriceComponent,
     MaterialDepreciationAnalyticsComponent,
     MaterialDepreciationGraphComponent,
-    MaterialBoughtFromComponent
+    MaterialBoughtFromComponent,
+    ManufacturesComponent,
+    ManufacturesTableComponent
   ],
   imports: [
     CommonModule,

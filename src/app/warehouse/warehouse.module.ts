@@ -17,6 +17,8 @@ import { MaterialDepreciationGraphComponent } from './material-depreciation-grap
 import { MaterialBoughtFromComponent } from './material-bought-from/material-bought-from.component';
 import { ManufacturesComponent } from './manufactures/manufactures.component';
 import { ManufacturesTableComponent } from './manufactures-table/manufactures-table.component';
+import { ManufacturesCreateComponent } from './manufactures-create/manufactures-create.component';
+import { ManufacturesFormComponent } from './manufactures-form/manufactures-form.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { ManufacturesTableComponent } from './manufactures-table/manufactures-ta
     MaterialDepreciationGraphComponent,
     MaterialBoughtFromComponent,
     ManufacturesComponent,
-    ManufacturesTableComponent
+    ManufacturesTableComponent,
+    ManufacturesCreateComponent,
+    ManufacturesFormComponent
   ],
   imports: [
     CommonModule,

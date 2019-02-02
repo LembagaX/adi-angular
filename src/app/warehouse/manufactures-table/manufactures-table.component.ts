@@ -24,7 +24,7 @@ export class ManufacturesTableComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true;
-    this.headers = ['id', 'code', 'user', 'attach'];
+    this.headers = ['id', 'code', 'user', 'products_created', 'analytics', 'attach'];
     this.service.index().subscribe(response => {
       this.manufactures = new MatTableDataSource<Manufacture>(response);
       this.manufactures.paginator = this.paginator;

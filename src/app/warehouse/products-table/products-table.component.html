@@ -1,0 +1,60 @@
+<mat-form-field class="full-width">
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+<table mat-table [dataSource]="manufactures" class="mat-elevation-z8 full-width" matSort *ngIf="!loading">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+    <td mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="code">
+    <th mat-header-cell mat-sort-header *matHeaderCellDef> Code </th>
+    <td mat-cell *matCellDef="let element"> {{ element.code }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell mat-sort-header *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="serial_number">
+    <th mat-header-cell mat-sort-header *matHeaderCellDef> Serial Number </th>
+    <td mat-cell *matCellDef="let element"> {{ element.serial_number }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <th mat-header-cell mat-sort-header *matHeaderCellDef> Price </th>
+    <td mat-cell *matCellDef="let element"> {{ element.price }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="stock">
+    <th mat-header-cell mat-sort-header *matHeaderCellDef> Stock </th>
+    <td mat-cell *matCellDef="let element"> {{ element.stock }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="category">
+    <th mat-header-cell mat-sort-header *matHeaderCellDef> Category </th>
+    <td mat-cell *matCellDef="let element"> {{ element.category.name }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="attach">
+    <th mat-header-cell mat-sort-header *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <button (click)="attahToManufacture(element)" *ngIf="attachable" matTooltip="Attach Product" mat-mini-fab color="accent"><mat-icon>add</mat-icon></button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="detach">
+    <th mat-header-cell mat-sort-header *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <button *ngIf="detachable" matTooltip="Detach Product" mat-mini-fab color="secondary">
+        <mat-icon>remove</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="headers"></tr>
+  <tr mat-row *matRowDef="let row; columns: headers;"></tr>
+</table>
+<mat-paginator class="mat-elevation-z8" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

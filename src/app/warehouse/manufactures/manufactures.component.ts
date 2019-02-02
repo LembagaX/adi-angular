@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ManufactureService } from 'src/app/manufacture.service';
 
 @Component({
   selector: 'app-manufactures',
@@ -8,9 +7,7 @@ import { ManufactureService } from 'src/app/manufacture.service';
 })
 export class ManufacturesComponent implements OnInit {
 
-  constructor(
-    private service: ManufactureService
-  ) { }
+  constructor() { }
 
   ngOnInit() {
   }

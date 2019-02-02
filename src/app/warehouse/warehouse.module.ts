@@ -19,6 +19,11 @@ import { ManufacturesComponent } from './manufactures/manufactures.component';
 import { ManufacturesTableComponent } from './manufactures-table/manufactures-table.component';
 import { ManufacturesCreateComponent } from './manufactures-create/manufactures-create.component';
 import { ManufacturesFormComponent } from './manufactures-form/manufactures-form.component';
+import { ManufacturesProductsComponent } from './manufactures-products/manufactures-products.component';
+import { ProductsComponent } from './products/products.component';
+import { ProductsTableComponent } from './products-table/products-table.component';
+import { AttachProductComponent } from './attach-product/attach-product.component';
+import { ManifestCreateComponent } from './manifest-create/manifest-create.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,12 @@ import { ManufacturesFormComponent } from './manufactures-form/manufactures-form
     ManufacturesComponent,
     ManufacturesTableComponent,
     ManufacturesCreateComponent,
-    ManufacturesFormComponent
+    ManufacturesFormComponent,
+    ManufacturesProductsComponent,
+    ProductsComponent,
+    ProductsTableComponent,
+    AttachProductComponent,
+    ManifestCreateComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +54,11 @@ import { ManufacturesFormComponent } from './manufactures-form/manufactures-form
     ReactiveFormsModule,
     AppRoutingModule,
     MatProgressButtonsModule,
-    ChartModule
+    ChartModule,
+  ],
+  entryComponents: [
+    AttachProductComponent,
+    ManifestCreateComponent
   ]
 })
 export class WarehouseModule { }

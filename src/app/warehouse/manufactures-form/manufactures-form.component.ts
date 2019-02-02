@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/auth.service';
 import { ManufactureService } from 'src/app/manufacture.service';
@@ -6,6 +6,7 @@ import { Manufacture } from 'src/app/response/manufacture';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { LoadingPopupComponent } from 'src/app/partials/loading-popup/loading-popup.component';
+import { AttachProductComponent } from '../attach-product/attach-product.component';
 
 @Component({
   selector: 'app-manufactures-form',
@@ -13,6 +14,8 @@ import { LoadingPopupComponent } from 'src/app/partials/loading-popup/loading-po
   styleUrls: ['./manufactures-form.component.scss']
 })
 export class ManufacturesFormComponent implements OnInit {
+
+  @Output() result =  new EventEmitter<Manufacture>();
 
   protected loading: boolean;
   protected manufacture: FormGroup;
@@ -43,6 +46,7 @@ export class ManufacturesFormComponent implements OnInit {
       user: new FormControl({ value: this.auth.currentUser().name, disabled: true }, []),
       code: new FormControl({ value: this.current.code, disabled: true }, [])
     });
+    this.result.emit(this.current);
     this.loading = false;
   }
 
@@ -52,5 +56,9 @@ export class ManufacturesFormComponent implements OnInit {
       this.router.navigate(['/manufactures']);
       this.dialog.closeAll();
     });
+  }
+
+  public attachProduct() {
+    this.dialog.open(AttachProductComponent, { width: '800px', data: { manufacture: this.current } });
   }
 }

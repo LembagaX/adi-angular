@@ -41,16 +41,7 @@
   <ng-container matColumnDef="attach">
     <th mat-header-cell mat-sort-header *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let element">
-      <button (click)="attahToManufacture(element)" *ngIf="attachable" matTooltip="Attach Product" mat-mini-fab color="accent"><mat-icon>add</mat-icon></button>
-    </td>
-  </ng-container>
-
-  <ng-container matColumnDef="detach">
-    <th mat-header-cell mat-sort-header *matHeaderCellDef></th>
-    <td mat-cell *matCellDef="let element">
-      <button *ngIf="detachable" matTooltip="Detach Product" mat-mini-fab color="secondary">
-        <mat-icon>remove</mat-icon>
-      </button>
+      <button (click)="attahToManufacture(element)" *ngIf="attachable" mat-button matTooltip="Attach Product" color="accent"><mat-icon>add</mat-icon></button>
     </td>
   </ng-container>
 

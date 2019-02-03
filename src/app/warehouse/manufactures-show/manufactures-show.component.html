@@ -12,7 +12,9 @@
                 <div class="col-md-12">
                   <app-manufactures-form (result)="manufactureListener($event)" [create]="false" [code]="code"></app-manufactures-form>
                 </div>
-                <div class="col-md-12" *ngIf="manufacture">
+                <div class="col-md-12 space-top">
+                  <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+                  <app-manifests-table *ngIf="!loading" [(manufacture)]="manufacture"></app-manifests-table>
                 </div>
               </div>
             </mat-card-content>

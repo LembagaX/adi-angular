@@ -13,7 +13,6 @@ import { ManifestCreateComponent } from '../manifest-create/manifest-create.comp
 export class ProductsTableComponent implements OnInit {
 
   @Input() attachable: boolean;
-  @Input() detachable: boolean;
   @Input() manufacture: Manufacture;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -30,7 +29,7 @@ export class ProductsTableComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true;
-    this.headers = ['id', 'code', 'name', 'serial_number', 'price', 'stock', 'category', 'attach', 'detach'];
+    this.headers = ['id', 'code', 'name', 'serial_number', 'price', 'stock', 'category', 'attach'];
     this.buildTable();
   }
 
@@ -60,7 +59,6 @@ export class ProductsTableComponent implements OnInit {
       { width: '300px', data: { product: product, manufacture: this.manufacture }}
     );
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       if (result) {
         this.rebuildTable();
       }

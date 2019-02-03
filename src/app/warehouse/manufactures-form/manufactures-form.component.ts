@@ -70,7 +70,16 @@ export class ManufacturesFormComponent implements OnInit {
     });
   }
 
+  private rebuildCurrent() {
+    this.service.show(this.current.code).subscribe(response => {
+      this.result.emit(response);
+    });
+  }
+
   public attachProduct() {
-    this.dialog.open(AttachProductComponent, { width: '800px', data: { manufacture: this.current } });
+    const dialogRef = this.dialog.open(AttachProductComponent, { width: '800px', data: { manufacture: this.current } });
+    dialogRef.afterClosed().subscribe(() => {
+      this.rebuildCurrent();
+    });
   }
 }

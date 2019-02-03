@@ -4,6 +4,7 @@ import { MatSort, MatPaginator, MatTableDataSource, MatDialog } from '@angular/m
 import { Manifest } from 'src/app/response/manifest';
 import { ManifestsUpdateComponent } from '../manifests-update/manifests-update.component';
 import { ManifestService } from 'src/app/manifest.service';
+import { LoadingPopupComponent } from 'src/app/partials/loading-popup/loading-popup.component';
 
 @Component({
   selector: 'app-manifests-table',
@@ -29,7 +30,7 @@ export class ManifestsTableComponent implements OnInit {
   }
 
   private buildTable() {
-    this.headers = ['id', 'product', 'code', 'quantity', 'detach'];
+    this.headers = ['id', 'product', 'code', 'quantity', 'detach', 'destroy'];
     this.manifests = new MatTableDataSource<Manifest>(this.manufacture.manifests);
     this.manifests.paginator = this.paginator;
     this.manifests.sort = this.sort;
@@ -46,6 +47,16 @@ export class ManifestsTableComponent implements OnInit {
   public updateManifest(manifest: Manifest) {
     const dialogRef = this.dialog.open(ManifestsUpdateComponent, { data: { manifest: manifest, manufacture: this.manufacture }});
     dialogRef.afterClosed().subscribe(() => {
+      this.service.index(this.manufacture).subscribe(response => {
+        this.rebuildTable(response.manifests);
+      });
+    });
+  }
+
+  public destroyManifest(manifest: Manifest) {
+    this.dialog.open(LoadingPopupComponent, { data: 'Destroying Manifest' });
+    this.service.destroy(this.manufacture, manifest).subscribe(() => {
+      this.dialog.closeAll();
       this.service.index(this.manufacture).subscribe(response => {
         this.rebuildTable(response.manifests);
       });

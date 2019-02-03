@@ -59,6 +59,6 @@ export class ManifestService {
         'token': this.auth.currentUser().token
       })
     };
-    return this.http.delete<Manifest>(this.base + suffix, header);
+    return this.http.delete<Manufacture>(this.base + suffix, header);
   }
 }

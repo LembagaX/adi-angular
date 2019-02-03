@@ -26,6 +26,7 @@ import { AttachProductComponent } from './attach-product/attach-product.componen
 import { ManifestCreateComponent } from './manifest-create/manifest-create.component';
 import { ManufacturesShowComponent } from './manufactures-show/manufactures-show.component';
 import { ManifestsTableComponent } from './manifests-table/manifests-table.component';
+import { ManifestsUpdateComponent } from './manifests-update/manifests-update.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { ManifestsTableComponent } from './manifests-table/manifests-table.compo
     AttachProductComponent,
     ManifestCreateComponent,
     ManufacturesShowComponent,
-    ManifestsTableComponent
+    ManifestsTableComponent,
+    ManifestsUpdateComponent
   ],
   imports: [
     CommonModule,
@@ -62,7 +64,8 @@ import { ManifestsTableComponent } from './manifests-table/manifests-table.compo
   ],
   entryComponents: [
     AttachProductComponent,
-    ManifestCreateComponent
+    ManifestCreateComponent,
+    ManifestsUpdateComponent
   ]
 })
 export class WarehouseModule { }

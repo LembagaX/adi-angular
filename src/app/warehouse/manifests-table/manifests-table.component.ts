@@ -1,7 +1,9 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Manufacture } from 'src/app/response/manufacture';
-import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
+import { MatSort, MatPaginator, MatTableDataSource, MatDialog } from '@angular/material';
 import { Manifest } from 'src/app/response/manifest';
+import { ManifestsUpdateComponent } from '../manifests-update/manifests-update.component';
+import { ManifestService } from 'src/app/manifest.service';
 
 @Component({
   selector: 'app-manifests-table',
@@ -17,7 +19,10 @@ export class ManifestsTableComponent implements OnInit {
   public headers: string[];
   public manifests: MatTableDataSource<Manifest>;
 
-  constructor() { }
+  constructor(
+    private dialog: MatDialog,
+    private service: ManifestService
+  ) { }
 
   ngOnInit() {
     this.buildTable();
@@ -36,5 +41,14 @@ export class ManifestsTableComponent implements OnInit {
 
   public applyFilter(filterValue: string) {
     this.manifests.filter = filterValue.trim().toLowerCase();
+  }
+
+  public updateManifest(manifest: Manifest) {
+    const dialogRef = this.dialog.open(ManifestsUpdateComponent, { data: { manifest: manifest, manufacture: this.manufacture }});
+    dialogRef.afterClosed().subscribe(() => {
+      this.service.index(this.manufacture).subscribe(response => {
+        this.rebuildTable(response.manifests);
+      });
+    });
   }
 }

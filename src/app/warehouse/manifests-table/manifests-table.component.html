@@ -25,7 +25,7 @@
   <ng-container matColumnDef="detach">
     <th mat-header-cell mat-sort-header *matHeaderCellDef> </th>
     <td mat-cell *matCellDef="let element">
-      <button matTooltip="Detach Product" mat-button><mat-icon color="accent">remove</mat-icon></button>
+      <button (click)="updateManifest(element)" matTooltip="Detach Product" mat-button><mat-icon color="accent">remove</mat-icon></button>
     </td>
   </ng-container>
 

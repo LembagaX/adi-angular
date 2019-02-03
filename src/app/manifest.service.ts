@@ -26,7 +26,7 @@ export class ManifestService {
         'token': this.auth.currentUser().token
       })
     };
-    return this.http.get<Manifest[]>(this.base + suffix, header);
+    return this.http.get<Manufacture>(this.base + suffix, header);
   }
 
   public create(manufacture: Manufacture, body: Request) {
@@ -38,6 +38,17 @@ export class ManifestService {
       })
     };
     return this.http.post<Manifest>(this.base + suffix, body, header);
+  }
+
+  public update(manufacture: Manufacture, manifest: Manifest, body: Request) {
+    const suffix = `manufactures/${manufacture.code}/manifests/${manifest.id}.json`;
+    const header = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'token': this.auth.currentUser().token
+      })
+    };
+    return this.http.patch<Manifest>(this.base + suffix, body, header);
   }
 
   public destroy(manufacture: Manufacture, manifest: Manifest) {

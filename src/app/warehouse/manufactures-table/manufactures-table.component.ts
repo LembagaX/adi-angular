@@ -1,14 +1,15 @@
 import { Component, OnInit, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
+import { MatPaginator, MatTableDataSource, MatSort, MatDialog } from '@angular/material';
 import { Manufacture } from 'src/app/response/manufacture';
 import { ManufactureService } from 'src/app/manufacture.service';
+import { LoadingPopupComponent } from 'src/app/partials/loading-popup/loading-popup.component';
 
 @Component({
   selector: 'app-manufactures-table',
   templateUrl: './manufactures-table.component.html',
   styleUrls: ['./manufactures-table.component.scss']
 })
-export class ManufacturesTableComponent implements OnInit, OnChanges {
+export class ManufacturesTableComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -19,12 +20,17 @@ export class ManufacturesTableComponent implements OnInit, OnChanges {
   protected loading: boolean;
 
   constructor(
-    private service: ManufactureService
+    private service: ManufactureService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit() {
     this.loading = true;
     this.headers = ['id', 'code', 'user', 'products_created', 'analytics', 'attach', 'delete'];
+    this.buildTable();
+  }
+
+  private buildTable() {
     this.service.index().subscribe(response => {
       this.manufactures = new MatTableDataSource<Manufacture>(response);
       this.manufactures.paginator = this.paginator;
@@ -37,8 +43,14 @@ export class ManufacturesTableComponent implements OnInit, OnChanges {
     this.manufactures.filter = filterValue.trim().toLowerCase();
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    this.manufactures.data = null;
+  public destroyManufacture(manufacture: Manufacture) {
+    this.dialog.open(LoadingPopupComponent, { data: 'Destroying Manufacture' });
+    this.service.destroy(manufacture).subscribe(() => {
+      this.service.index().subscribe(response => {
+        this.manufactures.data = response;
+      });
+      this.dialog.closeAll();
+    });
   }
 
 }

@@ -1,5 +1,7 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Manufacture } from 'src/app/response/manufacture';
+import { ManufactureService } from 'src/app/manufacture.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-manufactures-create',
@@ -8,14 +10,26 @@ import { Manufacture } from 'src/app/response/manufacture';
 })
 export class ManufacturesCreateComponent implements OnInit {
 
+  protected code: string;
+  protected loading: boolean;
+  protected refresh: boolean;
   protected manufacture: Manufacture;
 
-  constructor() { }
+  constructor(
+    private router: ActivatedRoute,
+    private service: ManufactureService
+  ) { }
 
   ngOnInit() {
+    this.loading = true;
+    this.code = this.router.snapshot.params['code'];
   }
 
   public manufactureListener(manufacture: Manufacture) {
-    this.manufacture = manufacture;
+    this.loading = true;
+    this.service.show(manufacture.code).subscribe((response) => {
+      this.manufacture = response;
+      this.loading = false;
+    });
   }
 }

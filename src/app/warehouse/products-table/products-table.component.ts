@@ -5,6 +5,7 @@ import { ProductService } from 'src/app/product.service';
 import { Manufacture } from 'src/app/response/manufacture';
 import { ManifestCreateComponent } from '../manifest-create/manifest-create.component';
 import { AuthService } from 'src/app/auth.service';
+import { LoadingPopupComponent } from 'src/app/partials/loading-popup/loading-popup.component';
 
 @Component({
   selector: 'app-products-table',
@@ -67,5 +68,13 @@ export class ProductsTableComponent implements OnInit {
         this.rebuildTable();
       }
     });
+  }
+
+  public destroyProduct(product: Product) {
+    this.dialog.open(LoadingPopupComponent, { data: 'Destroying Product' });
+    this.product.destroy(product).subscribe(() => {
+      this.dialog.closeAll();
+      this.rebuildTable();
+    })
   }
 }

@@ -25,7 +25,7 @@
 
   <ng-container matColumnDef="price">
     <th mat-header-cell mat-sort-header *matHeaderCellDef> Price </th>
-    <td mat-cell *matCellDef="let element"> {{ element.price }} </td>
+    <td mat-cell *matCellDef="let element"> {{ element.price | currency: 'Rp. ' }} </td>
   </ng-container>
 
   <ng-container matColumnDef="stock">
@@ -42,6 +42,15 @@
     <th mat-header-cell mat-sort-header *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let element">
       <button (click)="attahToManufacture(element)" *ngIf="attachable" mat-button matTooltip="Attach Product" color="accent"><mat-icon>add</mat-icon></button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell mat-sort-header *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <button (click)="editProduct(element)" mat-button matTooltip="Edit Product" color="accent">
+        <mat-icon>edit</mat-icon>
+      </button>
     </td>
   </ng-container>
 

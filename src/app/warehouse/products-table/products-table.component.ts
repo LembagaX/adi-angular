@@ -6,6 +6,7 @@ import { Manufacture } from 'src/app/response/manufacture';
 import { ManifestCreateComponent } from '../manifest-create/manifest-create.component';
 import { AuthService } from 'src/app/auth.service';
 import { LoadingPopupComponent } from 'src/app/partials/loading-popup/loading-popup.component';
+import { ProductsEditComponent } from 'src/app/product-and-category/products-edit/products-edit.component';
 
 @Component({
   selector: 'app-products-table',
@@ -34,7 +35,7 @@ export class ProductsTableComponent implements OnInit {
   ngOnInit() {
     this.loading = true;
     this.admin = this.auth.isAdmin();
-    this.headers = ['id', 'code', 'name', 'serial_number', 'price', 'stock', 'category', 'attach', 'destroy'];
+    this.headers = ['id', 'code', 'name', 'serial_number', 'price', 'stock', 'category', 'attach', 'edit', 'destroy'];
     this.buildTable();
   }
 
@@ -70,11 +71,18 @@ export class ProductsTableComponent implements OnInit {
     });
   }
 
+  public editProduct(product: Product) {
+    const dialogRef = this.dialog.open(ProductsEditComponent, { data: { product: product }, width: '800px' });
+    dialogRef.afterClosed().subscribe(() => {
+      this.rebuildTable();
+    });
+  }
+
   public destroyProduct(product: Product) {
     this.dialog.open(LoadingPopupComponent, { data: 'Destroying Product' });
     this.product.destroy(product).subscribe(() => {
       this.dialog.closeAll();
       this.rebuildTable();
-    })
+    });
   }
 }

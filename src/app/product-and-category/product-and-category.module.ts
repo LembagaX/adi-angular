@@ -8,9 +8,10 @@ import { ProductsComponent } from './products/products.component';
 import { WarehouseModule } from '../warehouse/warehouse.module';
 import { ProductsCreateComponent } from './products-create/products-create.component';
 import { ProductsFormComponent } from './products-form/products-form.component';
+import { ProductsEditComponent } from './products-edit/products-edit.component';
 
 @NgModule({
-  declarations: [ProductsComponent, ProductsCreateComponent, ProductsFormComponent],
+  declarations: [ProductsComponent, ProductsCreateComponent, ProductsFormComponent, ProductsEditComponent],
   imports: [
     CommonModule,
     MaterialModule,
@@ -19,6 +20,9 @@ import { ProductsFormComponent } from './products-form/products-form.component';
     ReactiveFormsModule,
     AppRoutingModule,
     WarehouseModule
+  ],
+  entryComponents: [
+    ProductsEditComponent
   ]
 })
 export class ProductAndCategoryModule { }

@@ -11,7 +11,7 @@
       </mat-form-field>
       
       <mat-form-field class="full-width">
-        <input matInput placeholder="Product price" formControlName="price" required min="1">
+        <input matInput placeholder="Product price" formControlName="price" required min="1" type="number" class="number">
       </mat-form-field>
 
       <mat-form-field class="full-width">
@@ -34,12 +34,13 @@
             <mat-card-content>
               <p class="text-secondary">- Only Admin capable to change Product price</p>
               <p class="text-secondary">- Serial Number will ge generated automatically</p>
+              <p class="text-secondary">- Product Code cannot be changed</p>
               <p class="text-secondary">- Product component attach after Product created</p>
             </mat-card-content>
           </mat-card>
         </div>
         <div class="col-md-12 space-top">
-          <button [disabled]="form.invalid" mat-raised-button color="primary" class="float-right">Create Product</button>
+          <button [disabled]="form.invalid" [color]="editable ? 'accent' : 'primary'" mat-raised-button class="float-right">{{ editable ? 'Edit' : 'Create' }} Product</button>
         </div>
       </div>
     </div>

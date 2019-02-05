@@ -50,6 +50,17 @@ export class ProductService {
     return this.http.get<Product>(this.base + suffix, header);
   }
 
+  public update(product: Product, request: Request) {
+    const suffix = `products/${product.code}.json`;
+    const header = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'token': this.auth.currentUser().token
+      })
+    };
+    return this.http.patch<Product>(this.base + suffix, request, header);
+  }
+
   public destroy(product: Product) {
     const suffix = `products/${product.code}.json`;
     const header = {

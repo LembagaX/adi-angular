@@ -39,6 +39,17 @@ export class ProductService {
     return this.http.post<Product>(this.base + suffix, request, header);
   }
 
+  public show(code: string) {
+    const suffix = `products/${code}.json`;
+    const header = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'token': this.auth.currentUser().token
+      })
+    };
+    return this.http.get<Product>(this.base + suffix, header);
+  }
+
   public destroy(product: Product) {
     const suffix = `products/${product.code}.json`;
     const header = {

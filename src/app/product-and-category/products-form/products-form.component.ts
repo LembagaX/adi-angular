@@ -26,7 +26,7 @@ export class ProductsFormComponent implements OnInit {
     private dialog: MatDialog,
     private snackbar: MatSnackBar,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.loading = true;
@@ -49,10 +49,19 @@ export class ProductsFormComponent implements OnInit {
 
   public submit() {
     this.dialog.open(LoadingPopupComponent, { data: 'Creating Product data' });
-    this.product.create(this.form.value).subscribe(response => {
-      this.dialog.closeAll();
-      this.router.navigate(['/products']);
-      this.snackbar.open('Product created', 'Close', { duration: 2000 });
+    this.product.index().subscribe(respose => {
+      const duplicate = respose.find(product => product.code === this.form.controls['code'].value);
+      if (duplicate) {
+        this.form.controls['code'].setValue('');
+        this.snackbar.open('Code already been taken', 'close', { duration: 3000 });
+        this.dialog.closeAll();
+      } else {
+        this.product.create(this.form.value).subscribe(response => {
+          this.dialog.closeAll();
+          this.router.navigate(['/products']);
+          this.snackbar.open('Product created', 'Close', { duration: 2000 });
+        });
+      }
     });
   }
 

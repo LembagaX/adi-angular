@@ -18,38 +18,45 @@
     </div>
     <mat-nav-list>
       <mat-list-item>
-        <mat-icon matListIcon>dashboard</mat-icon>
-        <a routerLink="/dashboard" matLine>Dashboard</a>
+        <button class="btn btn-block text-left" mat-button routerLink="/dashboard" [color]="activeUrl('/dashboard')">
+          <mat-icon  matListIcon>dashboard</mat-icon> Dashboard
+        </button>
       </mat-list-item>
       
       <mat-list-item>
-        <mat-icon matListIcon>supervised_user_circle</mat-icon>
-        <a routerLink="/users" matLine>Users Management</a>
+        <button class="btn text-left btn-block" mat-button routerLink="/dashboard" [color]="activeUrl('/users')">
+          <mat-icon matListIcon>supervised_user_circle</mat-icon> Users Management
+        </button>
       </mat-list-item>
 
       <mat-list-item>
-        <mat-icon matListIcon>ballot</mat-icon>
-        <a routerLink="/materials" matLine>Warehouse</a>
+        <button class="btn text-left btn-block" mat-button routerLink="/dashboard" [color]="activeUrl('/materials')">
+          <mat-icon matListIcon>ballot</mat-icon> Warehouse
+        </button>
       </mat-list-item>
 
       <mat-list-item>
-        <mat-icon matListIcon>build</mat-icon>
-        <a routerLink="/manufactures" matLine>Manufacture</a>
+        <button class="btn text-left btn-block" mat-button routerLink="/dashboard" [color]="activeUrl('/manufactures')">
+          <mat-icon matListIcon>build</mat-icon> Manufacture
+        </button>
       </mat-list-item>
 
       <mat-list-item>
-        <mat-icon matListIcon>category</mat-icon>
-        <a routerLink="/products" matLine>Products and Category</a>
+        <button class="btn text-left btn-block" mat-button routerLink="/dashboard" [color]="activeUrl('/products')">
+          <mat-icon matListIcon>category</mat-icon> Products & Category
+        </button>
       </mat-list-item>
 
       <mat-list-item>
-        <mat-icon matListIcon>assignment</mat-icon>
-        <a routerLink="/users" matLine>Sales Docs</a>
+        <button class="btn text-left btn-block" mat-button routerLink="/dashboard" [color]="activeUrl('/users')">
+          <mat-icon matListIcon>assignment</mat-icon> Sales Docs
+        </button>
       </mat-list-item>
 
       <mat-list-item>
-        <mat-icon matListIcon>donut_small</mat-icon>
-        <a routerLink="/users" matLine>Analytics</a>
+        <button class="btn text-left btn-block" mat-button routerLink="/dashboard" [color]="activeUrl('/users')">
+          <mat-icon matListIcon>donut_small</mat-icon> Analytics
+        </button>
       </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>

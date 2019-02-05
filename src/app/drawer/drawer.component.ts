@@ -6,7 +6,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { User } from '../interfaces/user';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { SubmitPopupComponent } from '../partials/submit-popup/submit-popup.component';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-drawer',
@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 export class DrawerComponent implements OnInit {
 
   protected user: User;
+  protected active: string;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -32,6 +33,7 @@ export class DrawerComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.auth.currentUser();
+    this.active = this.router.url;
   }
 
   public logout() {
@@ -46,5 +48,9 @@ export class DrawerComponent implements OnInit {
         this.dialog.closeAll();
       }
     });
+  }
+
+  public activeUrl(url: string): string {
+    return this.active === url ? 'primary' : '';
   }
 }

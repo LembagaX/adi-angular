@@ -20,7 +20,6 @@ import { ManufacturesTableComponent } from './manufactures-table/manufactures-ta
 import { ManufacturesCreateComponent } from './manufactures-create/manufactures-create.component';
 import { ManufacturesFormComponent } from './manufactures-form/manufactures-form.component';
 import { ManufacturesProductsComponent } from './manufactures-products/manufactures-products.component';
-import { ProductsComponent } from './products/products.component';
 import { ProductsTableComponent } from './products-table/products-table.component';
 import { AttachProductComponent } from './attach-product/attach-product.component';
 import { ManifestCreateComponent } from './manifest-create/manifest-create.component';
@@ -44,7 +43,6 @@ import { ManifestsUpdateComponent } from './manifests-update/manifests-update.co
     ManufacturesCreateComponent,
     ManufacturesFormComponent,
     ManufacturesProductsComponent,
-    ProductsComponent,
     ProductsTableComponent,
     AttachProductComponent,
     ManifestCreateComponent,
@@ -60,12 +58,15 @@ import { ManifestsUpdateComponent } from './manifests-update/manifests-update.co
     ReactiveFormsModule,
     AppRoutingModule,
     MatProgressButtonsModule,
-    ChartModule,
+    ChartModule
   ],
   entryComponents: [
     AttachProductComponent,
     ManifestCreateComponent,
     ManifestsUpdateComponent
+  ],
+  exports: [
+    ProductsTableComponent
   ]
 })
 export class WarehouseModule { }

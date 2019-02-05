@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Product } from './response/product';
+import { Product as Request } from './request/product';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class ProductService {
     return this.http.get<Product[]>(this.base + suffix, header);
   }
 
-  public create() {
+  public create(request: Request) {
     const suffix = `products.json`;
     const header = {
       headers: new HttpHeaders({
@@ -35,7 +36,7 @@ export class ProductService {
         'token': this.auth.currentUser().token
       })
     };
-    return this.http.post<Product>(this.base + suffix, {}, header);
+    return this.http.post<Product>(this.base + suffix, request, header);
   }
 
   public destroy(product: Product) {

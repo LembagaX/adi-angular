@@ -1,0 +1,47 @@
+<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+<form [formGroup]="form" (submit)="submit()" *ngIf="!loading">
+  <div class="row">
+    <div class="col-md-6">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Product name" formControlName="name" required maxlength="60" minlength="6">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Product code" formControlName="code" required maxlength="10" minlength="3">
+      </mat-form-field>
+      
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Product price" formControlName="price" required min="1">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Product stock" formControlName="stock" required>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-select placeholder="Select a Category" formControlName="category" name="category">
+          <mat-option *ngFor="let category of categories" [value]="category.id">
+            {{ category.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-12">
+          <mat-card>
+            <mat-card-subtitle>Note</mat-card-subtitle>
+            <mat-card-content>
+              <p class="text-secondary">- Only Admin capable to change Product price</p>
+              <p class="text-secondary">- Serial Number will ge generated automatically</p>
+              <p class="text-secondary">- Product component attach after Product created</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div class="col-md-12 space-top">
+          <button [disabled]="form.invalid" mat-raised-button color="primary" class="float-right">Create Product</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

@@ -4,6 +4,7 @@ import { Product } from 'src/app/response/product';
 import { ProductService } from 'src/app/product.service';
 import { Manufacture } from 'src/app/response/manufacture';
 import { ManifestCreateComponent } from '../manifest-create/manifest-create.component';
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-products-table',
@@ -21,15 +22,18 @@ export class ProductsTableComponent implements OnInit {
   public manufactures: MatTableDataSource<Product>;
 
   protected loading: boolean;
+  protected admin: boolean;
 
   constructor(
     private product: ProductService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private auth: AuthService
   ) { }
 
   ngOnInit() {
     this.loading = true;
-    this.headers = ['id', 'code', 'name', 'serial_number', 'price', 'stock', 'category', 'attach'];
+    this.admin = this.auth.isAdmin();
+    this.headers = ['id', 'code', 'name', 'serial_number', 'price', 'stock', 'category', 'attach', 'destroy'];
     this.buildTable();
   }
 

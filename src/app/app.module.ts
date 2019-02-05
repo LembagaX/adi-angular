@@ -10,6 +10,7 @@ import { StorageServiceModule } from 'ngx-webstorage-service';
 import { WarehouseModule } from './warehouse/warehouse.module';
 import { MatProgressButtonsModule } from 'mat-progress-buttons';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProductAndCategoryModule } from './product-and-category/product-and-category.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AuthModule,
     StorageServiceModule,
     PartialsModule,
-    WarehouseModule
+    WarehouseModule,
+    ProductAndCategoryModule
   ],
   providers: [
   ],

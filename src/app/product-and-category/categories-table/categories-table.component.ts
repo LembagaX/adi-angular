@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CategoryService } from 'src/app/category.service';
-import { MatSort, MatPaginator, MatTableDataSource, MatDialog } from '@angular/material';
+import { MatSort, MatPaginator, MatTableDataSource, MatDialog, MatSnackBar } from '@angular/material';
 import { Category } from 'src/app/response/category';
-import { CategoriesCreateDialogComponent } from '../categories-create-dialog/categories-create-dialog.component';
+import { CategoriesDialogComponent } from '../categories-create-dialog/categories-create-dialog.component';
+import { LoadingPopupComponent } from 'src/app/partials/loading-popup/loading-popup.component';
 
 @Component({
   selector: 'app-categories-table',
@@ -20,7 +21,8 @@ export class CategoriesTableComponent implements OnInit {
 
   constructor(
     private service: CategoryService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private snackbar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -44,9 +46,25 @@ export class CategoriesTableComponent implements OnInit {
   }
 
   public loadForm() {
-    const dialogRef = this.dialog.open(CategoriesCreateDialogComponent, { width: '500px' });
+    const dialogRef = this.dialog.open(CategoriesDialogComponent, { width: '500px' });
     dialogRef.afterClosed().subscribe(() => {
       this.refetchCategories();
+    });
+  }
+
+  public edit(category: Category) {
+    const dialogRef = this.dialog.open(CategoriesDialogComponent, { width: '500px', data: { category: category }});
+    dialogRef.afterClosed().subscribe(() => {
+      this.refetchCategories();
+    });
+  }
+
+  public destroy(category: Category) {
+    this.dialog.open(LoadingPopupComponent, { data: 'Destroying Categories' });
+    this.service.destroy(category).subscribe(() => {
+      this.dialog.closeAll();
+      this.refetchCategories();
+      this.snackbar.open('Category Destroyed', 'close', { duration: 2000 });
     });
   }
 

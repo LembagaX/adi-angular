@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { CategoryService } from 'src/app/category.service';
 import { LoadingPopupComponent } from 'src/app/partials/loading-popup/loading-popup.component';
+import { Category } from 'src/app/response/category';
 
 @Component({
   selector: 'app-categories-form',
@@ -11,11 +12,16 @@ import { LoadingPopupComponent } from 'src/app/partials/loading-popup/loading-po
 })
 export class CategoriesFormComponent implements OnInit {
 
+  @Input() category: Category;
+
   protected form: FormGroup;
+  protected currentDialog: MatDialogRef<LoadingPopupComponent>;
 
   constructor(
     private dialog: MatDialog,
-    private serive: CategoryService
+    private serive: CategoryService,
+    public dialogRef: MatDialogRef<CategoriesFormComponent>,
+    private snackbar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -24,15 +30,40 @@ export class CategoriesFormComponent implements OnInit {
 
 
   private buildForm() {
-    this.form = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(60)])
-    });
+    if (this.category) {
+      this.form = new FormGroup({
+        name: new FormControl(this.category.name, [Validators.required, Validators.minLength(3), Validators.maxLength(60)])
+      });
+    } else {
+      this.form = new FormGroup({
+        name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(60)])
+      });
+    }
   }
 
   public submit() {
-    this.dialog.open(LoadingPopupComponent, { data: 'Creating Category' });
-    this.serive.create(this.form.value).subscribe(() => {
+    if (this.category) {
+      this.update();
+    } else {
+      this.create();
+    }
+  }
+
+  private update() {
+    this.dialog.open(LoadingPopupComponent, { data: 'Updating Category' });
+    this.serive.update(this.form.value, this.category).subscribe(() => {
       this.dialog.closeAll();
+      this.snackbar.open('Category Updated', 'close', { duration: 2000 });
+
+    });
+  }
+
+  private create() {
+    this.currentDialog =  this.dialog.open(LoadingPopupComponent, { data: 'Creating Category' });
+    this.serive.create(this.form.value).subscribe(() => {
+      this.currentDialog.close();
+      this.dialogRef.close();
+      this.snackbar.open('Category Created', 'close', { duration: 2000 });
     });
   }
 }

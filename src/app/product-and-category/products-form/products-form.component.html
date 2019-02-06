@@ -19,7 +19,7 @@
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <mat-select placeholder="Select a Category" formControlName="category" name="category">
+        <mat-select placeholder="Select a Category" formControlName="category_id">
           <mat-option *ngFor="let category of categories" [value]="category.id">
             {{ category.name }}
           </mat-option>
@@ -41,6 +41,7 @@
         </div>
         <div class="col-md-12 space-top">
           <button [disabled]="form.invalid" [color]="editable ? 'accent' : 'primary'" mat-raised-button class="float-right">{{ editable ? 'Edit' : 'Create' }} Product</button>
+          <a (click)="createCategory()" mat-raised-button class="float-left btn">Create Category</a>
         </div>
       </div>
     </div>

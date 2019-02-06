@@ -8,6 +8,7 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { LoadingPopupComponent } from 'src/app/partials/loading-popup/loading-popup.component';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/response/product';
+import { CategoriesDialogComponent } from '../categories-create-dialog/categories-create-dialog.component';
 
 @Component({
   selector: 'app-products-form',
@@ -51,7 +52,7 @@ export class ProductsFormComponent implements OnInit {
         name: new FormControl(this.editable.name, [Validators.required, Validators.maxLength(60), Validators.minLength(6)]),
         code: new FormControl(
           { value: this.editable.code, disabled: true }, [Validators.required, Validators.maxLength(10), Validators.minLength(3)]),
-        category: new FormControl(this.editable.category.id, [Validators.required]),
+        category_id: new FormControl(this.editable.category.id, [Validators.required]),
         price: new FormControl({ value: this.editable.price, disabled: !this.auth.isAdmin() }, [Validators.required]),
         stock: new FormControl({ value: 0, disabled: true }, [Validators.required])
       });
@@ -59,7 +60,7 @@ export class ProductsFormComponent implements OnInit {
       this.form = new FormGroup({
         name: new FormControl('', [Validators.required, Validators.maxLength(60), Validators.minLength(6)]),
         code: new FormControl('', [Validators.required, Validators.maxLength(10), Validators.minLength(3)]),
-        category: new FormControl(null, [Validators.required]),
+        category_id: new FormControl(null, [Validators.required]),
         price: new FormControl({ value: 0, disabled: !this.auth.isAdmin() }, [Validators.required]),
         stock: new FormControl({ value: 0, disabled: true }, [Validators.required])
       });
@@ -92,6 +93,13 @@ export class ProductsFormComponent implements OnInit {
           });
         }
       }
+    });
+  }
+
+  public createCategory() {
+    const dialogRef = this.dialog.open(CategoriesDialogComponent);
+    dialogRef.afterClosed().subscribe(() => {
+      this.fetchCategories();
     });
   }
 }

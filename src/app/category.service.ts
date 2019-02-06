@@ -38,4 +38,26 @@ export class CategoryService {
     };
     return this.http.post<Category>(this.base + suffix, request, header);
   }
+
+  public update(request: Request, category: Category) {
+    const suffix = `categories/${category.slug}.json`;
+    const header = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'token': this.auth.currentUser().token
+      })
+    };
+    return this.http.patch<Category>(this.base + suffix, request, header);
+  }
+
+  public destroy(category: Category) {
+    const suffix = `categories/${category.slug}.json`;
+    const header = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'token': this.auth.currentUser().token
+      })
+    };
+    return this.http.delete<Category>(this.base + suffix, header);
+  }
 }

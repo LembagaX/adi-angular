@@ -12,10 +12,19 @@ import { ProductsEditComponent } from './products-edit/products-edit.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoriesTableComponent } from './categories-table/categories-table.component';
 import { CategoriesFormComponent } from './categories-form/categories-form.component';
-import { CategoriesCreateDialogComponent } from './categories-create-dialog/categories-create-dialog.component';
+import { CategoriesDialogComponent } from './categories-create-dialog/categories-create-dialog.component';
 
 @NgModule({
-  declarations: [ProductsComponent, ProductsCreateComponent, ProductsFormComponent, ProductsEditComponent, CategoriesComponent, CategoriesTableComponent, CategoriesFormComponent, CategoriesCreateDialogComponent],
+  declarations: [
+    ProductsComponent,
+    ProductsCreateComponent,
+    ProductsFormComponent,
+    ProductsEditComponent,
+    CategoriesComponent,
+    CategoriesTableComponent,
+    CategoriesFormComponent,
+    CategoriesDialogComponent
+  ],
   imports: [
     CommonModule,
     MaterialModule,
@@ -27,7 +36,7 @@ import { CategoriesCreateDialogComponent } from './categories-create-dialog/cate
   ],
   entryComponents: [
     ProductsEditComponent,
-    CategoriesCreateDialogComponent
+    CategoriesDialogComponent
   ]
 })
 export class ProductAndCategoryModule { }

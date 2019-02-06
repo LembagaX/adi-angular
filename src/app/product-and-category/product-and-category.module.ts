@@ -9,9 +9,13 @@ import { WarehouseModule } from '../warehouse/warehouse.module';
 import { ProductsCreateComponent } from './products-create/products-create.component';
 import { ProductsFormComponent } from './products-form/products-form.component';
 import { ProductsEditComponent } from './products-edit/products-edit.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { CategoriesTableComponent } from './categories-table/categories-table.component';
+import { CategoriesFormComponent } from './categories-form/categories-form.component';
+import { CategoriesCreateDialogComponent } from './categories-create-dialog/categories-create-dialog.component';
 
 @NgModule({
-  declarations: [ProductsComponent, ProductsCreateComponent, ProductsFormComponent, ProductsEditComponent],
+  declarations: [ProductsComponent, ProductsCreateComponent, ProductsFormComponent, ProductsEditComponent, CategoriesComponent, CategoriesTableComponent, CategoriesFormComponent, CategoriesCreateDialogComponent],
   imports: [
     CommonModule,
     MaterialModule,
@@ -22,7 +26,8 @@ import { ProductsEditComponent } from './products-edit/products-edit.component';
     WarehouseModule
   ],
   entryComponents: [
-    ProductsEditComponent
+    ProductsEditComponent,
+    CategoriesCreateDialogComponent
   ]
 })
 export class ProductAndCategoryModule { }

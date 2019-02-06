@@ -2,9 +2,9 @@
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
 </mat-form-field>
 <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
-<table mat-table [dataSource]="manufactures" class="mat-elevation-z8 full-width" matSort *ngIf="!loading">
+<table mat-table [dataSource]="manufactures" class="mat-elevation-z8 full-width" matSort>
   <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+    <th mat-header-cell *matHeaderCellDef> No. </th>
     <td mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </td>
   </ng-container>
 
@@ -39,14 +39,14 @@
   </ng-container>
 
   <ng-container matColumnDef="attach">
-    <th mat-header-cell mat-sort-header *matHeaderCellDef></th>
+    <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let element">
       <button (click)="attahToManufacture(element)" *ngIf="attachable" mat-button matTooltip="Attach Product" color="accent"><mat-icon>add</mat-icon></button>
     </td>
   </ng-container>
 
   <ng-container matColumnDef="edit">
-    <th mat-header-cell mat-sort-header *matHeaderCellDef></th>
+    <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let element">
       <button (click)="editProduct(element)" mat-button matTooltip="Edit Product" color="accent">
         <mat-icon>edit</mat-icon>

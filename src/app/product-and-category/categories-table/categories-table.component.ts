@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { CategoryService } from 'src/app/category.service';
-import { MatSort, MatPaginator, MatTableDataSource, MatDialog, MatSnackBar } from '@angular/material';
 import { Category } from 'src/app/response/category';
-import { CategoriesDialogComponent } from '../categories-create-dialog/categories-create-dialog.component';
+import { CategoryService } from 'src/app/category.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { LoadingPopupComponent } from 'src/app/partials/loading-popup/loading-popup.component';
+import { MatSort, MatPaginator, MatTableDataSource, MatDialog, MatSnackBar } from '@angular/material';
+import { CategoriesDialogComponent } from '../categories-dialog/categories-dialog.component';
 
 @Component({
   selector: 'app-categories-table',
@@ -15,9 +15,9 @@ export class CategoriesTableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  protected loading: boolean;
-  protected headers: string[];
-  protected categories: MatTableDataSource<Category>;
+  public loading: boolean;
+  public headers: string[];
+  public categories: MatTableDataSource<Category>;
 
   constructor(
     private service: CategoryService,
@@ -72,5 +72,9 @@ export class CategoriesTableComponent implements OnInit {
     this.loading = true;
     this.fetchCategories();
     this.loading = false;
+  }
+
+  public applyFilter(filterValue: string) {
+    this.categories.filter = filterValue.trim().toLowerCase();
   }
 }

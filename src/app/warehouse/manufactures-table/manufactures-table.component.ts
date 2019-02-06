@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatSort, MatDialog } from '@angular/material';
 import { Manufacture } from 'src/app/response/manufacture';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ManufactureService } from 'src/app/manufacture.service';
+import { MatPaginator, MatTableDataSource, MatSort, MatDialog } from '@angular/material';
 import { LoadingPopupComponent } from 'src/app/partials/loading-popup/loading-popup.component';
 
 @Component({
@@ -14,10 +14,9 @@ export class ManufacturesTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
+  public loading: boolean;
   public headers: string[];
   public manufactures: MatTableDataSource<Manufacture>;
-
-  protected loading: boolean;
 
   constructor(
     private service: ManufactureService,

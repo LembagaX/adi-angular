@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { MatPaginator, MatSort, MatTableDataSource, MatDialog } from '@angular/material';
+import { AuthService } from 'src/app/auth.service';
 import { Product } from 'src/app/response/product';
 import { ProductService } from 'src/app/product.service';
 import { Manufacture } from 'src/app/response/manufacture';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { ManifestCreateComponent } from '../manifest-create/manifest-create.component';
-import { AuthService } from 'src/app/auth.service';
+import { MatPaginator, MatSort, MatTableDataSource, MatDialog } from '@angular/material';
 import { LoadingPopupComponent } from 'src/app/partials/loading-popup/loading-popup.component';
 import { ProductsEditComponent } from 'src/app/product-and-category/products-edit/products-edit.component';
 
@@ -20,10 +20,10 @@ export class ProductsTableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
+  public loading: boolean;
   public headers: string[];
   public manufactures: MatTableDataSource<Product>;
 
-  protected loading: boolean;
   protected admin: boolean;
 
   constructor(

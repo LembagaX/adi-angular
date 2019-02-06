@@ -1,7 +1,6 @@
-import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
-import { Product } from 'src/app/Models/product';
 import { FormControl, Validators } from '@angular/forms';
+import { Component, Inject, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-requested-product-dialog',
@@ -10,7 +9,7 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class RequestedProductDialogComponent implements OnInit {
 
-  protected quantityControl: FormControl;
+  public quantityControl: FormControl;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,

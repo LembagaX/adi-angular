@@ -8,7 +8,7 @@ import { Chart } from 'angular-highcharts';
 })
 export class DashboardComponent  {
 
-  protected cards: any[];
+  public cards: any[];
 
   constructor() {
     this.cards = [

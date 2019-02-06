@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator, MatDialog, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
 import { Product } from 'src/app/Models/product';
 import { RequestedProductDialogComponent } from '../requested-product-dialog/requested-product-dialog.component';
-import { last } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-select-product-dialog',
@@ -11,10 +10,11 @@ import { last } from '@angular/router/src/utils/collection';
 })
 export class SelectProductDialogComponent implements OnInit {
 
-  protected header: string[];
-  protected currentProduct: Product;
+  public header: string[];
+  public products: MatTableDataSource<Product>;
+  
   protected requestedQuantity: number;
-  protected products: MatTableDataSource<Product>;
+  protected currentProduct: Product;
   protected selectedProducts: MatTableDataSource<Product>;
 
   @ViewChild(MatSort) sort: MatSort;

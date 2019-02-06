@@ -1,9 +1,9 @@
+import { Category } from 'src/app/response/category';
 import { Component, OnInit, Input } from '@angular/core';
+import { CategoryService } from 'src/app/category.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
-import { CategoryService } from 'src/app/category.service';
 import { LoadingPopupComponent } from 'src/app/partials/loading-popup/loading-popup.component';
-import { Category } from 'src/app/response/category';
 
 @Component({
   selector: 'app-categories-form',
@@ -14,7 +14,8 @@ export class CategoriesFormComponent implements OnInit {
 
   @Input() category: Category;
 
-  protected form: FormGroup;
+  public form: FormGroup;
+  
   protected currentDialog: MatDialogRef<LoadingPopupComponent>;
 
   constructor(

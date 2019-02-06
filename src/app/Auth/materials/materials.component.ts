@@ -10,11 +10,12 @@ import { ServerService } from 'src/app/server.service';
 export class MaterialsComponent implements OnInit {
 
   public cards: any[];
+  public showTable: boolean;
+  
   protected growth: string;
   protected thead: string[];
   protected tbody: Material[];
   protected providers: number;
-  protected showTable: boolean;
 
   constructor(
     public server: ServerService

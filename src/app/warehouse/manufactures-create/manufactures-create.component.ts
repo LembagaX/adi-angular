@@ -1,7 +1,7 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Manufacture } from 'src/app/response/manufacture';
 import { ManufactureService } from 'src/app/manufacture.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-manufactures-create',
@@ -10,8 +10,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ManufacturesCreateComponent implements OnInit {
 
+  public  loading: boolean;
+
   protected code: string;
-  protected loading: boolean;
   protected refresh: boolean;
   protected manufacture: Manufacture;
 

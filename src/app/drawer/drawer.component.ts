@@ -15,8 +15,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class DrawerComponent implements OnInit {
 
-  protected user: User;
-  protected active: string;
+  public user: User;
+  public active: string;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(

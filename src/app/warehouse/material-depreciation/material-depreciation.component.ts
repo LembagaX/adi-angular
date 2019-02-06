@@ -1,16 +1,16 @@
-import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
 import { startWith, map } from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth.service';
 import { Material } from 'src/app/response/material';
 import { ServerService } from 'src/app/server.service';
 import { MatDialog, MatSnackBar } from '@angular/material';
-import { LoadingPopupComponent } from 'src/app/partials/loading-popup/loading-popup.component';
-import { User } from 'src/app/models/user';
-import { AuthService } from 'src/app/auth.service';
-import { SubmitPopupComponent } from 'src/app/partials/submit-popup/submit-popup.component';
-import { Router } from '@angular/router';
 import { Depreciation } from 'src/app/request/depreciation';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { SubmitPopupComponent } from 'src/app/partials/submit-popup/submit-popup.component';
+import { LoadingPopupComponent } from 'src/app/partials/loading-popup/loading-popup.component';
 
 @Component({
   selector: 'app-material-depreciation',
@@ -20,13 +20,13 @@ import { Depreciation } from 'src/app/request/depreciation';
 export class MaterialDepreciationComponent implements OnInit {
 
   public loading: boolean;
+  public current: Material;
   public materials: Material[];
   public materialForm: FormGroup;
   public deprecationForm: FormGroup;
   public filteredMaterials: Observable<Material[]>;
 
   protected user: User;
-  protected current: Material;
 
   constructor(
     private server: ServerService,

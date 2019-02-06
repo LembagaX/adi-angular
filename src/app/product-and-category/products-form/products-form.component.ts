@@ -1,14 +1,14 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/auth.service';
-import { CategoryService } from 'src/app/category.service';
-import { Category } from 'src/app/response/category';
-import { ProductService } from 'src/app/product.service';
-import { MatDialog, MatSnackBar } from '@angular/material';
-import { LoadingPopupComponent } from 'src/app/partials/loading-popup/loading-popup.component';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth.service';
 import { Product } from 'src/app/response/product';
-import { CategoriesDialogComponent } from '../categories-create-dialog/categories-create-dialog.component';
+import { Category } from 'src/app/response/category';
+import { Component, OnInit, Input } from '@angular/core';
+import { ProductService } from 'src/app/product.service';
+import { CategoryService } from 'src/app/category.service';
+import { MatDialog, MatSnackBar } from '@angular/material';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { LoadingPopupComponent } from 'src/app/partials/loading-popup/loading-popup.component';
+import { CategoriesDialogComponent } from '../categories-dialog/categories-dialog.component';
 
 @Component({
   selector: 'app-products-form',
@@ -19,8 +19,9 @@ export class ProductsFormComponent implements OnInit {
 
   @Input() editable: Product;
 
+  public loading: boolean;
+
   protected form: FormGroup;
-  protected loading: boolean;
   protected categories: Category[];
 
   constructor(

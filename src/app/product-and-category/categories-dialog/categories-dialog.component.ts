@@ -3,13 +3,13 @@ import { Category } from 'src/app/request/category';
 import { MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
-  selector: 'app-categories-create-dialog',
-  templateUrl: './categories-create-dialog.component.html',
-  styleUrls: ['./categories-create-dialog.component.scss']
+  selector: 'app-categories-dialog',
+  templateUrl: './categories-dialog.component.html',
+  styleUrls: ['./categories-dialog.component.scss']
 })
 export class CategoriesDialogComponent implements OnInit {
 
-  protected category: Category;
+  public category: Category;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { category: Category }

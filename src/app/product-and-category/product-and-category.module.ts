@@ -12,7 +12,7 @@ import { ProductsEditComponent } from './products-edit/products-edit.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoriesTableComponent } from './categories-table/categories-table.component';
 import { CategoriesFormComponent } from './categories-form/categories-form.component';
-import { CategoriesDialogComponent } from './categories-create-dialog/categories-create-dialog.component';
+import { CategoriesDialogComponent } from './categories-dialog/categories-dialog.component';
 
 @NgModule({
   declarations: [

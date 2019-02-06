@@ -1,12 +1,12 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { AuthService } from 'src/app/auth.service';
-import { ManufactureService } from 'src/app/manufacture.service';
-import { Manufacture } from 'src/app/response/manufacture';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
-import { LoadingPopupComponent } from 'src/app/partials/loading-popup/loading-popup.component';
+import { AuthService } from 'src/app/auth.service';
+import { FormGroup, FormControl } from '@angular/forms';
+import { Manufacture } from 'src/app/response/manufacture';
+import { ManufactureService } from 'src/app/manufacture.service';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { AttachProductComponent } from '../attach-product/attach-product.component';
+import { LoadingPopupComponent } from 'src/app/partials/loading-popup/loading-popup.component';
 
 @Component({
   selector: 'app-manufactures-form',
@@ -19,7 +19,8 @@ export class ManufacturesFormComponent implements OnInit {
   @Input() create: boolean;
   @Output() result =  new EventEmitter<Manufacture>();
 
-  protected loading: boolean;
+  public loading: boolean;
+
   protected manufacture: FormGroup;
   protected current: Manufacture;
 

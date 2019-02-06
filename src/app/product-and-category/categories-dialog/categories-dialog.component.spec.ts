@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { CategoriesDialogComponent } from './categories-create-dialog.component';
+import { CategoriesDialogComponent } from './categories-dialog.component';
 
 describe('CategoriesCreateDialogComponent', () => {
   let component: CategoriesDialogComponent;

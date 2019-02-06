@@ -20,11 +20,11 @@ export class MaterialPurchasingComponent implements OnInit {
   public name: FormControl;
   public price: FormControl;
   public quantity: FormControl;
+  public materialPurchase: FormGroup;
 
   protected options: string[];
   protected headers: string[];
   protected data: MaterialPurchased[];
-  protected materialPurchase: FormGroup;
   protected filteredOptions: Observable<string[]>;
   protected datasource: MatTableDataSource<MaterialPurchased>;
   protected spinner: MatProgressButtonOptions;

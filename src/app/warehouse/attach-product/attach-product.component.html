@@ -2,6 +2,13 @@
   <mat-card-subtitle>Attach Products</mat-card-subtitle>
   <mat-divider [inset]="true"></mat-divider>
   <mat-card-content class="space-top">
-    <app-products-table [attachable]="true" [manufacture]="data.manufacture"></app-products-table>
+    <div class="row">
+      <div class="col-md-12">
+        <app-products-table [attachable]="true" [manufacture]="data.manufacture"></app-products-table>
+      </div>
+      <div class="col-md-12 space-top">
+        <button (click)="createProductDialog()" color="primary" mat-raised-button>Create Product</button>
+      </div>
+    </div>
   </mat-card-content>
 </mat-card>

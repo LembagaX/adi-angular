@@ -1,6 +1,13 @@
-<mat-form-field class="full-width">
-  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-</mat-form-field>
+<div class="row">
+  <div class="col-md-10">
+    <mat-form-field class="full-width">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+  <div class="col-md-2">
+    <button class="btn btn-block" (click)="refetchTable()" mat-raised-button>Refetch Table</button>
+  </div>
+</div>
 <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
 <table mat-table [dataSource]="manufactures" class="mat-elevation-z8 full-width" matSort>
   <ng-container matColumnDef="id">
@@ -41,7 +48,9 @@
   <ng-container matColumnDef="attach">
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let element">
-      <button (click)="attahToManufacture(element)" *ngIf="attachable" mat-button matTooltip="Attach Product" color="accent"><mat-icon>add</mat-icon></button>
+      <button (click)="attahToManufacture(element)" *ngIf="attachable" mat-button matTooltip="Attach Product" color="accent">
+        <mat-icon>add</mat-icon>
+      </button>
     </td>
   </ng-container>
 
@@ -57,7 +66,8 @@
   <ng-container matColumnDef="destroy">
     <th mat-header-cell mat-sort-header *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let element">
-      <button (click)="destroyProduct(element)" *ngIf="admin && element.stock == 0" mat-button matTooltip="Delete Product" color="warn">
+      <button (click)="destroyProduct(element)" *ngIf="element.stock == 0" mat-button matTooltip="Delete Product"
+        color="warn">
         <mat-icon>delete</mat-icon>
       </button>
     </td>

@@ -52,8 +52,8 @@ export class ProductsTableComponent implements OnInit {
     this.loading = true;
     this.product.index().subscribe(response => {
       this.manufactures.data = response;
+      this.loading = false;
     });
-    this.loading = false;
   }
 
   public applyFilter(filterValue: string) {
@@ -84,5 +84,9 @@ export class ProductsTableComponent implements OnInit {
       this.dialog.closeAll();
       this.rebuildTable();
     });
+  }
+
+  public refetchTable() {
+    this.rebuildTable();
   }
 }

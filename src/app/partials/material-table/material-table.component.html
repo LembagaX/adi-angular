@@ -55,7 +55,7 @@
   <ng-container matColumnDef="destroy">
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let element">
-      <mat-icon (click)="materialDestroy(element)" color="warn" matTooltip="Delete Material Data">delete</mat-icon>
+      <mat-icon *ngIf="element.stock === 0" (click)="materialDestroy(element)" color="warn" matTooltip="Delete Material Data">delete</mat-icon>
     </td>
   </ng-container>
 

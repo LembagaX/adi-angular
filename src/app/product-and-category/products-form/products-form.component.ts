@@ -5,7 +5,7 @@ import { Category } from 'src/app/response/category';
 import { Component, OnInit, Input } from '@angular/core';
 import { ProductService } from 'src/app/product.service';
 import { CategoryService } from 'src/app/category.service';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog, MatSnackBar, MatDialogRef } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoadingPopupComponent } from 'src/app/partials/loading-popup/loading-popup.component';
 import { CategoriesDialogComponent } from '../categories-dialog/categories-dialog.component';
@@ -30,7 +30,7 @@ export class ProductsFormComponent implements OnInit {
     private product: ProductService,
     private dialog: MatDialog,
     private snackbar: MatSnackBar,
-    private router: Router
+    public dialogRef: MatDialogRef<LoadingPopupComponent>
   ) { }
 
   ngOnInit() {
@@ -70,26 +70,25 @@ export class ProductsFormComponent implements OnInit {
 
   public submit() {
     if (this.editable) {
-      this.dialog.open(LoadingPopupComponent, { data: 'Updating Product data' });
+      this.dialogRef = this.dialog.open(LoadingPopupComponent, { data: 'Updating Product data' });
     } else {
-      this.dialog.open(LoadingPopupComponent, { data: 'Creating Product data' });
+      this.dialogRef = this.dialog.open(LoadingPopupComponent, { data: 'Creating Product data' });
     }
     this.product.index().subscribe(respose => {
       const duplicate = respose.find(product => product.code === this.form.controls['code'].value);
       if (duplicate && !this.editable) {
         this.form.controls['code'].setValue('');
         this.snackbar.open('Code already been taken', 'close', { duration: 3000 });
-        this.dialog.closeAll();
+        this.dialogRef.close();
       } else {
         if (this.editable) {
           this.product.update(this.editable, this.form.value).subscribe(() => {
-            this.dialog.closeAll();
+            this.dialogRef.close();
             this.snackbar.open('Product updated', 'Close', { duration: 2000 });
           });
         } else {
           this.product.create(this.form.value).subscribe(() => {
-            this.dialog.closeAll();
-            this.router.navigate(['/products']);
+            this.dialogRef.close();
             this.snackbar.open('Product created', 'Close', { duration: 2000 });
           });
         }

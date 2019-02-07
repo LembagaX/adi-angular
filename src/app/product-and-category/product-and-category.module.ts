@@ -13,6 +13,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { CategoriesTableComponent } from './categories-table/categories-table.component';
 import { CategoriesFormComponent } from './categories-form/categories-form.component';
 import { CategoriesDialogComponent } from './categories-dialog/categories-dialog.component';
+import { ProductsCreateDialogComponent } from './products-create-dialog/products-create-dialog.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CategoriesDialogComponent } from './categories-dialog/categories-dialog
     CategoriesComponent,
     CategoriesTableComponent,
     CategoriesFormComponent,
-    CategoriesDialogComponent
+    CategoriesDialogComponent,
+    ProductsCreateDialogComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +38,8 @@ import { CategoriesDialogComponent } from './categories-dialog/categories-dialog
   ],
   entryComponents: [
     ProductsEditComponent,
-    CategoriesDialogComponent
+    CategoriesDialogComponent,
+    ProductsCreateDialogComponent
   ]
 })
 export class ProductAndCategoryModule { }

@@ -35,7 +35,7 @@ export class ProductsTableComponent implements OnInit {
   ngOnInit() {
     this.loading = true;
     this.admin = this.auth.isAdmin();
-    this.headers = ['id', 'code', 'name', 'serial_number', 'price', 'stock', 'category', 'attach', 'edit', 'destroy'];
+    this.headers = ['id', 'code', 'name', 'serial_number', 'price', 'stock', 'category', 'attach', 'edit', 'destroy', 'show'];
     this.buildTable();
   }
 

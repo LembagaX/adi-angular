@@ -1,0 +1,49 @@
+<mat-card>
+  <mat-card-subtitle>Information for {{ product.code }}</mat-card-subtitle>
+  <mat-card-content>
+    <mat-tab-group dynamicHeight>
+      <mat-tab label="Basic">
+        <div class="col-md-12">
+          <div class="row space-top">
+            <div class="col-md-4">
+              <dl class="row">
+                <dt class="col-md-4">Name</dt>
+                <dd class="col-md-8">: {{ product.name }}</dd>
+                <dt class="col-md-4">Code</dt>
+                <dd class="col-md-8">: {{ product.code }}</dd>
+                <dt class="col-md-4">Serial Number</dt>
+                <dd class="col-md-8">: {{ product.serial_number }}</dd>
+                <dt class="col-md-4">Price</dt>
+                <dd class="col-md-8">: {{ product.price }}</dd>
+                <dt class="col-md-4">Stock</dt>
+                <dd class="col-md-8">: {{ product.stock }}</dd>
+                <dt class="col-md-4">Created at</dt>
+                <dd class="col-md-8">: {{ product.created_at | date }}</dd>
+                <dt class="col-md-4">Category</dt>
+                <dd class="col-md-8">: {{ product.category.name }}</dd>
+              </dl>
+            </div>
+            <div class="col-md-2">
+              <button (click)="editProduct()" mat-raised-button>Edit {{ product.name }}</button>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Assemblies">
+        <div class="col-md-12">
+          Large content
+        </div>
+      </mat-tab>
+      <mat-tab label="Images">
+        <div class="col-md-12">
+          Large content
+        </div>
+      </mat-tab>
+      <mat-tab label="Analytics">
+        <div class="col-md-12">
+          Large content
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>

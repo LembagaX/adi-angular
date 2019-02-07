@@ -14,6 +14,8 @@ import { CategoriesTableComponent } from './categories-table/categories-table.co
 import { CategoriesFormComponent } from './categories-form/categories-form.component';
 import { CategoriesDialogComponent } from './categories-dialog/categories-dialog.component';
 import { ProductsCreateDialogComponent } from './products-create-dialog/products-create-dialog.component';
+import { ProductsShowComponent } from './products-show/products-show.component';
+import { ProductsInfoComponent } from './products-info/products-info.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { ProductsCreateDialogComponent } from './products-create-dialog/products
     CategoriesTableComponent,
     CategoriesFormComponent,
     CategoriesDialogComponent,
-    ProductsCreateDialogComponent
+    ProductsCreateDialogComponent,
+    ProductsShowComponent,
+    ProductsInfoComponent
   ],
   imports: [
     CommonModule,

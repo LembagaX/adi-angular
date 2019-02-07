@@ -64,11 +64,20 @@
   </ng-container>
 
   <ng-container matColumnDef="destroy">
-    <th mat-header-cell mat-sort-header *matHeaderCellDef></th>
+    <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let element">
       <button (click)="destroyProduct(element)" *ngIf="element.stock == 0" mat-button matTooltip="Delete Product"
         color="warn">
         <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="show">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <button [routerLink]="['/products', element.code]" mat-button matTooltip="Show Product" color="accent">
+        <mat-icon>open_in_new</mat-icon>
       </button>
     </td>
   </ng-container>

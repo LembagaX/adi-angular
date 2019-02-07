@@ -27,7 +27,8 @@ import {
   MatDatepickerModule,
   MatNativeDateModule,
   MatAutocompleteModule,
-  MatSelectModule
+  MatSelectModule,
+  MatTabsModule
 } from '@angular/material';
 
 import { LayoutModule } from '@angular/cdk/layout';
@@ -63,7 +64,8 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatDatepickerModule,
     MatNativeDateModule,
     MatAutocompleteModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTabsModule
   ],
   exports: [
     MatCardModule,
@@ -93,7 +95,8 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatDatepickerModule,
     MatNativeDateModule,
     MatAutocompleteModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTabsModule
   ]
 })
 export class MaterialModule { }

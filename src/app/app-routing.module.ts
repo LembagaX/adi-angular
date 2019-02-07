@@ -21,6 +21,7 @@ import { ManufacturesShowComponent } from './warehouse/manufactures-show/manufac
 import { ProductsComponent } from './product-and-category/products/products.component';
 import { ProductsCreateComponent } from './product-and-category/products-create/products-create.component';
 import { CategoriesComponent } from './product-and-category/categories/categories.component';
+import { ProductsShowComponent } from './product-and-category/products-show/products-show.component';
 
 const routes: Routes = [
   { path: 'users', component: UsersComponent, canActivate: [AuthGuard, AdminGuard] },
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'manufactures/:code/manifests', component: ManufacturesShowComponent, canActivate: [AuthGuard, WarehouseGuard] },
   { path: 'products', component: ProductsComponent, canActivate: [AuthGuard] },
   { path: 'products/create', component: ProductsCreateComponent, canActivate: [AuthGuard] },
+  { path: 'products/:code', component: ProductsShowComponent, canActivate: [AuthGuard] },
   { path: 'categories', component: CategoriesComponent, canActivate: [AuthGuard] }
 ];
 

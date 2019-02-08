@@ -1,0 +1,29 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthService } from './auth.service';
+import { Product } from './response/product';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AssemblyService {
+  protected base: string;
+
+  constructor(
+    private http: HttpClient,
+    private auth: AuthService
+  ) {
+    this.base = 'http://adi-server.herokuapp.com/';
+  }
+
+  public index(product: Product) {
+    const suffix = `manufactures/${product.code}/assemblies.json`;
+    const header = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'token': this.auth.currentUser().token
+      })
+    };
+    return this.http.get<Product>(this.base + suffix, header);
+  }
+}

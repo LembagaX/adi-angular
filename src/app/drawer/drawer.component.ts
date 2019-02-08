@@ -1,12 +1,12 @@
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { User } from '../interfaces/user';
-import { MatDialog, MatSnackBar } from '@angular/material';
-import { SubmitPopupComponent } from '../partials/submit-popup/submit-popup.component';
+import { AuthService } from '../auth.service';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MatDialog, MatSnackBar } from '@angular/material';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { SubmitPopupComponent } from '../partials/submit-popup/submit-popup.component';
 
 @Component({
   selector: 'app-drawer',
@@ -51,6 +51,6 @@ export class DrawerComponent implements OnInit {
   }
 
   public activeUrl(url: string): string {
-    return this.active === url ? 'primary' : '';
+    return this.active.includes(url) ? 'primary' : '';
   }
 }

@@ -1,0 +1,38 @@
+<div class="row space-top space-bottom">
+  <div class="col-md-10 offset-md-1 space-bottom">
+    <mat-card>
+      <mat-card-content class="text-secondary">
+        <p> - Assemblies use to made Product and Material data more usable and trackable</p>
+        <p> - Material Stock automatically decrease when reporting Manufacure based on Product creation to these Assemblies</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-md-10 offset-md-1 space-bottom">
+    <div class="row">
+      <div class="col-md-3" *ngFor="let assembly of assemblies">
+        <mat-card>
+          <mat-card-content class="text-secondary">
+            <p><strong>{{ assembly.material.name }}</strong></p>
+            <p>Require <strong>{{ assembly.quantity }}</strong></p>
+            <p>Available <strong>{{ assembly.material.stock }}</strong></p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button color="primary" (click)="edit(assembly)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-button color="warn" (click)="destroyAssembly(assembly)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+      <div class="col-md-3">
+        <mat-card>
+          <mat-card-content>
+            <button (click)="create()" class="btn btn-block" color="primary" mat-raised-button>Attach more Material</button>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

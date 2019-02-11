@@ -2,6 +2,8 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "../node_modules/bootstrap/scss/bootstrap";
 
+$space: 15px;
+
 body{
     background: rgba(240,240,240, 0.7);
 }
@@ -11,7 +13,11 @@ body{
 }
 
 .space-top {
-    padding-top: 15px;
+    padding-top: $space;
+}
+
+.space-bottom {
+    padding-bottom: $space;
 }
 
 .full-width {

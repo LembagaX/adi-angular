@@ -31,6 +31,7 @@ export class ProductsInfoComponent implements OnInit {
   private fetchProduct() {
     this.service.show(this.code).subscribe(response => {
       this.product = response;
+      console.log(this.product);
       this.loading = false;
     });
   }
@@ -41,7 +42,6 @@ export class ProductsInfoComponent implements OnInit {
       this.refetch();
     });
   }
-
 
   private refetch() {
     this.loading = true;

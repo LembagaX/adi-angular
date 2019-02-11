@@ -16,6 +16,9 @@ import { CategoriesDialogComponent } from './categories-dialog/categories-dialog
 import { ProductsCreateDialogComponent } from './products-create-dialog/products-create-dialog.component';
 import { ProductsShowComponent } from './products-show/products-show.component';
 import { ProductsInfoComponent } from './products-info/products-info.component';
+import { ProductsInfoBasicComponent } from './products-info-basic/products-info-basic.component';
+import { AssembliesCardComponent } from './assemblies-card/assemblies-card.component';
+import { AssembliesCreateDialogComponent } from './assemblies-create-dialog/assemblies-create-dialog.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { ProductsInfoComponent } from './products-info/products-info.component';
     CategoriesDialogComponent,
     ProductsCreateDialogComponent,
     ProductsShowComponent,
-    ProductsInfoComponent
+    ProductsInfoComponent,
+    ProductsInfoBasicComponent,
+    AssembliesCardComponent,
+    AssembliesCreateDialogComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +49,8 @@ import { ProductsInfoComponent } from './products-info/products-info.component';
   entryComponents: [
     ProductsEditComponent,
     CategoriesDialogComponent,
-    ProductsCreateDialogComponent
+    ProductsCreateDialogComponent,
+    AssembliesCreateDialogComponent
   ]
 })
 export class ProductAndCategoryModule { }

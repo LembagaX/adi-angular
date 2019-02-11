@@ -1,0 +1,16 @@
+<dl class="row">
+  <dt class="col-md-3 offset-md-1">Name</dt>
+  <dd class="col-md-8">: {{ product.name }}</dd>
+  <dt class="col-md-3 offset-md-1">Code</dt>
+  <dd class="col-md-8">: {{ product.code }}</dd>
+  <dt class="col-md-3 offset-md-1">Serial Number</dt>
+  <dd class="col-md-8">: {{ product.price }}</dd>
+  <dt class="col-md-3 offset-md-1">Price</dt>
+  <dd class="col-md-8">: {{ product.serial_number }}</dd>
+  <dt class="col-md-3 offset-md-1">Stock</dt>
+  <dd class="col-md-8">: {{ product.stock }}</dd>
+  <dt class="col-md-3 offset-md-1">Created at</dt>
+  <dd class="col-md-8">: {{ product.created_at | date }}</dd>
+  <dt class="col-md-3 offset-md-1">Category</dt>
+  <dd class="col-md-8">: {{ product.category.name }}</dd>
+</dl>

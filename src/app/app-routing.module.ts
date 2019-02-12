@@ -4,7 +4,6 @@ import { AdminGuard } from './admin.guard';
 import { GuestGuard } from './guest.guard';
 import { Routes, RouterModule } from '@angular/router';
 import { UsersComponent } from './auth/users/users.component';
-import { OrderComponent } from './auth/order/order.component';
 import { WarehouseGuard } from './warehouse-guard.guard';
 import { LoginComponent } from './login/login/login.component';
 import { DashboardComponent } from './auth/dashboard/dashboard.component';
@@ -22,12 +21,15 @@ import { ProductsComponent } from './product-and-category/products/products.comp
 import { ProductsCreateComponent } from './product-and-category/products-create/products-create.component';
 import { CategoriesComponent } from './product-and-category/categories/categories.component';
 import { ProductsShowComponent } from './product-and-category/products-show/products-show.component';
+import { OrdersComponent } from './admin/orders/orders.component';
+import { OrdersCreateComponent } from './admin/orders-create/orders-create.component';
 
 const routes: Routes = [
   { path: 'users', component: UsersComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'login', component: LoginComponent, canActivate: [GuestGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'order', component: OrderComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'orders/create', component: OrdersCreateComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'materials', component: MaterialsComponent, canActivate: [AuthGuard, WarehouseGuard] },
   { path: 'materials/purchasing', component: MaterialPurchasingComponent, canActivate: [AuthGuard, WarehouseGuard] },
   { path: 'materials/depreciations', component: MaterialDepreciationComponent, canActivate: [AuthGuard, WarehouseGuard] },

@@ -17,6 +17,7 @@ export class DrawerComponent implements OnInit {
 
   public user: User;
   public active: string;
+  public links: { link: string; icon: string; text: string; }[];
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -34,6 +35,29 @@ export class DrawerComponent implements OnInit {
   ngOnInit() {
     this.user = this.auth.currentUser();
     this.active = this.router.url;
+    this.buildSidebar();
+  }
+
+  private buildSidebar() {
+    if (this.auth.isAdmin()) {
+      this.links = [
+        { link: '/dashboard', icon: 'dashboard', text: 'Dashboard' },
+        { link: '/users', icon: 'supervised_user_circle', text: 'Users Management' },
+        { link: '/orders', icon: 'payment', text: 'Orders' },
+        { link: '/users', icon: 'verified_user', text: 'Customer' },
+        { link: '/products', icon: 'layers', text: 'Products' },
+        { link: '/categories', icon: 'category', text: 'Categories' },
+        { link: '/dashboard', icon: 'assignment', text: 'Sales Docs' },
+      ];
+    } else if (this.auth.isWarehouse()) {
+      this.links = [
+        { link: '/dashboard', icon: 'dashboard', text: 'Dashboard' },
+        { link: '/materials', icon: 'ballot', text: 'Materials' },
+        { link: '/manufactures', icon: 'build', text: 'Manufactures' },
+        { link: '/products', icon: 'layers', text: 'Products' },
+        { link: '/categories', icon: 'category', text: 'Categories' },
+      ];
+    }
   }
 
   public logout() {

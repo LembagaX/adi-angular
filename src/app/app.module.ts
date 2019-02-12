@@ -11,6 +11,7 @@ import { WarehouseModule } from './warehouse/warehouse.module';
 import { MatProgressButtonsModule } from 'mat-progress-buttons';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductAndCategoryModule } from './product-and-category/product-and-category.module';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ProductAndCategoryModule } from './product-and-category/product-and-cat
     StorageServiceModule,
     PartialsModule,
     WarehouseModule,
-    ProductAndCategoryModule
+    ProductAndCategoryModule,
+    AdminModule
   ],
   providers: [
   ],

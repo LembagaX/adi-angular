@@ -1,0 +1,77 @@
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-subtitle>Select a Customer</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row">
+          <div class="col-md-12">
+            <form [formGroup]="form">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Phone Number" required type="text" formControlName="phone">
+              </mat-form-field>
+            </form>
+          </div>
+          <div class="col-md-12">
+            <mat-card>
+              <mat-card-content>
+                <div class="row">
+                  <div class="col-md-12">
+                    <p class="text-secondary">Formatted Phone Number allowed</p>
+                  </div>
+                  <div class="col-md-6">
+                    <strong class="text-secondary">+62 361 222777</strong><br>
+                    <strong class="text-secondary">+62 813-444-5555</strong><br>
+                    <strong class="text-secondary">+62 812-3333-3333</strong><br>
+                    <strong class="text-secondary">+62 811 391 2103</strong><br>
+                    <strong class="text-secondary">+62 361-2277777</strong><br>
+                    <strong class="text-secondary">+62 8113912103</strong><br>
+                    <strong class="text-secondary">+62 811338429196</strong><br>
+                  </div>
+                  <div class="col-md-6">
+                    <strong class="text-secondary">+62 812 3333 3333</strong><br>
+                    <strong class="text-secondary">+62 877 80803550</strong><br>
+                    <strong class="text-secondary">(0361) 227337</strong><br>
+                    <strong class="text-secondary">08134455555</strong><br>
+                    <strong class="text-secondary">0361-2277777</strong><br>
+                    <strong class="text-secondary">081339222111</strong><br>
+                    <strong class="text-secondary">081 339 222 111</strong><br>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div class="col-md-12 space-top">
+            <mat-card>
+              <mat-card-header>
+                <mat-card-subtitle><strong>Bill To</strong></mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <p class="text-secondary">
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam qui, quis reprehenderit nobis cupiditate quia fugiat aut non veniam enim eius, optio autem quae velit fuga, et quasi ab labore.
+                </p>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div class="col-md-12 space-top">
+            <mat-card>
+              <mat-card-header>
+                <mat-card-subtitle><strong>Ship To</strong></mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <p class="text-secondary">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab nemo voluptatibus ducimus eveniet quod perspiciatis animi nam voluptatem nisi eum tempora fuga officia, soluta hic commodi. Enim adipisci cum esse.
+                </p>
+              </mat-card-content>
+              <mat-card-actions>
+                <button (click)="pickAddress()" color="accent" mat-button>Pick Another Address</button>
+                <button color="primary" mat-button>Create Address for Customer</button>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

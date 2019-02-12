@@ -2,7 +2,7 @@ import { AuthService } from 'src/app/auth.service';
 import { Product } from 'src/app/response/product';
 import { ProductService } from 'src/app/product.service';
 import { Manufacture } from 'src/app/response/manufacture';
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { ManifestCreateComponent } from '../manifest-create/manifest-create.component';
 import { MatPaginator, MatSort, MatTableDataSource, MatDialog } from '@angular/material';
 import { LoadingPopupComponent } from 'src/app/partials/loading-popup/loading-popup.component';
@@ -16,7 +16,9 @@ import { ProductsEditComponent } from 'src/app/product-and-category/products-edi
 export class ProductsTableComponent implements OnInit {
 
   @Input() attachable: boolean;
+  @Input() selectable: boolean;
   @Input() manufacture: Manufacture;
+  @Output() selected = new EventEmitter<Product>();
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -35,7 +37,7 @@ export class ProductsTableComponent implements OnInit {
   ngOnInit() {
     this.loading = true;
     this.admin = this.auth.isAdmin();
-    this.headers = ['id', 'code', 'name', 'serial_number', 'price', 'stock', 'category', 'attach', 'edit', 'destroy', 'show'];
+    this.headers = ['id', 'code', 'name', 'serial_number', 'price', 'stock', 'category', 'attach', 'edit', 'destroy', 'show', 'select'];
     this.buildTable();
   }
 
@@ -84,6 +86,10 @@ export class ProductsTableComponent implements OnInit {
       this.dialog.closeAll();
       this.rebuildTable();
     });
+  }
+
+  public selectProduct(product: Product) {
+    this.selected.emit(product);
   }
 
   public refetchTable() {

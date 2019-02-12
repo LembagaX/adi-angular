@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-md-12">
+    <app-products-table (selected)="onSelected($event)" selectable="true"></app-products-table>
+  </div>
+  <div class="col-md-12 space-top">
+    <mat-card>
+      <mat-card-content>
+        <dl class="row space-top text-secondary">
+          <dt class="col-md-2">Product selected</dt>
+          <dd class="col-md-10">: {{ productsCount | number }}</dd>
+          <dt class="col-md-2">Sub Total</dt>
+          <dd class="col-md-10">: {{ subTotal | currency: 'Rp. ' }}</dd>
+        </dl>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-md-12 space-top">
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let product of selectedProducts; let i = index;">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ product.name }}
+          </mat-panel-title>
+          <mat-panel-description>
+            <small>Selected {{ forms[i].controls['quantity'].value ? forms[i].controls['quantity'].value : 0  }} of {{ product.stock }}</small>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="row">
+          <div class="col-md-3">
+            <form [formGroup]="forms[i]" *ngIf="forms[i]">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Quantity" type="number" class="number" required formControlName="quantity">
+                <mat-hint>Available for {{ product.stock }}</mat-hint>
+              </mat-form-field>
+            </form>
+          </div>
+          <div class="col-md-9">
+            <button mat-button color="warn" (click)="unselect(i)"><mat-icon>delete</mat-icon> Unselect</button>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

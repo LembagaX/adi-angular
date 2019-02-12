@@ -17,53 +17,11 @@
       <mat-divider></mat-divider>
     </div>
     <mat-nav-list>
-      <mat-list-item>
-        <button class="btn btn-block text-left" mat-button routerLink="/dashboard" [color]="activeUrl('/dashboard')">
-          <mat-icon  matListIcon>dashboard</mat-icon> Dashboard
+      <mat-list-item *ngFor="let link of links">
+        <button class="btn btn-block text-left" mat-button [routerLink]="link.link" [color]="activeUrl(link.link)">
+          <mat-icon  matListIcon>{{ link.icon }}</mat-icon>{{ link.text }}
         </button>
-      </mat-list-item>
-      
-      <mat-list-item>
-        <button class="btn text-left btn-block" mat-button routerLink="/users" [color]="activeUrl('/users')">
-          <mat-icon matListIcon>supervised_user_circle</mat-icon> Users Management
-        </button>
-      </mat-list-item>
-
-      <mat-list-item>
-        <button class="btn text-left btn-block" mat-button routerLink="/materials" [color]="activeUrl('/materials')">
-          <mat-icon matListIcon>ballot</mat-icon> Materials
-        </button>
-      </mat-list-item>
-
-      <mat-list-item>
-        <button class="btn text-left btn-block" mat-button routerLink="/manufactures" [color]="activeUrl('/manufactures')">
-          <mat-icon matListIcon>build</mat-icon> Manufactures
-        </button>
-      </mat-list-item>
-
-      <mat-list-item>
-        <button class="btn text-left btn-block" mat-button routerLink="/products" [color]="activeUrl('/products')">
-          <mat-icon matListIcon>layers</mat-icon> Products
-        </button>
-      </mat-list-item>
-
-      <mat-list-item>
-        <button class="btn text-left btn-block" mat-button routerLink="/categories" [color]="activeUrl('/categories')">
-          <mat-icon matListIcon>category</mat-icon> Categories
-        </button>
-      </mat-list-item>
-
-      <mat-list-item>
-        <button class="btn text-left btn-block" mat-button routerLink="/dashboard" [color]="activeUrl('/users')">
-          <mat-icon matListIcon>assignment</mat-icon> Sales Docs
-        </button>
-      </mat-list-item>
-
-      <mat-list-item>
-        <button class="btn text-left btn-block" mat-button routerLink="/dashboard" [color]="activeUrl('/users')">
-          <mat-icon matListIcon>donut_small</mat-icon> Analytics
-        </button>
-      </mat-list-item>
+      </mat-list-item>      
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

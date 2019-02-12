@@ -1,0 +1,79 @@
+<div class="row">
+  <div class="col-md-6">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-subtitle>Payment Data</mat-card-subtitle>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <mat-radio-group>
+          <div class="row space-top">
+            <div class="col-md-5 offset-md-1">
+              <mat-radio-button (change)="cash = true" [checked]="cash" value="cash">Cash</mat-radio-button>
+            </div>
+            <div class="col-md-6">
+              <mat-radio-button (change)="cash = false" value="credit">Credit</mat-radio-button>
+            </div>
+          </div>
+        </mat-radio-group>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="col-md-6">
+    <form [formGroup]="form">
+      <div class="row">
+        <div class="col-md-12">
+          <mat-card>
+            <mat-card-content>
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="col-md-12">
+                    <mat-select placeholder="Termin" formControlName="termin" value="1" [disabled]="cash">
+                      <mat-option value="1">30 Hari</mat-option>
+                      <mat-option value="2">60 Hari</mat-option>
+                      <mat-option value="3">90 Hari</mat-option>
+                    </mat-select>
+                  </div>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+        <div class="col-md-12 space-top">
+        <mat-card>
+          <mat-card-content>
+            <div class="col-md-12">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Total" formControlName="total" type="number" class="number">
+              </mat-form-field>
+            </div>
+            
+            <div class="col-md-12 space-top">
+              <div class="row">
+                <div class="col-md-5">
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="Discount in Price" type="number" class="number" formControlName="discount">
+                    <mat-hint>Max {{ price | currency: 'Rp. ' }}</mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                  <button mat-button (click)="reverse()"><mat-icon>compare_arrows</mat-icon></button>
+                </div>
+                <div class="col-md-5">
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="Discount in Percent" type="number" class="number" formControlName="percent">
+                    <span matSuffix>%</span>
+                    <mat-hint>Max 100 %</mat-hint>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+        </div>
+      </div>
+    </form>      
+  </div>
+</div>

@@ -28,7 +28,10 @@ import {
   MatNativeDateModule,
   MatAutocompleteModule,
   MatSelectModule,
-  MatTabsModule
+  MatTabsModule,
+  MatExpansionModule,
+  MatButtonToggleModule,
+  MatBottomSheetModule
 } from '@angular/material';
 
 import { LayoutModule } from '@angular/cdk/layout';
@@ -65,7 +68,10 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatNativeDateModule,
     MatAutocompleteModule,
     MatSelectModule,
-    MatTabsModule
+    MatTabsModule,
+    MatExpansionModule,
+    MatButtonToggleModule,
+    MatBottomSheetModule
   ],
   exports: [
     MatCardModule,
@@ -96,7 +102,10 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatNativeDateModule,
     MatAutocompleteModule,
     MatSelectModule,
-    MatTabsModule
+    MatTabsModule,
+    MatExpansionModule,
+    MatButtonToggleModule,
+    MatBottomSheetModule
   ]
 })
 export class MaterialModule { }

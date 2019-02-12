@@ -1,0 +1,58 @@
+<app-drawer></app-drawer>
+<div class="container-fluid space-top">
+    <div class="row">
+        <div class="col-md-10 offset-md-2">
+            <div class="row">
+                <div class="col-md-12">
+                    <mat-card>
+                        <mat-card-content>
+                            <mat-vertical-stepper linear="true">
+                                <mat-step label="Select Products" [completed]="stepOneValid">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <app-orders-products-stepper 
+                                                (valid)="stepOnValid($event)"
+                                                (products)="fetchSelectedProducts($event)"
+                                                (productsSummary)="fetchProductSummary($event)"
+                                            ></app-orders-products-stepper>
+                                        </div>
+                                        <div class="col-md-12 space-top">
+                                            <button [disabled]="!stepOneValid" mat-raised-button color="primary" matStepperNext>Next</button>
+                                        </div>
+                                    </div>
+                                </mat-step>
+                                <mat-step label="Customer Data">
+                                    <div class="row">
+                                        <div class="col-md-12 space-top">
+                                            <app-orders-customer-stepper></app-orders-customer-stepper>
+                                        </div>
+                                        <div class="col-md-12 space-top">
+                                            <button mat-button matStepperPrevious>Back</button>
+                                            <button mat-raised-button color="primary" matStepperNext>Next</button>
+                                        </div>
+                                    </div>
+                                </mat-step>
+        
+                                <mat-step label="Payment Data">
+                                    <div class="row">
+                                        <div class="col-md-12 space-top">
+                                            <app-orders-payment-stepper></app-orders-payment-stepper>
+                                        </div>
+                                        <div class="col-md-12 space-top">
+                                            <button mat-button matStepperPrevious>Back</button>
+                                            <button mat-raised-button color="primary" matStepperNext>Next</button>
+                                        </div>
+                                    </div>
+                                </mat-step>
+        
+                                <mat-step label="Order Confirmation">
+                                    <button mat-button matStepperPrevious>Back</button>
+                                </mat-step>
+                            </mat-vertical-stepper>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

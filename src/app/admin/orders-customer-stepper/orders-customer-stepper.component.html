@@ -9,7 +9,7 @@
           <div class="col-md-12">
             <form [formGroup]="form">
               <mat-form-field class="full-width">
-                <input matInput placeholder="Phone Number" required type="text" formControlName="phone">
+                <input matInput placeholder="Phone Number" required type="text" formControlName="phone" (change)="fetchCustomer()">
               </mat-form-field>
             </form>
           </div>
@@ -42,31 +42,43 @@
               </mat-card-content>
             </mat-card>
           </div>
-          <div class="col-md-12 space-top">
+          <div class="col-md-12 space-top" *ngIf="customer">
             <mat-card>
               <mat-card-header>
                 <mat-card-subtitle><strong>Bill To</strong></mat-card-subtitle>
               </mat-card-header>
               <mat-card-content>
-                <p class="text-secondary">
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam qui, quis reprehenderit nobis cupiditate quia fugiat aut non veniam enim eius, optio autem quae velit fuga, et quasi ab labore.
-                </p>
+                <div class="row">
+                  <div class="col-md-1">
+                    <mat-icon>person_pin</mat-icon>
+                  </div>
+                  <div class="col-md-11">
+                    <p class="text-secondary">{{ customer.name }}</p>
+                  </div>
+                </div>
               </mat-card-content>
             </mat-card>
           </div>
-          <div class="col-md-12 space-top">
+          <div class="col-md-12 space-top" *ngIf="customer">
             <mat-card>
               <mat-card-header>
                 <mat-card-subtitle><strong>Ship To</strong></mat-card-subtitle>
               </mat-card-header>
               <mat-card-content>
-                <p class="text-secondary">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab nemo voluptatibus ducimus eveniet quod perspiciatis animi nam voluptatem nisi eum tempora fuga officia, soluta hic commodi. Enim adipisci cum esse.
-                </p>
+                <div class="row">
+                  <div class="col-md-1">
+                    <mat-icon>place</mat-icon>
+                  </div>
+                  <div class="col-md-11">
+                    <p class="text-secondary">
+                      {{ customer.default_address ? defaultAddress.address : 'Address Not Available' }}
+                    </p>
+                  </div>
+                </div>
               </mat-card-content>
               <mat-card-actions>
-                <button (click)="pickAddress()" color="accent" mat-button>Pick Another Address</button>
-                <button color="primary" mat-button>Create Address for Customer</button>
+                <button *ngIf="customer.addresses.length !== 0" (click)="pickAddress()" color="accent" mat-button>Pick Another Address</button>
+                <button (click)="createAddress()" color="primary" mat-button>Create Address for Customer</button>
               </mat-card-actions>
             </mat-card>
           </div>

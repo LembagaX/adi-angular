@@ -1,5 +1,8 @@
 <mat-nav-list>
-  <mat-list-item (click)="close()">Lorem</mat-list-item>
-  <mat-list-item (click)="close()">Lorem</mat-list-item>
-  <mat-list-item (click)="close()">Lorem</mat-list-item>
+  <div class="row" *ngFor="let address of data.addresses">
+    <mat-list-item (click)="close(address)">
+      <mat-icon mat-list-icon>place</mat-icon>
+      <p mat-line> {{ address.address }} </p>
+    </mat-list-item>
+  </div>
 </mat-nav-list>

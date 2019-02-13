@@ -14,6 +14,10 @@ import { WarehouseModule } from '../warehouse/warehouse.module';
 import { OrdersCustomerStepperComponent } from './orders-customer-stepper/orders-customer-stepper.component';
 import { CustomersAddressSheetComponent } from './customers-address-sheet/customers-address-sheet.component';
 import { OrdersPaymentStepperComponent } from './orders-payment-stepper/orders-payment-stepper.component';
+import { CustomersCreateDialogComponent } from './customers-create-dialog/customers-create-dialog.component';
+import { CustomersFormComponent } from './customers-form/customers-form.component';
+import { AddressesCreateDialogComponent } from './addresses-create-dialog/addresses-create-dialog.component';
+import { AddressesFormComponent } from './addresses-form/addresses-form.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,11 @@ import { OrdersPaymentStepperComponent } from './orders-payment-stepper/orders-p
     OrdersProductsStepperComponent,
     OrdersCustomerStepperComponent,
     CustomersAddressSheetComponent,
-    OrdersPaymentStepperComponent
+    OrdersPaymentStepperComponent,
+    CustomersCreateDialogComponent,
+    CustomersFormComponent,
+    AddressesCreateDialogComponent,
+    AddressesFormComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +45,9 @@ import { OrdersPaymentStepperComponent } from './orders-payment-stepper/orders-p
     WarehouseModule
   ],
   entryComponents: [
-    CustomersAddressSheetComponent
+    CustomersAddressSheetComponent,
+    CustomersCreateDialogComponent,
+    AddressesCreateDialogComponent
   ]
 })
 export class AdminModule { }

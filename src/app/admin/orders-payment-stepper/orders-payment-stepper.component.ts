@@ -1,5 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material';
+import { ErrorDialogComponent } from 'src/app/partials/error-dialog/error-dialog.component';
+import { CurrencyService } from 'src/app/currency.service';
+import { Currency } from 'src/app/response/currency';
 
 @Component({
   selector: 'app-orders-payment-stepper',
@@ -8,35 +12,64 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class OrdersPaymentStepperComponent implements OnInit {
 
+  @Input() public order: { subtotal: number; productCount: number; };
+  @Output() completed = new EventEmitter<boolean>();
+
   public cash: boolean;
   public price: number;
   public form: FormGroup;
   public usePrice: boolean;
+  public complete: boolean;
+  public currencies: Currency[];
 
-  constructor() { }
+  constructor(
+    private _dialog: MatDialog,
+    private _currency: CurrencyService
+  ) {}
 
   ngOnInit() {
     this.cash = true;
     this.usePrice = true;
-    this.price = 1000000;
+    this.complete = false;
+    this.price = this.order.subtotal;
     this.buildForm();
+    this.checkValidity();
+    this.fetchCurrencies();
   }
 
+  private fetchCurrencies() {
+    this._currency.index().subscribe(response => {
+      this.currencies = response;
+      console.log(this.currencies);
+    });
+  }
 
   private buildForm() {
     this.form = new FormGroup({
-      termin: new FormControl(1, [Validators.required]),
-      discount: new FormControl({ value: null, disabled: false }, []),
-      percent: new FormControl({ value: null, disabled: true }, []),
+      termin: new FormControl({ value: null, disabled: true }, [Validators.required]),
+      discount: new FormControl({ value: null, disabled: false }, [Validators.max(this.price)]),
+      percent: new FormControl({ value: null, disabled: true }, [Validators.max(100)]),
       total: new FormControl({ value: this.price, disabled: true }, [])
     });
 
     this.form.controls['discount'].valueChanges.subscribe(() => {
-      this.form.controls['total'].setValue(this.price - this.form.controls['discount'].value);
+      const sum = this.price - this.form.controls['discount'].value;
+      if (sum < 0) {
+        this._dialog.open(ErrorDialogComponent, { data: 'Invalid Discount given'});
+      } else {
+        this.form.controls['total'].setValue(sum);
+      }
+      this.checkValidity();
     });
 
     this.form.controls['percent'].valueChanges.subscribe(() => {
-      this.form.controls['total'].setValue(this.price - ((this.form.controls['percent'].value * this.price) / 100));
+      const sum = this.price - ((this.form.controls['percent'].value * this.price) / 100);
+      if (sum < 0) {
+        this._dialog.open(ErrorDialogComponent, { data: 'Invalid Discount given' });
+      } else {
+        this.form.controls['total'].setValue(sum);
+      }
+      this.checkValidity();
     });
   }
 
@@ -49,5 +82,24 @@ export class OrdersPaymentStepperComponent implements OnInit {
       this.form.get('percent').enable();
       this.form.get('discount').disable();
     }
+    this.checkValidity();
+  }
+
+  public isCash(status: boolean) {
+    this.cash = status;
+    if (!this.cash) {
+      this.form.controls['termin'].enable();
+    } else {
+      this.form.controls['termin'].disable();
+    }
+    this.checkValidity();
+  }
+
+  private checkValidity() {
+    this.complete = false;
+    if (this.order && this.form.valid) {
+      this.complete = true;
+    }
+    this.completed.emit(this.complete);
   }
 }

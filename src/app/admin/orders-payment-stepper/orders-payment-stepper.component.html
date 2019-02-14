@@ -9,10 +9,10 @@
         <mat-radio-group>
           <div class="row space-top">
             <div class="col-md-5 offset-md-1">
-              <mat-radio-button (change)="cash = true" [checked]="cash" value="cash">Cash</mat-radio-button>
+              <mat-radio-button (change)="isCash(true)" [checked]="cash" value="cash">Cash</mat-radio-button>
             </div>
             <div class="col-md-6">
-              <mat-radio-button (change)="cash = false" value="credit">Credit</mat-radio-button>
+              <mat-radio-button (change)="isCash(false)" value="credit">Credit</mat-radio-button>
             </div>
           </div>
         </mat-radio-group>
@@ -28,11 +28,21 @@
             <mat-card-content>
               <div class="col-md-12">
                 <div class="row">
-                  <div class="col-md-12">
-                    <mat-select placeholder="Termin" formControlName="termin" value="1" [disabled]="cash">
+                  <div class="col-md-8">
+                    <p class="text-secondary">Credit only</p>
+                    <mat-select placeholder="Termin" formControlName="termin" value="1">
                       <mat-option value="1">30 Hari</mat-option>
                       <mat-option value="2">60 Hari</mat-option>
                       <mat-option value="3">90 Hari</mat-option>
+                    </mat-select>
+                  </div>
+                  
+                  <div class="col-md-4" *ngIf="currencies">
+                    <p class="text-secondary">Currencies</p>
+                    <mat-select placeholder="Currencies" >
+                      <mat-option *ngFor="let currency of currencies" [value]="currency.code">
+                        {{ currency.code }}
+                      </mat-option>
                     </mat-select>
                   </div>
                 </div>
@@ -59,7 +69,7 @@
                   </mat-form-field>
                 </div>
                 <div class="col-md-2">
-                  <button mat-button (click)="reverse()"><mat-icon>compare_arrows</mat-icon></button>
+                  <button mat-button (click)="reverse()"><mat-icon>swap_horiz</mat-icon></button>
                 </div>
                 <div class="col-md-5">
                   <mat-form-field class="full-width">

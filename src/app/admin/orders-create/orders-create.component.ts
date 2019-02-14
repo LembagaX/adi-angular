@@ -11,6 +11,7 @@ export class OrdersCreateComponent implements OnInit {
   public products: Product[];
   public stepOneValid: boolean;
   public stepTwoValid: boolean;
+  public stepThreeValid: boolean;
   public order: { subtotal: number; productCount: number; };
 
   constructor() { }
@@ -18,11 +19,12 @@ export class OrdersCreateComponent implements OnInit {
   ngOnInit() {
     this.stepOneValid = false;
     this.stepTwoValid = false;
+    this.stepThreeValid = false;
   }
 
   public stepOnValid(boolean: boolean) {
-    this.stepOneValid = boolean;
     console.log('Step satu ' + boolean);
+    this.stepOneValid = boolean;
   }
 
   public stepTwoOnValid(boolean: boolean) {
@@ -30,13 +32,16 @@ export class OrdersCreateComponent implements OnInit {
     console.log('Step dua ' + boolean);
   }
 
+  public stepThreeOnValid(boolean: boolean) {
+    this.stepThreeValid = boolean;
+    console.log('Step tiga ' + boolean);
+  }
+
   public fetchSelectedProducts(products: Product[]) {
     this.products = products;
-    console.log({ selectedProduct: this.products });
   }
 
   public fetchProductSummary(data: { subtotal: number; productCount: number; }) {
     this.order = data;
-    console.log({ orderMetadata: this.order });
   }
 }

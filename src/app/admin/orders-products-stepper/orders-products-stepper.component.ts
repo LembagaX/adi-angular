@@ -25,6 +25,7 @@ export class OrdersProductsStepperComponent implements OnInit {
     this.selectedProducts = [];
     this.subTotal = 0;
     this.productsCount = 0;
+    this.sendValidity();
   }
 
   public onSelected(product: Product) {

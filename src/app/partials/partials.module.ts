@@ -10,6 +10,7 @@ import { MaterialTableComponent } from './material-table/material-table.componen
 import { LoadingPopupComponent } from './loading-popup/loading-popup.component';
 import { SubmitPopupComponent } from './submit-popup/submit-popup.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     DrawerComponent,
     LoadingPopupComponent,
     SubmitPopupComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    ErrorDialogComponent
   ],
   imports: [
     CommonModule,
@@ -32,12 +34,14 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     CardIconComponent,
     MaterialTableComponent,
     DrawerComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    ErrorDialogComponent
   ],
   entryComponents: [
     LoadingPopupComponent,
     SubmitPopupComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    ErrorDialogComponent
   ]
 })
 export class PartialsModule { }

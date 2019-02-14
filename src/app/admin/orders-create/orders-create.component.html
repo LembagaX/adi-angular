@@ -21,8 +21,8 @@
                                         </div>
                                     </div>
                                 </mat-step>
-                                <mat-step label="Customer Data">
-                                    <div class="row">
+                                <mat-step label="Customer Data" [completed]="stepTwoValid">
+                                    <div class="row" *ngIf="stepOneValid">
                                         <div class="col-md-12 space-top">
                                             <app-orders-customer-stepper (completed)="stepTwoOnValid($event)"></app-orders-customer-stepper>
                                         </div>
@@ -32,15 +32,15 @@
                                         </div>
                                     </div>
                                 </mat-step>
-        
-                                <mat-step label="Payment Data">
-                                    <div class="row">
+                                
+                                <mat-step label="Payment Data" [completed]="stepThreeValid">
+                                    <div class="row" *ngIf="stepTwoValid">
                                         <div class="col-md-12 space-top">
-                                            <app-orders-payment-stepper></app-orders-payment-stepper>
+                                            <app-orders-payment-stepper [order]="order" (completed)="stepThreeOnValid($event)"></app-orders-payment-stepper>
                                         </div>
                                         <div class="col-md-12 space-top">
                                             <button mat-button matStepperPrevious>Back</button>
-                                            <button mat-raised-button color="primary" matStepperNext>Next</button>
+                                            <button [disabled]="!stepThreeValid" mat-raised-button color="primary" matStepperNext>Next</button>
                                         </div>
                                     </div>
                                 </mat-step>

@@ -39,7 +39,7 @@
                   
                   <div class="col-md-4" *ngIf="currencies">
                     <p class="text-secondary">Currencies</p>
-                    <mat-select placeholder="Currencies" >
+                    <mat-select placeholder="Currencies" formControlName="currency">
                       <mat-option *ngFor="let currency of currencies" [value]="currency.code">
                         {{ currency.code }}
                       </mat-option>

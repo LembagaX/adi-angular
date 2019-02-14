@@ -40,16 +40,24 @@ export class OrdersPaymentStepperComponent implements OnInit {
   private fetchCurrencies() {
     this._currency.index().subscribe(response => {
       this.currencies = response;
-      console.log(this.currencies);
     });
   }
 
   private buildForm() {
     this.form = new FormGroup({
-      termin: new FormControl({ value: null, disabled: true }, [Validators.required]),
-      discount: new FormControl({ value: null, disabled: false }, [Validators.max(this.price)]),
-      percent: new FormControl({ value: null, disabled: true }, [Validators.max(100)]),
-      total: new FormControl({ value: this.price, disabled: true }, [])
+      termin: new FormControl(null, [Validators.required]),
+      discount: new FormControl(null, [Validators.max(this.price)]),
+      percent: new FormControl(null, [Validators.max(100)]),
+      total: new FormControl(this.price, []),
+      currency: new FormControl(null, [Validators.required])
+    });
+
+    this.form.controls['termin'].disable();
+    this.form.controls['percent'].disable();
+    this.form.controls['total'].disable();
+    this.form.controls['currency'].valueChanges.subscribe(() => {
+      this.isCash(this.cash);
+      this.checkValidity();
     });
 
     this.form.controls['discount'].valueChanges.subscribe(() => {

@@ -75,9 +75,11 @@ export class OrdersCustomerStepperComponent implements OnInit {
         });
         dialogRef.afterClosed().subscribe(result => {
           this.customer = result;
-          this.checkComplete();
         });
+        this.checkComplete();
       });
+    } else {
+      this.checkComplete();
     }
   }
 

@@ -14,6 +14,7 @@
                                                 (valid)="stepOnValid($event)"
                                                 (products)="fetchSelectedProducts($event)"
                                                 (productsSummary)="fetchProductSummary($event)"
+                                                (carts)="fetchCarts($event)"
                                             ></app-orders-products-stepper>
                                         </div>
                                         <div class="col-md-12 space-top">
@@ -24,7 +25,11 @@
                                 <mat-step label="Customer Data" [completed]="stepTwoValid">
                                     <div class="row" *ngIf="stepOneValid">
                                         <div class="col-md-12 space-top">
-                                            <app-orders-customer-stepper (completed)="stepTwoOnValid($event)"></app-orders-customer-stepper>
+                                            <app-orders-customer-stepper
+                                                (completed)="stepTwoOnValid($event)"
+                                                (address)="setAddress($event)"
+                                                (billTo)="setCustomer($event)"
+                                            ></app-orders-customer-stepper>
                                         </div>
                                         <div class="col-md-12 space-top">
                                             <button mat-button matStepperPrevious>Back</button>
@@ -36,7 +41,11 @@
                                 <mat-step label="Payment Data" [completed]="stepThreeValid">
                                     <div class="row" *ngIf="stepTwoValid">
                                         <div class="col-md-12 space-top">
-                                            <app-orders-payment-stepper [order]="order" (completed)="stepThreeOnValid($event)"></app-orders-payment-stepper>
+                                            <app-orders-payment-stepper
+                                                [order]="orderMetadata"
+                                                (completed)="stepThreeOnValid($event)"
+                                                (metadata)="fetchPaymentMetadata($event)"
+                                            ></app-orders-payment-stepper>
                                         </div>
                                         <div class="col-md-12 space-top">
                                             <button mat-button matStepperPrevious>Back</button>
@@ -48,7 +57,14 @@
                                 <mat-step label="Order Confirmation" [completed]="stepThreeValid">
                                     <div class="row" *ngIf="stepThreeValid">
                                         <div class="col-md-12 space-top">
-                                            <app-orders-confirmation-stepper></app-orders-confirmation-stepper>
+                                            <app-orders-confirmation-stepper
+                                                [products]="products"
+                                                [carts]="carts"
+                                                [order]="orderMetadata"
+                                                [address]="address"
+                                                [customer]="customer"
+                                                [paymentMetadata]="paymentMetadata"
+                                            ></app-orders-confirmation-stepper>
                                         </div>
                                         <div class="col-md-12 space-top">
                                             <button mat-button matStepperPrevious>Back</button>

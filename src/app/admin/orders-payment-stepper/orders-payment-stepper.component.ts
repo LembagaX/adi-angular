@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material';
 import { ErrorDialogComponent } from 'src/app/partials/error-dialog/error-dialog.component';
 import { CurrencyService } from 'src/app/currency.service';
 import { Currency } from 'src/app/response/currency';
+import { PaymentMetadata } from 'src/app/request/payment-metadata';
 
 @Component({
   selector: 'app-orders-payment-stepper',
@@ -13,6 +14,8 @@ import { Currency } from 'src/app/response/currency';
 export class OrdersPaymentStepperComponent implements OnInit {
 
   @Input() public order: { subtotal: number; productCount: number; };
+
+  @Output() metadata = new EventEmitter<PaymentMetadata>();
   @Output() completed = new EventEmitter<boolean>();
 
   public cash: boolean;
@@ -21,6 +24,7 @@ export class OrdersPaymentStepperComponent implements OnInit {
   public usePrice: boolean;
   public complete: boolean;
   public currencies: Currency[];
+  public paymentMetadata: PaymentMetadata;
 
   constructor(
     private _dialog: MatDialog,
@@ -45,7 +49,7 @@ export class OrdersPaymentStepperComponent implements OnInit {
 
   private buildForm() {
     this.form = new FormGroup({
-      termin: new FormControl(null, [Validators.required]),
+      termin: new FormControl('1', [Validators.required]),
       discount: new FormControl(null, [Validators.max(this.price)]),
       percent: new FormControl(null, [Validators.max(100)]),
       total: new FormControl(this.price, []),
@@ -59,6 +63,10 @@ export class OrdersPaymentStepperComponent implements OnInit {
       this.isCash(this.cash);
       this.checkValidity();
     });
+
+
+    this.form.controls['termin'].valueChanges.subscribe(() => this.checkValidity());
+
 
     this.form.controls['discount'].valueChanges.subscribe(() => {
       const sum = this.price - this.form.controls['discount'].value;
@@ -96,9 +104,11 @@ export class OrdersPaymentStepperComponent implements OnInit {
   public isCash(status: boolean) {
     this.cash = status;
     if (!this.cash) {
+      this.form.controls['termin'].setValue('1');
       this.form.controls['termin'].enable();
     } else {
       this.form.controls['termin'].disable();
+      this.form.controls['termin'].setValue('0');
     }
     this.checkValidity();
   }
@@ -109,5 +119,10 @@ export class OrdersPaymentStepperComponent implements OnInit {
       this.complete = true;
     }
     this.completed.emit(this.complete);
+    const meta: PaymentMetadata = {
+      termin_id: this.form.get('termin').value,
+      currency_id: this.form.get('currency').value
+    };
+    this.metadata.emit(meta);
   }
 }

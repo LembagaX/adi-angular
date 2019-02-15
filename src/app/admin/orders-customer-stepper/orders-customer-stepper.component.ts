@@ -17,6 +17,8 @@ import { Address } from 'src/app/response/address';
 export class OrdersCustomerStepperComponent implements OnInit {
 
   @Output() completed = new EventEmitter<boolean>();
+  @Output() address = new EventEmitter<Address>();
+  @Output() billTo = new EventEmitter<Customer>();
 
   public form: FormGroup;
   public customer: Customer;
@@ -41,6 +43,7 @@ export class OrdersCustomerStepperComponent implements OnInit {
     sheet.afterDismissed().subscribe(result => {
       if (result) {
         this.defaultAddress = result;
+        this.address.emit(result);
       }
     });
     this.checkComplete();
@@ -64,6 +67,7 @@ export class OrdersCustomerStepperComponent implements OnInit {
       this._service.show(this.form.controls['phone'].value).subscribe(response => {
         loading.close();
         this.customer = response;
+        this.billTo.emit(this.customer);
         this.defaultAddress = this.customer.default_address;
         this.checkComplete();
       },
@@ -75,6 +79,7 @@ export class OrdersCustomerStepperComponent implements OnInit {
         });
         dialogRef.afterClosed().subscribe(result => {
           this.customer = result;
+          this.billTo.emit(this.customer);
         });
         this.checkComplete();
       });
@@ -92,6 +97,8 @@ export class OrdersCustomerStepperComponent implements OnInit {
   }
 
   private checkComplete() {
-    this.completed.emit(this.form.valid && this.customer.addresses.length !== 0);
+    const ret = this.form.valid && this.customer.addresses.length !== 0;
+    this.completed.emit(ret);
+    this.address.emit(this.defaultAddress);
   }
 }

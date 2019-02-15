@@ -7,10 +7,10 @@
       <mat-divider></mat-divider>
       <mat-card-content>
         <mat-list>
-          <mat-list-item *ngFor="let product of products">
+          <mat-list-item *ngFor="let product of products; let i = index;">
             <mat-icon mat-list-icon>done</mat-icon>
             <h4 mat-line>{{ product.name }}</h4>
-            <p mat-line> {{ product.quantity }} selected</p>
+            <p mat-line> {{ carts[i].quantity }} selected</p>
           </mat-list-item>
         </mat-list>
       </mat-card-content>
@@ -28,11 +28,16 @@
           <mat-card-content>
             <dl class="row text-secondary space-top">
               <dt class="col-md-3">Sub Total </dt>
-              <dd class="col-md-9">: Rp. 1.000.000,00</dd>
-              <dt class="col-md-3">Discount </dt>
-              <dd class="col-md-9">: Rp. 1.00.000,00</dd>
+              <dd class="col-md-9">: {{ order.subtotal | currency: 'Rp. ' }}</dd>
+              <!-- <dt class="col-md-3">Discount </dt>
+              <dd class="col-md-9">: Rp. 1.00.000,00</dd> -->
+              <dt class="col-md-3">Termin</dt>
+              <dd class="col-md-9" *ngIf="paymentMetadata.termin_id === '0'">: Tunai</dd>
+              <dd class="col-md-9" *ngIf="paymentMetadata.termin_id === '1'">: 30 Hari</dd>
+              <dd class="col-md-9" *ngIf="paymentMetadata.termin_id === '2'">: 60 Hari</dd>
+              <dd class="col-md-9" *ngIf="paymentMetadata.termin_id === '3'">: 90 Hari</dd>
               <dt class="col-md-3">Total </dt>
-              <dd class="col-md-9">: Rp. 900.000,00</dd>
+              <dd class="col-md-9">: {{ order.subtotal | currency: 'Rp. ' }}</dd>
             </dl>
           </mat-card-content>
         </mat-card>
@@ -53,22 +58,21 @@
                       <mat-icon mat-list-icon>person_pin</mat-icon>
                     </div>
                     <div class="col-md-11">
-                      <p class="text-secondary">
-                        Lorem ipsum dolor sit amet
+                      <p class="text-secondary pad-left">
+                        {{ customer.name }}
                       </p>
                     </div>
                   </mat-list-item>
-                  <div class="col-md-11 offset-md-1 space-bottom">
-                    <mat-divider></mat-divider>
-                  </div>
+                </div>
+
+                <div class="col-md-12">
                   <mat-list-item>
                     <div class="col-md-1">
                       <mat-icon mat-list-icon>place</mat-icon>
                     </div>
                     <div class="col-md-11">
-                      <p class="text-secondary">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia excepturi, fugiat aliquid eveniet voluptatum
-                        repudiandae
+                      <p class="text-secondary pad-left">
+                        {{ address.address }}
                       </p>
                     </div>
                   </mat-list-item>

@@ -24,10 +24,7 @@ export class OrdersTableComponent implements OnInit {
 
   private buildTable() {
     this.headers = ['id', 'number', 'customer', 'termin', 'canceled', 'cancel', 'show'];
-    const data: Order[] = [
-      { id: 1, number: 1, customer: 'Customer 1', termin: 70, canceled: false },
-      { id: 2, number: 2, customer: 'Customer 2', termin: 20, canceled: false }
-    ];
+    const data: Order[] = [];
     this.sources = new MatTableDataSource<Order>(data);
     this.sources.sort = this.sort;
     this.sources.paginator = this.paginator;

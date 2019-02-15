@@ -4,4 +4,6 @@ export interface Order {
     customer: string;
     termin: number;
     canceled: boolean;
+    created_at: string;
+    updated_at: string;
 }

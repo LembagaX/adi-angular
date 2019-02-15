@@ -1,6 +1,10 @@
 export interface Order {
-    id: number;
-    number: number;
-    customer: string;
-    termin: string;
+    order: {
+        price: number;
+        address_id: number;
+    },
+    invoice: {
+        termin?: number;
+        currency_id: number;
+    }
 }

@@ -45,8 +45,15 @@
                                     </div>
                                 </mat-step>
         
-                                <mat-step label="Order Confirmation">
-                                    <button mat-button matStepperPrevious>Back</button>
+                                <mat-step label="Order Confirmation" [completed]="stepThreeValid">
+                                    <div class="row" *ngIf="stepThreeValid">
+                                        <div class="col-md-12 space-top">
+                                            <app-orders-confirmation-stepper></app-orders-confirmation-stepper>
+                                        </div>
+                                        <div class="col-md-12 space-top">
+                                            <button mat-button matStepperPrevious>Back</button>
+                                        </div>
+                                    </div>
                                 </mat-step>
                             </mat-vertical-stepper>
                         </mat-card-content>

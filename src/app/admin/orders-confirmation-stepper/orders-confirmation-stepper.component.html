@@ -1,0 +1,88 @@
+<div class="row">
+  <div class="col-md-6">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-subtitle>Selected Products</mat-card-subtitle>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item *ngFor="let product of products">
+            <mat-icon mat-list-icon>done</mat-icon>
+            <h4 mat-line>{{ product.name }}</h4>
+            <p mat-line> {{ product.quantity }} selected</p>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-12">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-subtitle>Total</mat-card-subtitle>
+          </mat-card-header>
+          <mat-divider inset="true"></mat-divider>
+          <mat-card-content>
+            <dl class="row text-secondary space-top">
+              <dt class="col-md-3">Sub Total </dt>
+              <dd class="col-md-9">: Rp. 1.000.000,00</dd>
+              <dt class="col-md-3">Discount </dt>
+              <dd class="col-md-9">: Rp. 1.00.000,00</dd>
+              <dt class="col-md-3">Total </dt>
+              <dd class="col-md-9">: Rp. 900.000,00</dd>
+            </dl>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div class="col-md-12 space-top">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-subtitle>Customer Information</mat-card-subtitle>
+          </mat-card-header>
+          <mat-divider></mat-divider>
+          <mat-card-content>
+            <div class="row">
+              <mat-list>
+                <div class="col-md-12">
+                  <mat-list-item>
+                    <div class="col-md-1">
+                      <mat-icon mat-list-icon>person_pin</mat-icon>
+                    </div>
+                    <div class="col-md-11">
+                      <p class="text-secondary">
+                        Lorem ipsum dolor sit amet
+                      </p>
+                    </div>
+                  </mat-list-item>
+                  <div class="col-md-11 offset-md-1 space-bottom">
+                    <mat-divider></mat-divider>
+                  </div>
+                  <mat-list-item>
+                    <div class="col-md-1">
+                      <mat-icon mat-list-icon>place</mat-icon>
+                    </div>
+                    <div class="col-md-11">
+                      <p class="text-secondary">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia excepturi, fugiat aliquid eveniet voluptatum
+                        repudiandae
+                      </p>
+                    </div>
+                  </mat-list-item>
+                </div>
+              </mat-list>
+            </div>
+          </mat-card-content>
+          <mat-card-actions>
+            <div class="col-md-12">
+              <button (click)="commit()" class="col-md-3 float-right btn btn-block" matTooltip="Submit The Order" mat-raised-button color="primary">Submit</button>
+            </div>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

@@ -18,6 +18,7 @@ import { CustomersCreateDialogComponent } from './customers-create-dialog/custom
 import { CustomersFormComponent } from './customers-form/customers-form.component';
 import { AddressesCreateDialogComponent } from './addresses-create-dialog/addresses-create-dialog.component';
 import { AddressesFormComponent } from './addresses-form/addresses-form.component';
+import { OrdersConfirmationStepperComponent } from './orders-confirmation-stepper/orders-confirmation-stepper.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AddressesFormComponent } from './addresses-form/addresses-form.componen
     CustomersCreateDialogComponent,
     CustomersFormComponent,
     AddressesCreateDialogComponent,
-    AddressesFormComponent
+    AddressesFormComponent,
+    OrdersConfirmationStepperComponent
   ],
   imports: [
     CommonModule,

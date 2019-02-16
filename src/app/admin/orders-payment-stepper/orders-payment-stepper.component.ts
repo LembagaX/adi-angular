@@ -13,7 +13,7 @@ import { PaymentMetadata } from 'src/app/request/payment-metadata';
 })
 export class OrdersPaymentStepperComponent implements OnInit {
 
-  @Input() public order: { subtotal: number; productCount: number; };
+  @Input() public order: { subtotal: number; productCount: number; discount?: number; };
 
   @Output() metadata = new EventEmitter<PaymentMetadata>();
   @Output() completed = new EventEmitter<boolean>();
@@ -63,17 +63,14 @@ export class OrdersPaymentStepperComponent implements OnInit {
       this.isCash(this.cash);
       this.checkValidity();
     });
-
-
     this.form.controls['termin'].valueChanges.subscribe(() => this.checkValidity());
-
-
     this.form.controls['discount'].valueChanges.subscribe(() => {
       const sum = this.price - this.form.controls['discount'].value;
       if (sum < 0) {
         this._dialog.open(ErrorDialogComponent, { data: 'Invalid Discount given'});
       } else {
         this.form.controls['total'].setValue(sum);
+        this.order.discount = this.form.controls['discount'].value;
       }
       this.checkValidity();
     });
@@ -84,6 +81,7 @@ export class OrdersPaymentStepperComponent implements OnInit {
         this._dialog.open(ErrorDialogComponent, { data: 'Invalid Discount given' });
       } else {
         this.form.controls['total'].setValue(sum);
+        this.order.discount = (this.form.controls['percent'].value * this.price) / 100;
       }
       this.checkValidity();
     });
@@ -92,9 +90,11 @@ export class OrdersPaymentStepperComponent implements OnInit {
   public reverse() {
     this.usePrice = !this.usePrice;
     if (this.usePrice) {
+      this.form.get('percent').reset();
       this.form.get('discount').enable();
       this.form.get('percent').disable();
     } else {
+      this.form.get('discount').reset();
       this.form.get('percent').enable();
       this.form.get('discount').disable();
     }

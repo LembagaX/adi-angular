@@ -29,15 +29,15 @@
             <dl class="row text-secondary space-top">
               <dt class="col-md-3">Sub Total </dt>
               <dd class="col-md-9">: {{ order.subtotal | currency: 'Rp. ' }}</dd>
-              <!-- <dt class="col-md-3">Discount </dt>
-              <dd class="col-md-9">: Rp. 1.00.000,00</dd> -->
+              <dt class="col-md-3">Discount </dt>
+              <dd class="col-md-9">: {{ !order.discount ? '-' : order.discount | currency: 'Rp. ' }}</dd>
               <dt class="col-md-3">Termin</dt>
               <dd class="col-md-9" *ngIf="paymentMetadata.termin_id === '0'">: Tunai</dd>
               <dd class="col-md-9" *ngIf="paymentMetadata.termin_id === '1'">: 30 Hari</dd>
               <dd class="col-md-9" *ngIf="paymentMetadata.termin_id === '2'">: 60 Hari</dd>
               <dd class="col-md-9" *ngIf="paymentMetadata.termin_id === '3'">: 90 Hari</dd>
               <dt class="col-md-3">Total </dt>
-              <dd class="col-md-9">: {{ order.subtotal | currency: 'Rp. ' }}</dd>
+              <dd class="col-md-9">: <strong>{{ order.subtotal - order.discount | currency : 'Rp.' }}</strong></dd>
             </dl>
           </mat-card-content>
         </mat-card>

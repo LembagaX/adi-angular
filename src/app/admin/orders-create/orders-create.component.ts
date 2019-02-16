@@ -18,7 +18,7 @@ export class OrdersCreateComponent implements OnInit {
   public stepOneValid: boolean;
   public stepTwoValid: boolean;
   public stepThreeValid: boolean;
-  public orderMetadata: { subtotal: number; productCount: number; };
+  public orderMetadata: { subtotal: number; productCount: number; discount?: number; };
   public paymentMetadata: PaymentMetadata;
   public order: Order;
   public address: Address;

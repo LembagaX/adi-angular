@@ -20,7 +20,7 @@ import { Router } from '@angular/router';
 export class OrdersConfirmationStepperComponent implements OnInit {
 
   @Input() public products: Product[];
-  @Input() public order: { subtotal: number; productCount: number; };
+  @Input() public order: { subtotal: number; productCount: number; discount?: number; };
   @Input() public carts: Cart[];
   @Input() public address: Address;
   @Input() public customer: Customer;
@@ -34,8 +34,7 @@ export class OrdersConfirmationStepperComponent implements OnInit {
     private _router: Router
   ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   public commit() {
     const dialog = this._dialog.open(ConfirmationDialogComponent);
@@ -45,7 +44,8 @@ export class OrdersConfirmationStepperComponent implements OnInit {
         const req: Order = {
           order: {
             price: this.order.subtotal,
-            address_id: this.address.id
+            address_id: this.address.id,
+            discount: this.order.subtotal - (this.order.subtotal - this.order.discount)
           },
           invoice: {
             termin: parseInt(this.paymentMetadata.termin_id, 2),

@@ -52,7 +52,7 @@ export class ProductsFormComponent implements OnInit {
           { value: this.editable.code, disabled: true }, [Validators.required, Validators.maxLength(10), Validators.minLength(3)]),
         category_id: new FormControl(this.editable.category.id, [Validators.required]),
         price: new FormControl({ value: this.editable.price, disabled: !this.auth.isAdmin() }, [Validators.required]),
-        stock: new FormControl({ value: 0, disabled: true }, [Validators.required])
+        stock: new FormControl({ value: this.editable.stock, disabled: true }, [Validators.required])
       });
     } else {
       this.form = new FormGroup({

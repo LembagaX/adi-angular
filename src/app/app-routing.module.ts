@@ -23,7 +23,7 @@ import { CategoriesComponent } from './product-and-category/categories/categorie
 import { ProductsShowComponent } from './product-and-category/products-show/products-show.component';
 import { OrdersComponent } from './admin/orders/orders.component';
 import { OrdersCreateComponent } from './admin/orders-create/orders-create.component';
-import { OrdersConfirmationStepperComponent } from './admin/orders-confirmation-stepper/orders-confirmation-stepper.component';
+import { NavbarComponent } from './guest/navbar/navbar.component';
 
 const routes: Routes = [
   { path: 'users', component: UsersComponent, canActivate: [AuthGuard, AdminGuard] },
@@ -43,7 +43,7 @@ const routes: Routes = [
   { path: 'products/create', component: ProductsCreateComponent, canActivate: [AuthGuard] },
   { path: 'products/:code', component: ProductsShowComponent, canActivate: [AuthGuard] },
   { path: 'categories', component: CategoriesComponent, canActivate: [AuthGuard] },
-  { path: 'test', component: OrdersConfirmationStepperComponent, canActivate: [AuthGuard] }
+  { path: 'test', component: NavbarComponent }
 ];
 
 @NgModule({

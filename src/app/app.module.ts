@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { LoginModule } from './login/login.module';
@@ -12,6 +12,8 @@ import { MatProgressButtonsModule } from 'mat-progress-buttons';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductAndCategoryModule } from './product-and-category/product-and-category.module';
 import { AdminModule } from './admin/admin.module';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { GuestModule } from './guest/guest.module';
 
 @NgModule({
   declarations: [
@@ -29,10 +31,15 @@ import { AdminModule } from './admin/admin.module';
     PartialsModule,
     WarehouseModule,
     ProductAndCategoryModule,
-    AdminModule
+    AdminModule,
+    MDBBootstrapModule.forRoot(),
+    GuestModule
   ],
   providers: [
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [
+    NO_ERRORS_SCHEMA
+  ]
 })
 export class AppModule { }

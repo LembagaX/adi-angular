@@ -23,9 +23,10 @@ import { CategoriesComponent } from './product-and-category/categories/categorie
 import { ProductsShowComponent } from './product-and-category/products-show/products-show.component';
 import { OrdersComponent } from './admin/orders/orders.component';
 import { OrdersCreateComponent } from './admin/orders-create/orders-create.component';
-import { NavbarComponent } from './guest/navbar/navbar.component';
+import { RootComponent } from './guest/root/root.component';
 
 const routes: Routes = [
+  { path: '', component: RootComponent },
   { path: 'users', component: UsersComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'login', component: LoginComponent, canActivate: [GuestGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -42,8 +43,7 @@ const routes: Routes = [
   { path: 'products', component: ProductsComponent, canActivate: [AuthGuard] },
   { path: 'products/create', component: ProductsCreateComponent, canActivate: [AuthGuard] },
   { path: 'products/:code', component: ProductsShowComponent, canActivate: [AuthGuard] },
-  { path: 'categories', component: CategoriesComponent, canActivate: [AuthGuard] },
-  { path: 'test', component: NavbarComponent }
+  { path: 'categories', component: CategoriesComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

@@ -8,13 +8,31 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="basicExampleNav">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item ">
+          <h5>Anugrah Distributor Indonesia</h5>
+        </li>
+      </ul>
+    </div>
+
+    <div class="collapse navbar-collapse" id="basicExampleNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item ">
           <a class="nav-link" [routerLink]="['/']">Home</a>
         </li>
+
+        <li class="nav-item ">
+          <a class="nav-link" [routerLink]="['/']">Catalogue</a>
+        </li>
         <li class="nav-item ">
           <a *ngIf="!auth.isAuthenticated()" class="nav-link" [routerLink]="['/login']">Login</a>
           <a *ngIf="auth.isAuthenticated()" class="nav-link" [routerLink]="['/dashboard']">Dashboard</a>
+        </li>
+        <li class="nav-item avatar" *ngIf="auth.isAuthenticated()">
+          <a class="nav-link p-0" href="#">
+            <img ngxGravatar [email]="auth.currentUser().email" size="40" fallback="mp" class="rounded-circle z-depth-0"
+              alt="avatar image" height="35"/>
+          </a>
         </li>
       </ul>
     </div>

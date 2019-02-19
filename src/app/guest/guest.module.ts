@@ -6,12 +6,27 @@ import {
   NavbarModule,
   WavesModule,
   ButtonsModule,
-  CardsFreeModule
+  CardsFreeModule,
+  CarouselModule,
+  InputsModule
 } from 'angular-bootstrap-md';
+import { RootComponent } from './root/root.component';
+import { CarouselComponent } from './carousel/carousel.component';
+import { BlogComponent } from './blog/blog.component';
+import { IntroComponent } from './intro/intro.component';
+import { FooterComponent } from './footer/footer.component';
+import { ContactComponent } from './contact/contact.component';
+import { GravatarModule } from 'ngx-gravatar';
 
 @NgModule({
   declarations: [
-    NavbarComponent
+    NavbarComponent,
+    RootComponent,
+    CarouselComponent,
+    BlogComponent,
+    IntroComponent,
+    FooterComponent,
+    ContactComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +34,10 @@ import {
     WavesModule,
     ButtonsModule,
     CardsFreeModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CarouselModule,
+    InputsModule,
+    GravatarModule
   ]
 })
 export class GuestModule { }

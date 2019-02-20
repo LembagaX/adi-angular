@@ -44,6 +44,7 @@ export class ProductsTableComponent implements OnInit {
   private buildTable() {
     this.product.index().subscribe(response => {
       this.loading = false;
+      console.log(response);
       this.manufactures = new MatTableDataSource<Product>(response);
       this.manufactures.paginator = this.paginator;
       this.manufactures.sort = this.sort;

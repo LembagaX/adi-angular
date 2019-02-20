@@ -37,7 +37,8 @@
               <dd class="col-md-9" *ngIf="paymentMetadata.termin_id === '2'">: 60 Hari</dd>
               <dd class="col-md-9" *ngIf="paymentMetadata.termin_id === '3'">: 90 Hari</dd>
               <dt class="col-md-3">Total </dt>
-              <dd class="col-md-9">: <strong>{{ order.subtotal - order.discount | currency : 'Rp.' }}</strong></dd>
+              <dd *ngIf="!order.discount" class="col-md-9">: <strong>{{ order.subtotal | currency : 'Rp.' }}</strong></dd>
+              <dd *ngIf="order.discount" class="col-md-9">: <strong>{{ order.subtotal - order.discount | currency : 'Rp.' }}</strong></dd>
             </dl>
           </mat-card-content>
         </mat-card>

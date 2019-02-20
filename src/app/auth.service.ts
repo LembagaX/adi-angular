@@ -27,6 +27,20 @@ export class AuthService {
     return this.webStorage.get('user');
   }
 
+  public role(): string {
+    switch (this.currentUser().role_id) {
+      case 1:
+        return 'Administrator';
+        break;
+      case 2:
+        return 'Warehouse Staff';
+        break;
+      case 3:
+        return 'Operational Staff';
+        break;
+    }
+  }
+
   public isAdmin(): boolean {
     if (this.currentUser().role_id === 1) {
       return true;

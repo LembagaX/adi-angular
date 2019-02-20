@@ -17,16 +17,16 @@ export class CustomerService {
     this.base = 'http://adi-server.herokuapp.com/';
   }
 
-  // public index() {
-  //   const suffix = 'products.json';
-  //   const header = {
-  //     headers: new HttpHeaders({
-  //       'Content-type': 'application/json',
-  //       'token': this.auth.currentUser().token
-  //     })
-  //   };
-  //   return this.http.get<Product[]>(this.base + suffix, header);
-  // }
+  public index() {
+    const suffix = 'customers.json';
+    const header = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'token': this.auth.currentUser().token
+      })
+    };
+    return this.http.get<Customer[]>(this.base + suffix, header);
+  }
 
   public create(request: Request) {
     const suffix = `customers.json`;

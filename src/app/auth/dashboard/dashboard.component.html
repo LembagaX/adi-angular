@@ -3,16 +3,67 @@
     <div class="row">
         <div class="col-md-10 offset-md-2">
             <div class="row">
-                <div class="col-md-3" *ngFor="let card of cards">
-                    <app-card-icon [icon]="card.icon" [title]="card.title" [body]="card.body" [point]="card.point"
-                        [type]="card.type"></app-card-icon>
+                <div class="col-md-12">
+                    <mat-card>
+                        <mat-card-content>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p class="text-secondary">Welcome <strong class="text-primary">{{ user.email }}</strong></p>
+                                    <p class="text-secondary">Currently signed in with ability <strong>{{ role }}</strong></p>
+                                </div>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div class="col-md-3 space-top">
+                    <mat-progress-bar *ngIf="!providers" mode="indeterminate"></mat-progress-bar>
+                    <app-card-icon
+                        icon="layers"
+                        title="Providers"
+                        body="All Providers"
+                        [point]="providers"
+                        type="primary">
+                    </app-card-icon>
+                </div>
+
+                <div class="col-md-3 space-top">
+                    <mat-progress-bar *ngIf="!customers" mode="indeterminate"></mat-progress-bar>
+                    <app-card-icon
+                        icon="verified_user"
+                        title="Customers"
+                        body="Verified Customer"
+                        [point]="customers"
+                        type="primary">
+                    </app-card-icon>
+                </div>
+
+                <div class="col-md-3 space-top">
+                    <mat-progress-bar *ngIf="!materials" mode="indeterminate"></mat-progress-bar>
+                    <app-card-icon
+                        icon="build"
+                        title="Materials"
+                        body="Recorded Materials"
+                        [point]="materials"
+                        type="primary">
+                    </app-card-icon>
+                </div>
+
+                <div class="col-md-3 space-top">
+                    <mat-progress-bar *ngIf="!categories" mode="indeterminate"></mat-progress-bar>
+                    <app-card-icon
+                        icon="category"
+                        title="Categories"
+                        body="Recorded Materials Categpry"
+                        [point]="categories"
+                        type="primary">
+                    </app-card-icon>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="container-fluid space-top">
+<!-- <div class="container-fluid space-top">
     <div class="row">
         <div class="col-md-10 offset-md-2">
             <div class="row">
@@ -26,4 +77,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

@@ -1,44 +1,55 @@
-import { Component } from '@angular/core';
-import { Chart } from 'angular-highcharts';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth.service';
+import { User } from 'src/app/interfaces/user';
+import { ServerService } from 'src/app/server.service';
+import { CustomerService } from 'src/app/customer.service';
+import { MaterialService } from 'src/app/material.service';
+import { CategoryService } from 'src/app/category.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent  {
+export class DashboardComponent implements OnInit {
 
-  public cards: any[];
+  public user: User;
+  public role: string;
+  public providers: number;
+  public customers: number;
+  public materials: number;
+  public categories: number;
 
-  constructor() {
-    this.cards = [
-      { icon: 'view_comfy', title: 'Providers', body: 'All materials Provider', point: '120', type: '' },
-      { icon: 'trending_up', title: 'Purchasing Growth', body: 'Increase from last month', point: '45%', type: 'primary' },
-      { icon: 'trending_down', title: 'Materials depreciation', body: 'Decrease from last month', point: '5%', type: 'accent' },
-      { icon: 'view_comfy', title: 'Providers', body: 'All materials Provider', point: '120', type: '' }
-    ];
+  constructor(
+    private _auth: AuthService,
+    private _provider: ServerService,
+    private _customer: CustomerService,
+    private _material: MaterialService,
+    private _category: CategoryService
+  ) {}
+
+  ngOnInit() {
+    this.user = this._auth.currentUser();
+    this.role = this._auth.role();
+    this.buildProviders();
+    this.buildCustomers();
+    this.buildMeterials();
+    this.buildCategories();
   }
 
-  chart = new Chart({
-    chart: {
-      type: 'spline'
-    },
-    title: {
-      text: 'Linechart'
-    },
-    credits: {
-      enabled: false
-    },
-    series: [
-      {
-        name: 'Line 1',
-        data: [100, 224, 123, 323, 212, 131, 145, 176, 232, 243, 100, 224, 123, 323, 212, 131, 145, 176, 232, 243]
-      },
-      {
-        name: 'Line 2',
-        data: [323, 212, 145, 176, 232, 243, 212, 131, 123, 100, 224, 123, 323, 145, 176, 232, 100, 224, 232, 243]
-      }
-    ]
-  });
+  private buildCategories() {
+    this._category.index().subscribe(result => this.categories = result.length);
+  }
 
+  private buildCustomers() {
+    this._customer.index().subscribe(result => this.customers = result.length);
+  }
+
+  private buildProviders() {
+    this._provider.provderIndex().subscribe(result => this.providers = result.length);
+  }
+
+  private buildMeterials() {
+    this._material.index().subscribe(result => this.materials = result.length);
+  }
 }

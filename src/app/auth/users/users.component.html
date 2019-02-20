@@ -140,7 +140,7 @@
               </mat-form-field>
               <div class="form-group">
                 <label class="label-control col-md-12">User Role: </label>
-                <mat-radio-group [(ngModel)]="roleId">
+                <mat-radio-group [(ngModel)]="roleId" [disabled]="emailControl.value === currentUser.email">
                   <mat-radio-button *ngFor="let role of roles" [value]="role.id" class="col-md-12">
                     {{ role.name }}
                   </mat-radio-button>
@@ -148,7 +148,7 @@
               </div>
               <mat-card-actions>
                 <mat-spinner-button [options]="createUserBtnOption" (click)="submitForm()" class="float-right"></mat-spinner-button>
-                <button mat-raised-button color="primary" class="float-right" *ngIf="current" (click)="formToPristine()">Cancel</button>
+                <button mat-raised-button color="primary" class="float-right" (click)="formToPristine()">Cancel</button>
               </mat-card-actions>
             </mat-card-content>
           </mat-card>

@@ -282,7 +282,7 @@ export class UsersComponent implements OnInit {
     this.passwordControl.markAsTouched();
   }
 
-  private formToPristine() {
+  public formToPristine() {
     this.current = null;
     this.nameControl.reset();
     this.emailControl.reset({ value: '', disabled: false });

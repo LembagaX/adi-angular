@@ -34,7 +34,8 @@ export class OrdersConfirmationStepperComponent implements OnInit {
     private _router: Router
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   public commit() {
     const dialog = this._dialog.open(ConfirmationDialogComponent);
@@ -48,7 +49,7 @@ export class OrdersConfirmationStepperComponent implements OnInit {
             discount: this.order.subtotal - (this.order.subtotal - this.order.discount)
           },
           invoice: {
-            termin: parseInt(this.paymentMetadata.termin_id, 2),
+            termin: +this.paymentMetadata.termin_id,
             currency_id: this.paymentMetadata.currency_id
           }
         };

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { Order } from 'src/app/response/order';
+import { OrderService } from 'src/app/order.service';
 
 @Component({
   selector: 'app-orders-table',
@@ -16,15 +17,21 @@ export class OrdersTableComponent implements OnInit {
   public headers: string[];
   public sources: MatTableDataSource<Order>;
 
-  constructor() { }
+  constructor(
+    private _order: OrderService
+  ) { }
 
   ngOnInit() {
-    this.buildTable();
+    this.fetchOrders();
   }
 
-  private buildTable() {
-    this.headers = ['id', 'number', 'customer', 'termin', 'canceled', 'cancel', 'show'];
-    const data: Order[] = [];
+  private fetchOrders() {
+    this._order.index().subscribe(response => this.buildTable(response));
+  }
+
+  private buildTable(data: Order[]) {
+    console.log(data);
+    this.headers = ['id', 'number', 'customer', 'termin', 'created_at', 'delivery_order', 'sales_invoice'];
     this.sources = new MatTableDataSource<Order>(data);
     this.sources.sort = this.sort;
     this.sources.paginator = this.paginator;

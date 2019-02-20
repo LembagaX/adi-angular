@@ -17,6 +17,17 @@ export class OrderService {
     this.base = 'http://adi-server.herokuapp.com/';
   }
 
+  public index() {
+    const suffix = 'orders.json';
+    const header = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'token': this.auth.currentUser().token
+      })
+    };
+    return this.http.get<Order[]>(this.base + suffix, header);
+  }
+
   public create(request: Request) {
     const suffix = 'orders.json';
     const header = {

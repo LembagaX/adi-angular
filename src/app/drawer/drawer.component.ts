@@ -44,10 +44,10 @@ export class DrawerComponent implements OnInit {
         { link: '/dashboard', icon: 'dashboard', text: 'Dashboard' },
         { link: '/users', icon: 'supervised_user_circle', text: 'Users Management' },
         { link: '/orders', icon: 'payment', text: 'Orders' },
-        { link: '/users', icon: 'verified_user', text: 'Customer' },
+        // { link: '/users', icon: 'verified_user', text: 'Customer' },
         { link: '/products', icon: 'layers', text: 'Products' },
         { link: '/categories', icon: 'category', text: 'Categories' },
-        { link: '/dashboard', icon: 'assignment', text: 'Sales Docs' },
+        { link: '/orders', icon: 'assignment', text: 'Sales Docs' },
       ];
     } else if (this.auth.isWarehouse()) {
       this.links = [

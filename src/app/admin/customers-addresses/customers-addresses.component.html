@@ -1,0 +1,20 @@
+<mat-nav-list>
+  <div class="row">
+    <div class="col-md-12">
+      <button (click)="createAddress()" class="btn btn-block" color="primary" mat-raised-button>Add More</button>
+    </div>
+  </div>
+  <div class="row space-top" *ngFor="let address of customer.addresses">
+    <div class="col-md-12">
+      <mat-card>
+        <mat-card-content>
+          <p>{{ address.address }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button class="btn btn-sm" (click)="edit(address)" mat-button color="primary"><mat-icon>edit</mat-icon></button>
+          <button class="btn btn-sm" (click)="destroy(address)" mat-button color="warn"><mat-icon>delete</mat-icon></button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</mat-nav-list>

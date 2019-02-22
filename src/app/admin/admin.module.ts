@@ -19,6 +19,10 @@ import { CustomersFormComponent } from './customers-form/customers-form.componen
 import { AddressesCreateDialogComponent } from './addresses-create-dialog/addresses-create-dialog.component';
 import { AddressesFormComponent } from './addresses-form/addresses-form.component';
 import { OrdersConfirmationStepperComponent } from './orders-confirmation-stepper/orders-confirmation-stepper.component';
+import { CustomersComponent } from './customers/customers.component';
+import { CustomersTableComponent } from './customers-table/customers-table.component';
+import { CustomersAddressesComponent } from './customers-addresses/customers-addresses.component';
+import { CustomersAddressesEditComponent } from './customers-addresses-edit/customers-addresses-edit.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +37,11 @@ import { OrdersConfirmationStepperComponent } from './orders-confirmation-steppe
     CustomersFormComponent,
     AddressesCreateDialogComponent,
     AddressesFormComponent,
-    OrdersConfirmationStepperComponent
+    OrdersConfirmationStepperComponent,
+    CustomersComponent,
+    CustomersTableComponent,
+    CustomersAddressesComponent,
+    CustomersAddressesEditComponent
   ],
   imports: [
     CommonModule,
@@ -49,7 +57,8 @@ import { OrdersConfirmationStepperComponent } from './orders-confirmation-steppe
   entryComponents: [
     CustomersAddressSheetComponent,
     CustomersCreateDialogComponent,
-    AddressesCreateDialogComponent
+    AddressesCreateDialogComponent,
+    CustomersAddressesEditComponent
   ]
 })
 export class AdminModule { }

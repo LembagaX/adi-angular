@@ -24,6 +24,7 @@ import { ProductsShowComponent } from './product-and-category/products-show/prod
 import { OrdersComponent } from './admin/orders/orders.component';
 import { OrdersCreateComponent } from './admin/orders-create/orders-create.component';
 import { RootComponent } from './guest/root/root.component';
+import { CustomersComponent } from './admin/customers/customers.component';
 
 const routes: Routes = [
   { path: '', component: RootComponent },
@@ -43,7 +44,8 @@ const routes: Routes = [
   { path: 'products', component: ProductsComponent, canActivate: [AuthGuard] },
   { path: 'products/create', component: ProductsCreateComponent, canActivate: [AuthGuard] },
   { path: 'products/:code', component: ProductsShowComponent, canActivate: [AuthGuard] },
-  { path: 'categories', component: CategoriesComponent, canActivate: [AuthGuard] }
+  { path: 'categories', component: CategoriesComponent, canActivate: [AuthGuard] },
+  { path: 'customers', component: CustomersComponent, canActivate: [AuthGuard, AdminGuard] }
 ];
 
 @NgModule({

@@ -18,7 +18,7 @@ export class AddressService {
     this.base = 'http://adi-server.herokuapp.com/';
   }
 
-  public create(customer: Customer, request: Request) {
+  public create(customer: Customer, r: Request) {
     const suffix = `customers/${customer.id}/addresses.json`;
     const header = {
       headers: new HttpHeaders({
@@ -26,7 +26,18 @@ export class AddressService {
         'token': this.auth.currentUser().token
       })
     };
-    return this.http.post<Address>(this.base + suffix, request, header);
+    return this.http.post<Address>(this.base + suffix, r, header);
+  }
+
+  public update(customer: Customer, address: Address, request: Request) {
+    const suffix = `customers/${customer.id}/addresses/${address.id}.json`;
+    const header = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'token': this.auth.currentUser().token
+      })
+    };
+    return this.http.patch<Address>(this.base + suffix, request, header);
   }
 
   public destroy(customer: Customer, address: Address) {

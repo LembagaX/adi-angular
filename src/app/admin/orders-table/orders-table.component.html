@@ -5,6 +5,8 @@
     </mat-form-field>
   </div>
 </div>
+<mat-progress-bar *ngIf="loading" mode="indeterminate">
+</mat-progress-bar>
 <table mat-table [dataSource]="sources" class="mat-elevation-z8 full-width" matSort>
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef> No. </th>

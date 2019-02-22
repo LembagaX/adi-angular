@@ -16,21 +16,25 @@ export class OrdersTableComponent implements OnInit {
 
   public headers: string[];
   public sources: MatTableDataSource<Order>;
+  public loading: boolean;
 
   constructor(
     private _order: OrderService
   ) { }
 
   ngOnInit() {
+    this.loading = true;
     this.fetchOrders();
   }
 
   private fetchOrders() {
-    this._order.index().subscribe(response => this.buildTable(response));
+    this._order.index().subscribe(response => {
+      this.buildTable(response);
+      this.loading = false;
+    });
   }
 
   private buildTable(data: Order[]) {
-    console.log(data);
     this.headers = ['id', 'number', 'customer', 'termin', 'created_at', 'delivery_order', 'sales_invoice'];
     this.sources = new MatTableDataSource<Order>(data);
     this.sources.sort = this.sort;

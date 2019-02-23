@@ -66,12 +66,13 @@ export class MaterialPurchasingComponent implements OnInit {
   }
 
   private buildForms() {
+    const today = new Date();
     this.datasource = new MatTableDataSource<MaterialPurchased>(this.data);
     this.materialPurchase = new FormGroup({
       provider: new FormControl('', [Validators.required]),
-      date: new FormControl('', [Validators.required]),
+      date: new FormControl({ value: today, disabled: true }, [Validators.required]),
       invoice: new FormControl('', [Validators.required, Validators.max(45)]),
-      amount: new FormControl('', [Validators.required]),
+      amount: new FormControl({ value: 0, disabled: true }, [Validators.required]),
       note: new FormControl('', [])
     });
     this.name = new FormControl('', [Validators.required]);
@@ -97,7 +98,9 @@ export class MaterialPurchasingComponent implements OnInit {
     const data = this.datasource.data;
     data.map((item, key) => {
       if (item.name === name) {
-        data.splice(key, 1);
+        const removed = data.splice(key, 1);
+        const sum = this.materialPurchase.get('amount').value - (removed[0].price * removed[0].quantity);
+        this.materialPurchase.get('amount').setValue(sum);
       }
     });
     this.datasource.data = data;
@@ -110,6 +113,8 @@ export class MaterialPurchasingComponent implements OnInit {
   public addMaterial() {
     const data = this.datasource.data;
     data.push({ name: this.name.value, price: this.price.value, quantity: this.quantity.value });
+    const sum = this.materialPurchase.get('amount').value + (this.price.value * this.quantity.value);
+    this.materialPurchase.get('amount').setValue(sum);
     this.datasource.data = data;
     this.resetMaterial();
   }

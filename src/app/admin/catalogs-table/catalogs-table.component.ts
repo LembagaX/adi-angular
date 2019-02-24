@@ -28,6 +28,10 @@ export class CatalogsTableComponent implements OnInit {
     this.fetch();
   }
 
+  public applyFilter(filterValue: string) {
+    this.catalogs.filter = filterValue.trim().toLowerCase();
+  }
+
   private defaultConf() {
     this.loading = true;
   }

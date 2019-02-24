@@ -1,0 +1,20 @@
+<mat-card>
+  <mat-card-content>
+    <mat-spinner
+      *ngIf="loading"
+      mode="indeterminate"
+      diameter="50"
+      >
+    </mat-spinner>
+    <div
+    [chart]="chart">
+  </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+      mat-button
+      color="primary">
+      Reload
+    </button>
+  </mat-card-actions>
+</mat-card>

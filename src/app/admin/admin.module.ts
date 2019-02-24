@@ -25,6 +25,8 @@ import { CustomersAddressesComponent } from './customers-addresses/customers-add
 import { CustomersAddressesEditComponent } from './customers-addresses-edit/customers-addresses-edit.component';
 import { CatalogsComponent } from './catalogs/catalogs.component';
 import { CatalogsTableComponent } from './catalogs-table/catalogs-table.component';
+import { CatalogsFormComponent } from './catalogs-form/catalogs-form.component';
+import { CatalogsFormDialogComponent } from './catalogs-form-dialog/catalogs-form-dialog.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { CatalogsTableComponent } from './catalogs-table/catalogs-table.componen
     CustomersAddressesComponent,
     CustomersAddressesEditComponent,
     CatalogsComponent,
-    CatalogsTableComponent
+    CatalogsTableComponent,
+    CatalogsFormComponent,
+    CatalogsFormDialogComponent
   ],
   imports: [
     CommonModule,
@@ -62,7 +66,8 @@ import { CatalogsTableComponent } from './catalogs-table/catalogs-table.componen
     CustomersAddressSheetComponent,
     CustomersCreateDialogComponent,
     AddressesCreateDialogComponent,
-    CustomersAddressesEditComponent
+    CustomersAddressesEditComponent,
+    CatalogsFormDialogComponent
   ]
 })
 export class AdminModule { }

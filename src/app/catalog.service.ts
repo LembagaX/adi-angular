@@ -26,4 +26,15 @@ export class CatalogService {
     };
     return this.http.get<Catalog[]>(this.base + suffix, header);
   }
+
+  public create(request: Catalog) {
+    const suffix = 'catalogs.json';
+    const header = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'token': this.auth.currentUser().token
+      })
+    };
+    return this.http.post<Catalog>(this.base + suffix, request, header);
+  }
 }

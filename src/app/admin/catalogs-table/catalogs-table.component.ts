@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CatalogService } from 'src/app/catalog.service';
-import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/material';
 import { Catalog } from 'src/app/request/catalog';
+import { CatalogsFormDialogComponent } from '../catalogs-form-dialog/catalogs-form-dialog.component';
 
 @Component({
   selector: 'app-catalogs-table',
@@ -17,7 +18,8 @@ export class CatalogsTableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
-    private _catalog: CatalogService
+    private _catalog: CatalogService,
+    private _dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -38,4 +40,18 @@ export class CatalogsTableComponent implements OnInit {
     });
   }
 
+  public showDialog() {
+    const dialog = this._dialog.open(CatalogsFormDialogComponent,
+      {
+        width: '50%'
+      });
+    dialog.afterClosed().subscribe(() => {
+      this.refectch();
+    });
+  }
+
+  private refectch() {
+    this.loading = true;
+    this.fetch();
+  }
 }

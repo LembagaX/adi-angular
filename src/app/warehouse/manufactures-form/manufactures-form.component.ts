@@ -80,7 +80,7 @@ export class ManufacturesFormComponent implements OnInit {
   }
 
   public attachProduct() {
-    const dialogRef = this.dialog.open(AttachProductComponent, { width: '1000px', data: { manufacture: this.current } });
+    const dialogRef = this.dialog.open(AttachProductComponent, { width: '90%', data: { manufacture: this.current } });
     dialogRef.afterClosed().subscribe(() => {
       this.rebuildCurrent();
     });

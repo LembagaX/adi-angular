@@ -25,7 +25,7 @@ export class ManufacturesTableComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true;
-    this.headers = ['id', 'code', 'user', 'products_created', 'analytics', 'attach', 'delete'];
+    this.headers = ['id', 'code', 'user', 'products_created', 'attach', 'delete'];
     this.buildTable();
   }
 

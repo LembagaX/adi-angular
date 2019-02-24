@@ -52,10 +52,10 @@ export class DrawerComponent implements OnInit {
     } else if (this.auth.isWarehouse()) {
       this.links = [
         { link: '/dashboard', icon: 'dashboard', text: 'Dashboard' },
+        { link: '/categories', icon: 'category', text: 'Categories' },
+        { link: '/products', icon: 'layers', text: 'Products' },
         { link: '/materials', icon: 'ballot', text: 'Materials' },
         { link: '/manufactures', icon: 'build', text: 'Manufactures' },
-        { link: '/products', icon: 'layers', text: 'Products' },
-        { link: '/categories', icon: 'category', text: 'Categories' },
       ];
     }
   }

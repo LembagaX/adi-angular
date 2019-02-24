@@ -21,6 +21,7 @@ export class MaterialRecordedPriceComponent implements OnInit {
 
   public buildChart(type: string) {
     const series = [];
+    console.log(this.material);
     this.material.providers.forEach(provider => {
       series.push({
         id: provider.id,

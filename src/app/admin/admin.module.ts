@@ -23,6 +23,8 @@ import { CustomersComponent } from './customers/customers.component';
 import { CustomersTableComponent } from './customers-table/customers-table.component';
 import { CustomersAddressesComponent } from './customers-addresses/customers-addresses.component';
 import { CustomersAddressesEditComponent } from './customers-addresses-edit/customers-addresses-edit.component';
+import { CatalogsComponent } from './catalogs/catalogs.component';
+import { CatalogsTableComponent } from './catalogs-table/catalogs-table.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { CustomersAddressesEditComponent } from './customers-addresses-edit/cust
     CustomersComponent,
     CustomersTableComponent,
     CustomersAddressesComponent,
-    CustomersAddressesEditComponent
+    CustomersAddressesEditComponent,
+    CatalogsComponent,
+    CatalogsTableComponent
   ],
   imports: [
     CommonModule,

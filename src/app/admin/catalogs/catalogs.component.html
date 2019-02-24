@@ -1,0 +1,19 @@
+<app-drawer></app-drawer>
+<div class="container-fluid space-top">
+  <div class="row">
+    <div class="col-md-10 offset-md-2">
+      <mat-card>
+        <mat-card-content>
+          <mat-tab-group>
+            <mat-tab label="Catalogs">
+              <ng-template matTabContent>
+                <app-catalogs-table class="space-top"></app-catalogs-table>
+              </ng-template>
+            </mat-tab>
+            <mat-tab label="Advertises"></mat-tab>
+          </mat-tab-group>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

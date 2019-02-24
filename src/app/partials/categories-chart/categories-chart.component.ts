@@ -28,9 +28,18 @@ export class CategoriesChartComponent implements OnInit {
     if (this.type == null) {
       this.type = 'pie';
     }
+    this.fetch();
+  }
+
+  public reload() {
+    this.loading = true;
+    this.fetch();
+  }
+
+  private fetch() {
     this.datas = [];
     this._category.index().subscribe(response => {
-      response.forEach( element => {
+      response.forEach(element => {
         this.datas.push({
           name: element.name,
           y: element.products.length

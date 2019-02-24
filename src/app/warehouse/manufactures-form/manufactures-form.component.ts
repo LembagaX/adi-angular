@@ -17,6 +17,7 @@ export class ManufacturesFormComponent implements OnInit {
 
   @Input() code: string;
   @Input() create: boolean;
+  @Input() attachable: boolean;
   @Output() result =  new EventEmitter<Manufacture>();
 
   public loading: boolean;
@@ -57,7 +58,8 @@ export class ManufacturesFormComponent implements OnInit {
   public buildForm() {
     this.manufacture = new FormGroup({
       user: new FormControl({ value: this.auth.currentUser().name, disabled: true }, []),
-      code: new FormControl({ value: this.current.code, disabled: true }, [])
+      code: new FormControl({ value: this.current.code, disabled: true }, []),
+      date: new FormControl({ value: this.current.updated_at, disabled: true }, [])
     });
     this.result.emit(this.current);
     this.loading = false;

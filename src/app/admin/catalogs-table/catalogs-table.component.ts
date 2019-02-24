@@ -46,12 +46,20 @@ export class CatalogsTableComponent implements OnInit {
         width: '50%'
       });
     dialog.afterClosed().subscribe(() => {
-      this.refectch();
+      this.refetch();
     });
   }
 
-  private refectch() {
+  private refetch() {
     this.loading = true;
     this.fetch();
+  }
+
+  public edit(catalog: Catalog) {
+    const dialog = this._dialog.open(CatalogsFormDialogComponent,
+      { width: '50%', data: catalog });
+    dialog.afterClosed().subscribe(() => {
+      this.refetch();
+    });
   }
 }

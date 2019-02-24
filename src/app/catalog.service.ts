@@ -37,4 +37,15 @@ export class CatalogService {
     };
     return this.http.post<Catalog>(this.base + suffix, request, header);
   }
+
+  public update(request: Catalog) {
+    const suffix = `catalogs/${request.slug}.json`;
+    const header = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'token': this.auth.currentUser().token
+      })
+    };
+    return this.http.patch<Catalog>(this.base + suffix, request, header);
+  }
 }

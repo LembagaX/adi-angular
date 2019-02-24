@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Catalog } from 'src/app/request/catalog';
+import { MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-catalogs-form-dialog',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CatalogsFormDialogComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: Catalog
+  ) { }
 
   ngOnInit() {
   }

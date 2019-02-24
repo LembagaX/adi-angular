@@ -1,5 +1,9 @@
 <div class="row">
   <div class="col-md-12">
+    <mat-progress-bar
+      mode="indeterminate"
+      *ngIf="loading">
+    </mat-progress-bar>
     <mat-tab-group dynamicHeight *ngIf="!loading">
       <mat-tab label="Basic">
         <div class="row space-top">
@@ -18,10 +22,6 @@
           </div>
         </div>
       </mat-tab>
-      <!-- <mat-tab label="Images">
-      </mat-tab>
-      <mat-tab label="Analytics">
-      </mat-tab> -->
     </mat-tab-group>
   </div>
 </div>

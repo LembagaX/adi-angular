@@ -13,6 +13,7 @@ import { LoadingPopupComponent } from 'src/app/partials/loading-popup/loading-po
 })
 export class ManifestsTableComponent implements OnInit {
 
+  @Input() detachable: boolean;
   @Input() manufacture: Manufacture;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;

@@ -17,8 +17,15 @@
                     ></app-manufactures-form>
                 </div>
                 <div class="col-md-12 space-top">
-                  <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
-                  <app-manifests-table *ngIf="!loading" [(manufacture)]="manufacture"></app-manifests-table>
+                  <mat-progress-bar
+                    mode="indeterminate"
+                    *ngIf="loading">
+                  </mat-progress-bar>
+                  <app-manifests-table
+                    *ngIf="!loading"
+                    [detachable]="true"
+                    [(manufacture)]="manufacture">
+                  </app-manifests-table>
                 </div>
               </div>
             </mat-card-content>

@@ -25,15 +25,31 @@
   <ng-container matColumnDef="detach">
     <th mat-header-cell *matHeaderCellDef> </th>
     <td mat-cell *matCellDef="let element">
-      <button (click)="updateManifest(element)" matTooltip="Detach Product" mat-button><mat-icon color="accent">remove</mat-icon></button>
+      <button
+        *ngIf="detachable"
+        (click)="updateManifest(element)"
+        matTooltip="Detach Product"
+        mat-button>
+        <mat-icon
+          color="accent">
+          remove
+        </mat-icon>
+      </button>
     </td>
   </ng-container>
 
   <ng-container matColumnDef="destroy">
     <th mat-header-cell *matHeaderCellDef> </th>
     <td mat-cell *matCellDef="let element">
-      <button (click)="destroyManifest(element)" matTooltip="Detach Product" mat-button>
-        <mat-icon color="warn">delete</mat-icon>
+      <button
+        *ngIf="detachable"
+        (click)="destroyManifest(element)"
+        matTooltip="Detach Product" 
+        mat-button>
+        <mat-icon
+          color="warn">
+          delete
+        </mat-icon>
       </button>
     </td>
   </ng-container>

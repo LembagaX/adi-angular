@@ -48,4 +48,15 @@ export class CatalogService {
     };
     return this.http.patch<Catalog>(this.base + suffix, request, header);
   }
+
+  public destroy(catalog: Catalog) {
+    const suffix = `catalogs/${catalog.slug}.json`;
+    const header = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'token': this.auth.currentUser().token
+      })
+    };
+    return this.http.delete<Catalog>(this.base + suffix, header);
+  }
 }

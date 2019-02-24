@@ -3,6 +3,7 @@ import { CatalogService } from 'src/app/catalog.service';
 import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/material';
 import { Catalog } from 'src/app/request/catalog';
 import { CatalogsFormDialogComponent } from '../catalogs-form-dialog/catalogs-form-dialog.component';
+import { LoadingPopupComponent } from 'src/app/partials/loading-popup/loading-popup.component';
 
 @Component({
   selector: 'app-catalogs-table',
@@ -59,6 +60,14 @@ export class CatalogsTableComponent implements OnInit {
     const dialog = this._dialog.open(CatalogsFormDialogComponent,
       { width: '50%', data: catalog });
     dialog.afterClosed().subscribe(() => {
+      this.refetch();
+    });
+  }
+
+  public delete(catalog: Catalog) {
+    const loading = this._dialog.open(LoadingPopupComponent, { data: 'Destroying Catalog' });
+    this._catalog.destroy(catalog).subscribe(() => {
+      loading.close();
       this.refetch();
     });
   }

@@ -1,3 +1,5 @@
+import { Advertise } from "../response/advertise";
+
 export interface Catalog {
     id?: number;
     title: string;
@@ -6,5 +8,5 @@ export interface Catalog {
     created_at?: string;
     updated_at?: string;
     url?: string;
-    advertises?: [];
+    advertises?: Advertise[];
 }

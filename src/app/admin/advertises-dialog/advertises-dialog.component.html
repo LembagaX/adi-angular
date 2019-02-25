@@ -4,11 +4,18 @@
     mode="indeterminate">
   </mat-progress-bar>
   <div class="col-md-3" *ngFor="let advertise of advertises">
+    <mat-progress-bar
+      *ngIf="onProgress(advertise)"
+      mode="indeterminate">
+    </mat-progress-bar>
     <mat-card>
       <mat-card-header>
         <mat-card-subtitle>{{ advertise.product.name }}</mat-card-subtitle>
       </mat-card-header>
-      <img mat-card-image [src]="advertise.image.url" alt="Photo of a Shiba Inu">
+      <img
+        mat-card-image
+        [src]="advertise.image.url"
+        [alt]="advertise.product.name">
       <mat-card-content>
         <p>
           {{ advertise.description }}
@@ -17,11 +24,15 @@
       <mat-card-actions
         *ngIf="data.pickable">
         <button
+          (click)="attach(advertise)"
+          *ngIf="!onCatalog(advertise)"
           color="primary"
           mat-raised-button>
           Pick
         </button>
         <button
+          *ngIf="onCatalog(advertise)"
+          (click)="detach(advertise)"
           color="warn"
           mat-raised-button>
           Unpick

@@ -14,6 +14,7 @@ export class AdvertisesDialogComponent implements OnInit {
 
   public catalog: Catalog;
   public advertises: Advertise[];
+  public current: Advertise;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { pickable: boolean, catalog: Catalog },
@@ -30,4 +31,33 @@ export class AdvertisesDialogComponent implements OnInit {
     this._advertises.index().subscribe(response => this.advertises = response);
   }
 
+  public onCatalog(advertise: Advertise): boolean {
+    if (this.catalog.advertises.find(el => el.id === advertise.id)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public attach(advertise: Advertise) {
+    this.current = advertise;
+    this._catalog.attach(this.catalog, advertise).subscribe(() => this.refetch());
+  }
+
+  public detach(advertise: Advertise) {
+    this.current = advertise;
+    this._catalog.detach(this.catalog, advertise).subscribe(() => this.refetch());
+  }
+
+  private refetch() {
+    this.current = null;
+    this._catalog.show(this.data.catalog.slug).subscribe(response => this.catalog = response);
+  }
+
+  public onProgress(advertise: Advertise): boolean {
+    if (this.current === advertise) {
+      return true;
+    }
+    return false;
+  }
 }

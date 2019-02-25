@@ -11,6 +11,7 @@ import { Catalog } from 'src/app/request/catalog';
 export class CatalogsShowComponent implements OnInit {
 
   public catalog: Catalog;
+  public loading: boolean;
 
   constructor(
     private _catalog: CatalogService,
@@ -18,13 +19,14 @@ export class CatalogsShowComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.loading = true;
     this.fetch();
   }
 
   private fetch() {
     this._catalog.show(this._router.snapshot.params['slug']).subscribe(response => {
       this.catalog = response;
-      console.log(this.catalog);
+      this.loading = false;
     });
   }
 

@@ -80,7 +80,7 @@ export class CatalogService {
         'token': this.auth.currentUser().token
       })
     };
-    return this.http.post<Catalog>(this.base + suffix, header);
+    return this.http.post<Catalog>(this.base + suffix, {}, header);
   }
 
   public detach(catalog: Catalog, advertise: Advertise) {

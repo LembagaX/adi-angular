@@ -46,6 +46,7 @@ export class DrawerComponent implements OnInit {
         { link: '/orders', icon: 'payment', text: 'Orders' },
         { link: '/customers', icon: 'verified_user', text: 'Customer' },
         { link: '/products', icon: 'layers', text: 'Products' },
+        { link: '/advertises', icon: 'burst_mode', text: 'Advertises' },
         { link: '/categories', icon: 'category', text: 'Categories' },
         { link: '/orders', icon: 'assignment', text: 'Sales Docs' },
       ];

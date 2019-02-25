@@ -5,12 +5,17 @@
       <mat-card>
         <mat-card-content>
           <mat-tab-group>
+            <mat-tab label="Advertises">
+              <ng-template matTabContent>
+                <app-advertises-table></app-advertises-table>
+              </ng-template>
+            </mat-tab>
+
             <mat-tab label="Catalogs">
               <ng-template matTabContent>
                 <app-catalogs-table class="space-top"></app-catalogs-table>
               </ng-template>
             </mat-tab>
-            <mat-tab label="Advertises"></mat-tab>
           </mat-tab-group>
         </mat-card-content>
       </mat-card>

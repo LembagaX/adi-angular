@@ -27,6 +27,8 @@ import { CatalogsComponent } from './catalogs/catalogs.component';
 import { CatalogsTableComponent } from './catalogs-table/catalogs-table.component';
 import { CatalogsFormComponent } from './catalogs-form/catalogs-form.component';
 import { CatalogsFormDialogComponent } from './catalogs-form-dialog/catalogs-form-dialog.component';
+import { AdvertisesTableComponent } from './advertises-table/advertises-table.component';
+import { AdvertisesFormComponent } from './advertises-form/advertises-form.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { CatalogsFormDialogComponent } from './catalogs-form-dialog/catalogs-for
     CatalogsComponent,
     CatalogsTableComponent,
     CatalogsFormComponent,
-    CatalogsFormDialogComponent
+    CatalogsFormDialogComponent,
+    AdvertisesTableComponent,
+    AdvertisesFormComponent
   ],
   imports: [
     CommonModule,

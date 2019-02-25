@@ -1,25 +1,30 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AdvertiseService } from 'src/app/advertise.service';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { LoadingPopupComponent } from 'src/app/partials/loading-popup/loading-popup.component';
 import { ProductService } from 'src/app/product.service';
 import { Product } from 'src/app/response/product';
+import { Advertise } from 'src/app/response/advertise';
 
 @Component({
   selector: 'app-advertises-form',
   templateUrl: './advertises-form.component.html',
   styleUrls: ['./advertises-form.component.scss']
 })
-export class AdvertisesFormComponent implements OnInit {
+export class AdvertisesFormComponent implements OnInit, OnChanges {
 
   public image: File;
   public base64: string;
   public form: FormGroup;
+  public onEdit: boolean;
+  public edited: Advertise;
   public reader: FileReader;
   public products: Product[];
+  public cloudinary: string;
 
   @Output() result: EventEmitter<boolean> = new EventEmitter();
+  @Input() public advertise: Advertise;
 
   constructor(
     private _advertise: AdvertiseService,
@@ -27,6 +32,22 @@ export class AdvertisesFormComponent implements OnInit {
     private _bar: MatSnackBar,
     private _product: ProductService
   ) { }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['advertise'].currentValue != null) {
+      this.onEdit = true;
+      this.edit(changes['advertise'].currentValue);
+    }
+  }
+
+  private edit(advertise: Advertise) {
+    this.buildForm(true);
+    this.form.get('description').setValue(advertise.description);
+    this.form.get('product_id').setValue(advertise.product.id);
+    this.cloudinary = advertise.image.url;
+    this.edited = advertise;
+    this.form.markAsDirty();
+  }
 
   ngOnInit() {
     this.buildForm();
@@ -48,8 +69,22 @@ export class AdvertisesFormComponent implements OnInit {
       loading.close();
       this._bar.open('Uploaded Successfully', null, { duration: 2000 });
       this.base64 = null;
-      this.form.reset();
+      this.buildForm();
       this.result.emit(true);
+      this.cloudinary = null;
+    });
+  }
+
+  public update() {
+    const loading = this._dialog.open(LoadingPopupComponent, { data: 'Updating, please wait' });
+    this._advertise.update(this.edited, this.form.value).subscribe((response) => {
+      loading.close();
+      this._bar.open('Uploaded Successfully', null, { duration: 2000 });
+      this.base64 = null;
+      this.buildForm();
+      this.result.emit(true);
+      this.onEdit = false;
+      this.cloudinary = null;
     });
   }
 
@@ -59,16 +94,43 @@ export class AdvertisesFormComponent implements OnInit {
     this.form.get('image').setValue(this.base64);
   }
 
-  private buildForm() {
-    this.form = new FormGroup({
-      description: new FormControl('', [
-        Validators.required,
-        Validators.minLength(6)
-      ]),
-      image: new FormControl('', [
-        Validators.required,
-      ]),
-      product_id: new FormControl(null, [])
-    });
+  private buildForm(edited: boolean = false) {
+    if (edited) {
+      this.form = new FormGroup({
+        description: new FormControl(null, [
+          Validators.required,
+          Validators.minLength(6)
+        ]),
+        image: new FormControl('', []),
+        product_id: new FormControl(null, [Validators.required])
+      });
+    } else {
+      this.form = new FormGroup({
+        description: new FormControl(null, [
+          Validators.required,
+          Validators.minLength(6)
+        ]),
+        image: new FormControl('', [
+          Validators.required,
+        ]),
+        product_id: new FormControl(null, [Validators.required])
+      });
+    }
+  }
+
+  public submit() {
+    if (this.onEdit) {
+      this.update();
+    } else {
+      this.create();
+    }
+  }
+
+  public clearForm() {
+    this.onEdit = false;
+    this.base64 = null;
+    this.edited = null;
+    this.cloudinary = null;
+    this.form.reset();
   }
 }

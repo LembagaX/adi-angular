@@ -30,6 +30,13 @@
                     mat-button>
                     <mat-icon>delete</mat-icon>
                   </button>
+                  <button
+                    (click)="edit(row)"
+                    class="btn"
+                    color="primary"
+                    mat-button>
+                    <mat-icon>edit</mat-icon>
+                  </button>
                 </td>
               </ng-container>
               <tr mat-header-row *matHeaderRowDef="['id', 'product', 'actions']"></tr>
@@ -42,6 +49,7 @@
 
       <div class="col-md-4">
         <app-advertises-form
+          [advertise]="advertise"
           (result)="afterFormHandler($event)"></app-advertises-form>
       </div>
     </div>

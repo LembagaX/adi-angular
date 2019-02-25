@@ -11,6 +11,7 @@ import { LoadingPopupComponent } from 'src/app/partials/loading-popup/loading-po
 })
 export class AdvertisesTableComponent implements OnInit {
 
+  public advertise: Advertise;
   public advertises: MatTableDataSource<Advertise>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -45,5 +46,9 @@ export class AdvertisesTableComponent implements OnInit {
       this.afterFormHandler(true);
       loading.close();
     });
+  }
+
+  public edit(advertise: Advertise) {
+    this.advertise = advertise;
   }
 }

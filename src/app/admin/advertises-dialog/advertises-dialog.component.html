@@ -1,0 +1,32 @@
+<div class="row">
+  <mat-progress-bar
+    *ngIf="!advertises"
+    mode="indeterminate">
+  </mat-progress-bar>
+  <div class="col-md-3" *ngFor="let advertise of advertises">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-subtitle>{{ advertise.product.name }}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image [src]="advertise.image.url" alt="Photo of a Shiba Inu">
+      <mat-card-content>
+        <p>
+          {{ advertise.description }}
+        </p>
+      </mat-card-content>
+      <mat-card-actions
+        *ngIf="data.pickable">
+        <button
+          color="primary"
+          mat-raised-button>
+          Pick
+        </button>
+        <button
+          color="warn"
+          mat-raised-button>
+          Unpick
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

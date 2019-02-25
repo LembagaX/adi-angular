@@ -29,6 +29,9 @@ import { CatalogsFormComponent } from './catalogs-form/catalogs-form.component';
 import { CatalogsFormDialogComponent } from './catalogs-form-dialog/catalogs-form-dialog.component';
 import { AdvertisesTableComponent } from './advertises-table/advertises-table.component';
 import { AdvertisesFormComponent } from './advertises-form/advertises-form.component';
+import { CatalogsShowComponent } from './catalogs-show/catalogs-show.component';
+import { CatalogsCardComponent } from './catalogs-card/catalogs-card.component';
+import { AdvertisesDialogComponent } from './advertises-dialog/advertises-dialog.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +56,10 @@ import { AdvertisesFormComponent } from './advertises-form/advertises-form.compo
     CatalogsFormComponent,
     CatalogsFormDialogComponent,
     AdvertisesTableComponent,
-    AdvertisesFormComponent
+    AdvertisesFormComponent,
+    CatalogsShowComponent,
+    CatalogsCardComponent,
+    AdvertisesDialogComponent
   ],
   imports: [
     CommonModule,
@@ -71,7 +77,8 @@ import { AdvertisesFormComponent } from './advertises-form/advertises-form.compo
     CustomersCreateDialogComponent,
     AddressesCreateDialogComponent,
     CustomersAddressesEditComponent,
-    CatalogsFormDialogComponent
+    CatalogsFormDialogComponent,
+    AdvertisesDialogComponent
   ]
 })
 export class AdminModule { }

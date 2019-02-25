@@ -1,0 +1,26 @@
+<app-drawer></app-drawer>
+<div class="container-fluid space-top">
+    <div class="row">
+        <div class="col-md-10 offset-md-2">
+            <div class="row">
+                <div class="col-md-4">
+                    <mat-card>
+                      <mat-card-content>
+                        <app-catalogs-card
+                          *ngIf="catalog"
+                          [catalog]="catalog"
+                        ></app-catalogs-card>
+                      </mat-card-content>
+                    </mat-card>
+                </div>
+
+                <div class="col-md-8">
+                  <div class="row">
+                    <div class="col-md-6">
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

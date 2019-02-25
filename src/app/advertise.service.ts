@@ -37,4 +37,15 @@ export class AdvertiseService {
     };
     return this.http.post<Advertise>(this.base + suffix, request, header);
   }
+
+  public destroy(request: Advertise) {
+    const suffix = `advertises/${request.id}.json`;
+    const header = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'token': this.auth.currentUser().token
+      })
+    };
+    return this.http.delete<Advertise>(this.base + suffix, header);
+  }
 }

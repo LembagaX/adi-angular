@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AdvertiseService } from 'src/app/advertise.service';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { Advertise } from 'src/app/response/advertise';
+import { LoadingPopupComponent } from 'src/app/partials/loading-popup/loading-popup.component';
 
 @Component({
   selector: 'app-advertises-table',
@@ -16,7 +17,8 @@ export class AdvertisesTableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
-    private _advertise: AdvertiseService
+    private _advertise: AdvertiseService,
+    private _dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -35,5 +37,13 @@ export class AdvertisesTableComponent implements OnInit {
     if (bool) {
       this.fetch();
     }
+  }
+
+  public destroy(advertise: Advertise) {
+    const loading = this._dialog.open(LoadingPopupComponent, { data: 'Destroying, please wait' });
+    this._advertise.destroy(advertise).subscribe(() => {
+      this.afterFormHandler(true);
+      loading.close();
+    });
   }
 }

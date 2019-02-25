@@ -20,8 +20,20 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Product </th>
                 <td mat-cell *matCellDef="let row"> {{ row.product.name }} </td>
               </ng-container>
-              <tr mat-header-row *matHeaderRowDef="['id', 'product']"></tr>
-              <tr mat-row *matRowDef="let row; columns: ['id', 'product'];"></tr>
+              <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+                <td mat-cell *matCellDef="let row">
+                  <button
+                    (click)="destroy(row)"
+                    class="btn"
+                    color="warn"
+                    mat-button>
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="['id', 'product', 'actions']"></tr>
+              <tr mat-row *matRowDef="let row; columns: ['id', 'product', 'actions'];"></tr>
             </table>
             <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons class="mat-elevation-z8"></mat-paginator>
           </div>

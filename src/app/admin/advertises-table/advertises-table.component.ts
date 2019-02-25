@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AdvertiseService } from 'src/app/advertise.service';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { Advertise } from 'src/app/response/advertise';
 
 @Component({
@@ -12,6 +12,9 @@ export class AdvertisesTableComponent implements OnInit {
 
   public advertises: MatTableDataSource<Advertise>;
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
   constructor(
     private _advertise: AdvertiseService
   ) {}
@@ -22,9 +25,15 @@ export class AdvertisesTableComponent implements OnInit {
 
   private fetch() {
     this._advertise.index().subscribe(response => {
-      console.log(response);
       this.advertises = new MatTableDataSource(response);
+      this.advertises.paginator = this.paginator;
+      this.advertises.sort = this.sort;
     });
   }
 
+  public afterFormHandler(bool: boolean) {
+    if (bool) {
+      this.fetch();
+    }
+  }
 }

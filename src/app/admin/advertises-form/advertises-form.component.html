@@ -5,6 +5,11 @@
   <mat-divider
     [inset]="true">
   </mat-divider>
+  <img
+    *ngIf="base64"
+    mat-card-image
+    [src]="base64"
+    alt="Photo of a Shiba Inu">
   <mat-card-content>
     <form [formGroup]="form" (submit)="create()">
       <div class="row">
@@ -14,7 +19,15 @@
         #imageInput
         type="file"
         accept="image/*">
-  
+        
+        <div class="col-md-12 space-top">
+          <mat-select placeholder="Product" formControlName="product_id">
+            <mat-option *ngFor="let product of products" [value]="product.id">
+              {{ product.name }}
+            </mat-option>
+          </mat-select>
+        </div>
+        
         <div class="col-md-12 space-top">
           <mat-form-field class="full-width">
             <textarea
@@ -24,11 +37,13 @@
           </mat-form-field>
         </div>
 
-        <div class="col-md-12">
+        <div class="col-md-12 space-top">
           <a
+            class="btn"
             mat-raised-button
             (click)="imageInput.click()">Pick Image</a>
           <button
+            class="btn float-right"
             type="submit"
             mat-raised-button
             [disabled]="form.invalid"

@@ -35,7 +35,7 @@
   
   <div class="col-md-8" *ngIf="catalog">
     <div class="row" *ngIf="catalog.advertises">
-      <div class="col-md-6" *ngFor="let advertise of catalog.advertises">
+      <div class="col-md-6 space-bottom" *ngFor="let advertise of catalog.advertises">
         <mat-card>
           <img mat-card-image [src]="advertise.image.url" alt="advertise.title">
           <mat-card-content>

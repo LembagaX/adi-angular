@@ -17,15 +17,21 @@ export class CatalogService {
     this.base = 'http://adi-server.herokuapp.com/';
   }
 
-  public index() {
-    const suffix = 'catalogs.json';
-    const header = {
-      headers: new HttpHeaders({
-        'Content-type': 'application/json',
-        'token': this.auth.currentUser().token
-      })
-    };
-    return this.http.get<Catalog[]>(this.base + suffix, header);
+  public index(guest: boolean = false) {
+    let suffix = null;
+    if (guest) {
+      suffix = 'guest_catalogs.json';
+      return this.http.get<Catalog[]>(this.base + suffix);
+    } else {
+      suffix = 'catalogs.json';
+      const header = {
+        headers: new HttpHeaders({
+          'Content-type': 'application/json',
+          'token': this.auth.currentUser().token
+        })
+      };
+      return this.http.get<Catalog[]>(this.base + suffix, header);
+    }
   }
 
   public show(slug: string) {

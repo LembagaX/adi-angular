@@ -17,6 +17,8 @@ import { IntroComponent } from './intro/intro.component';
 import { FooterComponent } from './footer/footer.component';
 import { ContactComponent } from './contact/contact.component';
 import { GravatarModule } from 'ngx-gravatar';
+import { CatalogsComponent } from './catalogs/catalogs.component';
+import { CatalogsCardComponent } from './catalogs-card/catalogs-card.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { GravatarModule } from 'ngx-gravatar';
     BlogComponent,
     IntroComponent,
     FooterComponent,
-    ContactComponent
+    ContactComponent,
+    CatalogsComponent,
+    CatalogsCardComponent
   ],
   imports: [
     CommonModule,

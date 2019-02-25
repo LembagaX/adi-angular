@@ -27,6 +27,7 @@ import { RootComponent } from './guest/root/root.component';
 import { CustomersComponent } from './admin/customers/customers.component';
 import { CatalogsComponent } from './admin/catalogs/catalogs.component';
 import { CatalogsShowComponent } from './admin/catalogs-show/catalogs-show.component';
+import { CatalogsComponent as GuestCatalog } from './guest/catalogs/catalogs.component';
 
 const routes: Routes = [
   { path: '', component: RootComponent },
@@ -49,7 +50,8 @@ const routes: Routes = [
   { path: 'categories', component: CategoriesComponent, canActivate: [AuthGuard] },
   { path: 'customers', component: CustomersComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'advertises', component: CatalogsComponent, canActivate: [AuthGuard, AdminGuard] },
-  { path: 'advertises/catalogs/:slug', component: CatalogsShowComponent, canActivate: [AuthGuard, AdminGuard] }
+  { path: 'advertises/catalogs/:slug', component: CatalogsShowComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'catalogs', component: GuestCatalog }
 ];
 
 @NgModule({

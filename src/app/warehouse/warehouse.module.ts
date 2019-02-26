@@ -69,7 +69,8 @@ import { ManifestsUpdateComponent } from './manifests-update/manifests-update.co
     ProductsTableComponent,
     MaterialShowCardComponent,
     MaterialBoughtFromComponent,
-    MaterialRecordedPriceComponent
+    MaterialRecordedPriceComponent,
+    MaterialDepreciationGraphComponent
   ]
 })
 export class WarehouseModule { }

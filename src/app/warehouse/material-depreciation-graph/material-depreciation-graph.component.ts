@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Chart } from 'angular-highcharts';
 import { Material } from 'src/app/response/material';
 import { ServerService } from 'src/app/server.service';
@@ -9,7 +9,7 @@ import { Depreciation } from 'src/app/response/depreciation';
   templateUrl: './material-depreciation-graph.component.html',
   styleUrls: ['./material-depreciation-graph.component.scss']
 })
-export class MaterialDepreciationGraphComponent implements OnInit {
+export class MaterialDepreciationGraphComponent implements OnInit, OnChanges {
 
   @Input() material: Material;
 
@@ -20,7 +20,17 @@ export class MaterialDepreciationGraphComponent implements OnInit {
     private server: ServerService
   ) {}
 
+  ngOnChanges(changes: SimpleChanges): void {
+    this.loading = true;
+    this.material = changes['material'].currentValue;
+    this.fetch();
+  }
+
   ngOnInit() {
+    this.fetch();
+  }
+
+  private fetch() {
     this.loading = true;
     this.server.depreciationIndex(this.material).subscribe((response) => {
       this.loading = false;

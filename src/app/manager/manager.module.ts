@@ -7,9 +7,10 @@ import { AnnouncementsTableComponent } from './announcements-table/announcements
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AnalyticsMaterialComponent } from './analytics-material/analytics-material.component';
 import { WarehouseModule } from '../warehouse/warehouse.module';
+import { AnalyticsDepreciationComponent } from './analytics-depreciation/analytics-depreciation.component';
 
 @NgModule({
-  declarations: [AnnouncementsComponent, AnnouncementsTableComponent, AnalyticsMaterialComponent],
+  declarations: [AnnouncementsComponent, AnnouncementsTableComponent, AnalyticsMaterialComponent, AnalyticsDepreciationComponent],
   imports: [
     CommonModule,
     MaterialModule,

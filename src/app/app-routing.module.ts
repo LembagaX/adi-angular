@@ -32,6 +32,7 @@ import { CatalogsShowComponent as GuestShow } from './guest/catalogs-show/catalo
 import { AnnouncementsComponent } from './manager/announcements/announcements.component';
 import { ManagerGuard } from './manager.guard';
 import { AnalyticsMaterialComponent } from './manager/analytics-material/analytics-material.component';
+import { AnalyticsDepreciationComponent } from './manager/analytics-depreciation/analytics-depreciation.component';
 
 const routes: Routes = [
   { path: '', component: RootComponent },
@@ -58,7 +59,8 @@ const routes: Routes = [
   { path: 'catalogs', component: GuestCatalog },
   { path: 'catalogs/:slug', component: GuestShow },
   { path: 'announcements', component: AnnouncementsComponent, canActivate: [AuthGuard, ManagerGuard] },
-  { path: 'analytics/materials', component: AnalyticsMaterialComponent, canActivate: [AuthGuard, ManagerGuard] }
+  { path: 'analytics/materials', component: AnalyticsMaterialComponent, canActivate: [AuthGuard, ManagerGuard] },
+  { path: 'analytics/depreciations', component: AnalyticsDepreciationComponent, canActivate: [AuthGuard, ManagerGuard] }
 ];
 
 @NgModule({

@@ -62,7 +62,8 @@ export class DrawerComponent implements OnInit {
       this.links = [
         { link: '/dashboard', icon: 'dashboard', text: 'Dashboard' },
         { link: '/announcements', icon: 'announcement', text: 'Note' },
-        { link: '/analytics/materials', icon: 'ballot', text: 'Materials' }
+        { link: '/analytics/materials', icon: 'ballot', text: 'Materials' },
+        { link: '/analytics/depreciations', icon: 'warning', text: 'Depreciations' }
       ];
     }
   }

@@ -33,7 +33,9 @@ export class AnalyticsOrderComponent implements OnInit {
   public fetch() {
     this.load = true;
     this._report.report(this.type.value).subscribe(response => {
-      this.buildChart(response);
+      if (response.orders.length !== 0) {
+        this.buildChart(response);
+      }
     });
   }
 

@@ -34,15 +34,20 @@ export class CatalogService {
     }
   }
 
-  public show(slug: string) {
-    const suffix = `catalogs/${slug}.json`;
-    const header = {
-      headers: new HttpHeaders({
-        'Content-type': 'application/json',
-        'token': this.auth.currentUser().token
-      })
-    };
-    return this.http.get<Catalog>(this.base + suffix, header);
+  public show(slug: string, guest: boolean = false) {
+    if (guest) {
+      const suffix = `guest_catalogs/${slug}.json`;
+      return this.http.get<Catalog>(this.base + suffix);
+    } else {
+      const suffix = `catalogs/${slug}.json`;
+      const header = {
+        headers: new HttpHeaders({
+          'Content-type': 'application/json',
+          'token': this.auth.currentUser().token
+        })
+      };
+      return this.http.get<Catalog>(this.base + suffix, header);
+    }
   }
 
   public create(request: Catalog) {

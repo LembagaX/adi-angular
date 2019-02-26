@@ -2,11 +2,25 @@
 <div class="container">
   <section class="magazine-section my-5">
     <h2 class="h1-responsive font-weight-bold text-center my-5">Our Catalogs</h2>
+    <div class="col-md-12">
+      <mat-progress-bar
+        [hidden]="catalogs"
+        mode="indeterminate">
+      </mat-progress-bar>
+    </div>
     <div class="row" *ngIf="catalogs">
       <div class="col-lg-4 col-md-12 mb-lg-0 mb-5" *ngFor="let catalog of catalogs">
-        <app-catalogs-card
-          [catalog]="catalog"
-        ></app-catalogs-card>
+        <mat-card>
+          <mat-card-content>
+            <app-catalogs-card
+              [catalog]="catalog"
+            ></app-catalogs-card>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div class="col-md-12 text-center" [hidden]="catalogs.length != 0">
+        <p class="lead text-primary">Is lonely here, plase come back later</p>
       </div>
     </div>
   </section>

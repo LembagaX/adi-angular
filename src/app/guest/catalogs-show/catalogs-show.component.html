@@ -1,0 +1,40 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="col-md-12 space-top">
+    <mat-progress-bar
+      [hidden]="catalog"
+      mode="indeterminate">
+    </mat-progress-bar>
+  </div>
+  <div class="col-md-12" *ngIf="catalog">
+    <div class="row">
+      <div class="col-md-4 mx-auto my-5" *ngFor="let advertise of catalog.advertises">
+        <a>
+          <img
+            (click)="popup.show()"
+            class="img-fluid z-depth-1"
+            [src]="advertise.image.url"
+            alt="advertise.product.title"
+            data-toggle="modal"
+            data-target="#modal1">
+        </a>
+        <div mdbModal #popup="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
+          aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-body mb-0 p-0">
+                <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                  <img
+                    class="embed-responsive-item"
+                    [src]="advertise.image.url"/>
+                </div>
+              </div>
+              <div class="modal-footer justify-content-center flex-column flex-md-row text-center">
+                <span class="mr-4">{{ advertise.description }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

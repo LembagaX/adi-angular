@@ -8,7 +8,8 @@ import {
   ButtonsModule,
   CardsFreeModule,
   CarouselModule,
-  InputsModule
+  InputsModule,
+  ModalModule
 } from 'angular-bootstrap-md';
 import { RootComponent } from './root/root.component';
 import { CarouselComponent } from './carousel/carousel.component';
@@ -19,6 +20,11 @@ import { ContactComponent } from './contact/contact.component';
 import { GravatarModule } from 'ngx-gravatar';
 import { CatalogsComponent } from './catalogs/catalogs.component';
 import { CatalogsCardComponent } from './catalogs-card/catalogs-card.component';
+import { CatalogsShowComponent } from './catalogs-show/catalogs-show.component';
+import {
+  MatProgressBarModule,
+  MatCardModule
+ } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -30,7 +36,8 @@ import { CatalogsCardComponent } from './catalogs-card/catalogs-card.component';
     FooterComponent,
     ContactComponent,
     CatalogsComponent,
-    CatalogsCardComponent
+    CatalogsCardComponent,
+    CatalogsShowComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +48,10 @@ import { CatalogsCardComponent } from './catalogs-card/catalogs-card.component';
     AppRoutingModule,
     CarouselModule,
     InputsModule,
-    GravatarModule
+    GravatarModule,
+    ModalModule,
+    MatProgressBarModule,
+    MatCardModule
   ]
 })
 export class GuestModule { }

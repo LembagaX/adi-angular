@@ -21,6 +21,9 @@
           <a class="nav-link" [routerLink]="['/']">Home</a>
         </li>
         <li class="nav-item ">
+          <a class="nav-link" [routerLink]="['/catalogs']">Catalogs</a>
+        </li>
+        <li class="nav-item ">
           <a *ngIf="!auth.isAuthenticated()" class="nav-link" [routerLink]="['/login']">Login</a>
           <a *ngIf="auth.isAuthenticated()" class="nav-link" [routerLink]="['/dashboard']">Dashboard</a>
         </li>

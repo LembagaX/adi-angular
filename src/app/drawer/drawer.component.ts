@@ -48,7 +48,7 @@ export class DrawerComponent implements OnInit {
         { link: '/products', icon: 'layers', text: 'Products' },
         { link: '/advertises', icon: 'burst_mode', text: 'Advertises' },
         { link: '/categories', icon: 'category', text: 'Categories' },
-        { link: '/orders', icon: 'assignment', text: 'Sales Docs' },
+        { link: '/', icon: 'open_in_new', text: 'Site' }
       ];
     } else if (this.auth.isWarehouse()) {
       this.links = [

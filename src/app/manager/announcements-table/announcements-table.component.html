@@ -1,0 +1,113 @@
+<div class="row">
+  <div class="col-md-8">
+    <mat-card>
+      <mat-card-content>
+        <mat-progress-bar [hidden]="announcements" mode="indeterminate">
+        </mat-progress-bar>
+        <table mat-table #table [dataSource]="announcements" class="full-width mat-elevation-z8">
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> No </th>
+            <td mat-cell *matCellDef="let row; let i = index"> {{ i + 1 }}</td>
+          </ng-container>
+          <ng-container matColumnDef="message">
+            <th mat-header-cell *matHeaderCellDef> Message </th>
+            <td mat-cell *matCellDef="let row"> {{ row.message }}</td>
+          </ng-container>
+          <ng-container matColumnDef="due">
+            <th mat-header-cell *matHeaderCellDef> Due </th>
+            <td mat-cell *matCellDef="let row"> {{ row.due | date }}</td>
+          </ng-container>
+          <ng-container matColumnDef="color">
+            <th mat-header-cell *matHeaderCellDef> Color </th>
+            <td mat-cell *matCellDef="let row">
+              <span class="text-{{ row.color }}">{{ row.color | titlecase }}</span>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="by">
+            <th mat-header-cell *matHeaderCellDef> By </th>
+            <td mat-cell *matCellDef="let row"> {{ row.user.name }}</td>
+          </ng-container>
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let row">
+              <button
+                (click)="edit(row)"
+                color="primary"
+                mat-button>
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                color="warn"
+                (click)="destroy(row)"
+                mat-button>
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="['id', 'message', 'due', 'by', 'color', 'action']"></tr>
+          <tr mat-row *matRowDef="let row; columns: ['id', 'message', 'due', 'by', 'color', 'action'];"></tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="col-md-4">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-subtitle>Create new Note</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="form" (submit)="submit()">
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field class="full-width">
+                <textarea
+                  matInput
+                  formControlName="message"
+                  placeholder="Message"
+                  minlength="6"
+                  maxlength="255"
+                  required></textarea>
+              </mat-form-field>
+            </div>
+            <div class="col-md-12">
+              <mat-form-field class="full-width">
+                <input
+                  matInput
+                  formControlName="due"
+                  required
+                  type="number"
+                  class="number"
+                  placeholder="due">
+                <span matSuffix>Hari</span>
+              </mat-form-field>
+            </div>
+            <div class="col-md-12 space-bottom">
+              <mat-select placeholder="Colors" formControlName="color">
+                <mat-option *ngFor="let item of colors" [value]="item.color">
+                  <span [class]="item.class">{{ item.color | titlecase }}</span>
+                </mat-option>
+              </mat-select>
+            </div>
+            
+            <div class="col-md-12">
+              <button
+                [hidden]="onEdit"
+                class="btn btn-block"
+                color="primary"
+                [disabled]="form.invalid"
+                mat-raised-button>Create</button>
+
+              <button
+                [hidden]="!onEdit"
+                class="btn btn-block"
+                color="accent"
+                [disabled]="form.invalid"
+                mat-raised-button>Update</button>
+            </div>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

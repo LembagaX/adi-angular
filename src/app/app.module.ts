@@ -14,6 +14,7 @@ import { ProductAndCategoryModule } from './product-and-category/product-and-cat
 import { AdminModule } from './admin/admin.module';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { GuestModule } from './guest/guest.module';
+import { ManagerModule } from './manager/manager.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { GuestModule } from './guest/guest.module';
     ProductAndCategoryModule,
     AdminModule,
     MDBBootstrapModule.forRoot(),
-    GuestModule
+    GuestModule,
+    ManagerModule
   ],
   providers: [
   ],

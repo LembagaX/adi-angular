@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Customer } from 'src/app/response/customer';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { AddressesCreateDialogComponent } from '../addresses-create-dialog/addresses-create-dialog.component';
 import { CustomerService } from 'src/app/customer.service';
 import { LoadingPopupComponent } from 'src/app/partials/loading-popup/loading-popup.component';
@@ -20,7 +20,8 @@ export class CustomersAddressesComponent implements OnInit {
   constructor(
     private _dialog: MatDialog,
     private _customer: CustomerService,
-    private _address: AddressService
+    private _address: AddressService,
+    private _snackbar: MatSnackBar
   ) {}
 
   ngOnInit() {}
@@ -32,7 +33,13 @@ export class CustomersAddressesComponent implements OnInit {
 
   public destroy(address: Address) {
     this._dialog.open(LoadingPopupComponent, { data: 'Deleting, please wait' });
-    this._address.destroy(this.customer, address).subscribe(() => this._refetch());
+    this._address.destroy(this.customer, address).subscribe(
+      () => this._refetch(),
+      err => {
+        this._dialog.closeAll();
+        this._snackbar.open('Tidak dapat menghapus alamat yang tersambung dengan Order', 'Close');
+      }
+    );
   }
 
   public edit(address: Address) {

@@ -5,6 +5,8 @@ import { ServerService } from 'src/app/server.service';
 import { CustomerService } from 'src/app/customer.service';
 import { MaterialService } from 'src/app/material.service';
 import { CategoryService } from 'src/app/category.service';
+import { AnnouncementService } from 'src/app/announcement.service';
+import { Announcement } from 'src/app/response/announcement';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,13 +21,15 @@ export class DashboardComponent implements OnInit {
   public customers: number;
   public materials: number;
   public categories: number;
+  public announcements: Announcement[];
 
   constructor(
     private _auth: AuthService,
     private _provider: ServerService,
     private _customer: CustomerService,
     private _material: MaterialService,
-    private _category: CategoryService
+    private _category: CategoryService,
+    private _announcement: AnnouncementService
   ) {}
 
   ngOnInit() {
@@ -35,6 +39,11 @@ export class DashboardComponent implements OnInit {
     this.buildCustomers();
     this.buildMeterials();
     this.buildCategories();
+    this.buildAnnouncements();
+  }
+
+  private buildAnnouncements() {
+    this._announcement.index().subscribe(response => this.announcements = response);
   }
 
   private buildCategories() {

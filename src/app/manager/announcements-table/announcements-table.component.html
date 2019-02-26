@@ -66,8 +66,7 @@
                   formControlName="message"
                   placeholder="Message"
                   minlength="6"
-                  maxlength="255"
-                  required></textarea>
+                  maxlength="255"></textarea>
               </mat-form-field>
             </div>
             <div class="col-md-12">
@@ -75,7 +74,6 @@
                 <input
                   matInput
                   formControlName="due"
-                  required
                   type="number"
                   class="number"
                   placeholder="due">
@@ -104,6 +102,13 @@
                 color="accent"
                 [disabled]="form.invalid"
                 mat-raised-button>Update</button>
+
+              <button
+                type="reset"
+                (click)="reset()"
+                *ngIf="form.dirty || onEdit"
+                class="btn btn-block"
+                mat-raised-button>Cancel</button>
             </div>
           </div>
         </form>

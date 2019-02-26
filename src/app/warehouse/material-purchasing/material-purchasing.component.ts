@@ -71,7 +71,7 @@ export class MaterialPurchasingComponent implements OnInit {
     this.materialPurchase = new FormGroup({
       provider: new FormControl('', [Validators.required]),
       date: new FormControl({ value: today, disabled: true }, [Validators.required]),
-      invoice: new FormControl('', [Validators.required, Validators.max(45)]),
+      invoice: new FormControl('', [Validators.required, Validators.max(15)]),
       amount: new FormControl({ value: 0, disabled: true }, [Validators.required]),
       note: new FormControl('', [])
     });

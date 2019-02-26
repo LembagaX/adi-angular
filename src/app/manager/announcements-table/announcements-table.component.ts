@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AnnouncementService } from 'src/app/announcement.service';
-import { MatTableDataSource, MatDialog } from '@angular/material';
+import { MatTableDataSource, MatDialog, MatSort, MatPaginator } from '@angular/material';
 import { Announcement } from 'src/app/response/announcement';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoadingPopupComponent } from 'src/app/partials/loading-popup/loading-popup.component';
+import { AnnouncementDialogComponent } from '../announcement-dialog/announcement-dialog.component';
 
 @Component({
   selector: 'app-announcements-table',
@@ -17,6 +18,9 @@ export class AnnouncementsTableComponent implements OnInit {
   public announcements: MatTableDataSource<Announcement>;
   private current: Announcement;
   public colors: { id: number; class: string; color: string}[];
+
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
     private _announce: AnnouncementService,
@@ -45,7 +49,11 @@ export class AnnouncementsTableComponent implements OnInit {
 
   private fetch() {
     this.announcements = null;
-    this._announce.index().subscribe(response => this.announcements = new MatTableDataSource(response));
+    this._announce.index().subscribe(response => {
+      this.announcements = new MatTableDataSource(response);
+      this.announcements.sort = this.sort;
+      this.announcements.paginator = this.paginator;
+    });
   }
 
   public submit() {
@@ -92,4 +100,7 @@ export class AnnouncementsTableComponent implements OnInit {
     this.onEdit = false;
   }
 
+  public show(announcement: Announcement) {
+    this._load.open(AnnouncementDialogComponent, { data: announcement });
+  }
 }

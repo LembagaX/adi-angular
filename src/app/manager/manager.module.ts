@@ -8,9 +8,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AnalyticsMaterialComponent } from './analytics-material/analytics-material.component';
 import { WarehouseModule } from '../warehouse/warehouse.module';
 import { AnalyticsDepreciationComponent } from './analytics-depreciation/analytics-depreciation.component';
+import { AnnouncementDialogComponent } from './announcement-dialog/announcement-dialog.component';
 
 @NgModule({
-  declarations: [AnnouncementsComponent, AnnouncementsTableComponent, AnalyticsMaterialComponent, AnalyticsDepreciationComponent],
+  declarations: [
+    AnnouncementsComponent,
+    AnnouncementsTableComponent,
+    AnalyticsMaterialComponent,
+    AnalyticsDepreciationComponent,
+    AnnouncementDialogComponent
+  ],
   imports: [
     CommonModule,
     MaterialModule,
@@ -18,6 +25,9 @@ import { AnalyticsDepreciationComponent } from './analytics-depreciation/analyti
     FormsModule,
     ReactiveFormsModule,
     WarehouseModule
+  ], 
+  entryComponents: [
+    AnnouncementDialogComponent
   ]
 })
 export class ManagerModule { }

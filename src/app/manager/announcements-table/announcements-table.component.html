@@ -4,27 +4,27 @@
       <mat-card-content>
         <mat-progress-bar [hidden]="announcements" mode="indeterminate">
         </mat-progress-bar>
-        <table mat-table #table [dataSource]="announcements" class="full-width mat-elevation-z8">
+        <table mat-table #table [dataSource]="announcements" class="full-width mat-elevation-z8" matSort>
           <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef> No </th>
             <td mat-cell *matCellDef="let row; let i = index"> {{ i + 1 }}</td>
           </ng-container>
           <ng-container matColumnDef="message">
-            <th mat-header-cell *matHeaderCellDef> Message </th>
-            <td mat-cell *matCellDef="let row"> {{ row.message }}</td>
+            <th mat-sort-header mat-header-cell *matHeaderCellDef> Message </th>
+            <td mat-cell *matCellDef="let row"> {{ row.message | slice:0:15 }} {{ row.message.length > 15 ? '...' : null }}</td>
           </ng-container>
           <ng-container matColumnDef="due">
-            <th mat-header-cell *matHeaderCellDef> Due </th>
+            <th mat-sort-header mat-header-cell *matHeaderCellDef> Due </th>
             <td mat-cell *matCellDef="let row"> {{ row.due | date }}</td>
           </ng-container>
           <ng-container matColumnDef="color">
-            <th mat-header-cell *matHeaderCellDef> Color </th>
+            <th mat-sort-header mat-header-cell *matHeaderCellDef> Color </th>
             <td mat-cell *matCellDef="let row">
               <span class="text-{{ row.color }}">{{ row.color | titlecase }}</span>
             </td>
           </ng-container>
           <ng-container matColumnDef="by">
-            <th mat-header-cell *matHeaderCellDef> By </th>
+            <th mat-sort-header mat-header-cell *matHeaderCellDef> By </th>
             <td mat-cell *matCellDef="let row"> {{ row.user.name }}</td>
           </ng-container>
           <ng-container matColumnDef="action">
@@ -42,11 +42,18 @@
                 mat-button>
                 <mat-icon>delete</mat-icon>
               </button>
+              <button
+                (click)="show(row)"
+                color="secondary"
+                mat-button>
+                <mat-icon>visibility</mat-icon>
+              </button>
             </td>
           </ng-container>
           <tr mat-header-row *matHeaderRowDef="['id', 'message', 'due', 'by', 'color', 'action']"></tr>
           <tr mat-row *matRowDef="let row; columns: ['id', 'message', 'due', 'by', 'color', 'action'];"></tr>
         </table>
+        <mat-paginator class="mat-elevation-z8" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
       </mat-card-content>
     </mat-card>
   </div>

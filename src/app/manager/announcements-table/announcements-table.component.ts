@@ -53,6 +53,8 @@ export class AnnouncementsTableComponent implements OnInit {
       const dialog = this._load.open(LoadingPopupComponent, { data: 'Updating, please wait'});
       this._announce.update(this.current, this.form.value).subscribe(() => {
         this.fetch();
+        this.onEdit = false;
+        this.current = null;
         this.buildForm();
         dialog.close();
       });
@@ -60,6 +62,8 @@ export class AnnouncementsTableComponent implements OnInit {
       const dialog = this._load.open(LoadingPopupComponent, { data: 'Creating, please wait' });
       this._announce.create(this.form.value).subscribe(() => {
         this.fetch();
+        this.onEdit = false;
+        this.current = null;
         this.buildForm();
         dialog.close();
       });
@@ -82,6 +86,7 @@ export class AnnouncementsTableComponent implements OnInit {
   }
 
   public reset() {
+    this.form = null;
     this.buildForm();
     this.current = null;
     this.onEdit = false;

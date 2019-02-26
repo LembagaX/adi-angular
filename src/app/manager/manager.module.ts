@@ -10,6 +10,7 @@ import { WarehouseModule } from '../warehouse/warehouse.module';
 import { AnalyticsDepreciationComponent } from './analytics-depreciation/analytics-depreciation.component';
 import { AnnouncementDialogComponent } from './announcement-dialog/announcement-dialog.component';
 import { AnalyticsOrderComponent } from './analytics-order/analytics-order.component';
+import { ChartModule } from 'angular-highcharts';
 
 @NgModule({
   declarations: [
@@ -26,8 +27,9 @@ import { AnalyticsOrderComponent } from './analytics-order/analytics-order.compo
     PartialsModule,
     FormsModule,
     ReactiveFormsModule,
-    WarehouseModule
-  ], 
+    WarehouseModule,
+    ChartModule
+  ],
   entryComponents: [
     AnnouncementDialogComponent
   ]

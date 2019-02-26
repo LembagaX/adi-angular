@@ -6,12 +6,33 @@
         <div class="col-md-12">
           <mat-card>
             <mat-card-content>
-              <mat-select placeholder="Type" [(ngModel)]="type">
+              <mat-select placeholder="Type" [formControl]="type">
                 <mat-option value="daily">Daily</mat-option>
                 <mat-option value="weekly">Weekly</mat-option>
                 <mat-option value="monthly">Monthly</mat-option>
-                <mat-option value="year">Year</mat-option>
+                <mat-option value="quarterly">Quarter</mat-option>
+                <mat-option value="yearly">Year</mat-option>
               </mat-select>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div class="col-md-12 space-top">
+          <mat-card *ngIf="chart">
+            <mat-card-content>
+              <div [chart]="chart"></div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div class="col-md-12 space-top" *ngIf="chart">
+          <mat-card>
+            <mat-card-subtitle>Material information</mat-card-subtitle>
+            <mat-card-content>
+              <dl class="row">
+                <dt class="col-md-5">Most solded Product :</dt>
+                <dd class="col-md-7">{{ sp.name }}</dd>
+                <dt class="col-md-5">Most earn Product :</dt>
+                <dd class="col-md-7">{{ ep.name }}</dd>
+              </dl>
             </mat-card-content>
           </mat-card>
         </div>

@@ -17,6 +17,9 @@ export class AssembliesCardComponent implements OnInit {
   @Input() product: Product;
 
   public assemblies: Assembly[];
+  public limit: number;
+  public stock: number;
+  public sum: number;
 
   constructor(
     private service: AssemblyService,
@@ -25,6 +28,8 @@ export class AssembliesCardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.limit = 0;
+    this.stock = 0;
     this.fetch();
   }
 
@@ -63,7 +68,22 @@ export class AssembliesCardComponent implements OnInit {
   }
 
   private fetch() {
-    this.service.index(this.product).subscribe(response => this.assemblies = response.assemblies);
+    this.service.index(this.product).subscribe(response => {
+      this.assemblies = response.assemblies;
+      this.assemblies.forEach(assembly => {
+        if (this.limit < assembly.quantity) {
+          this.limit = assembly.quantity;
+        }
+        if (this.stock === 0) {
+          this.stock = assembly.material.stock;
+        } else {
+          if (this.stock > assembly.material.stock) {
+            this.stock = assembly.material.stock;
+          }
+        }
+        this.sum = Math.floor(this.stock / this.limit);
+      });
+    });
   }
 
 }

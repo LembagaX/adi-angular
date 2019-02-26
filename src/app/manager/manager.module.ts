@@ -9,6 +9,7 @@ import { AnalyticsMaterialComponent } from './analytics-material/analytics-mater
 import { WarehouseModule } from '../warehouse/warehouse.module';
 import { AnalyticsDepreciationComponent } from './analytics-depreciation/analytics-depreciation.component';
 import { AnnouncementDialogComponent } from './announcement-dialog/announcement-dialog.component';
+import { AnalyticsOrderComponent } from './analytics-order/analytics-order.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AnnouncementDialogComponent } from './announcement-dialog/announcement-
     AnnouncementsTableComponent,
     AnalyticsMaterialComponent,
     AnalyticsDepreciationComponent,
-    AnnouncementDialogComponent
+    AnnouncementDialogComponent,
+    AnalyticsOrderComponent
   ],
   imports: [
     CommonModule,

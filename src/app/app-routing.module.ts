@@ -33,6 +33,7 @@ import { AnnouncementsComponent } from './manager/announcements/announcements.co
 import { ManagerGuard } from './manager.guard';
 import { AnalyticsMaterialComponent } from './manager/analytics-material/analytics-material.component';
 import { AnalyticsDepreciationComponent } from './manager/analytics-depreciation/analytics-depreciation.component';
+import { AnalyticsOrderComponent } from './manager/analytics-order/analytics-order.component';
 
 const routes: Routes = [
   { path: '', component: RootComponent },
@@ -60,7 +61,8 @@ const routes: Routes = [
   { path: 'catalogs/:slug', component: GuestShow },
   { path: 'announcements', component: AnnouncementsComponent, canActivate: [AuthGuard, ManagerGuard] },
   { path: 'analytics/materials', component: AnalyticsMaterialComponent, canActivate: [AuthGuard, ManagerGuard] },
-  { path: 'analytics/depreciations', component: AnalyticsDepreciationComponent, canActivate: [AuthGuard, ManagerGuard] }
+  { path: 'analytics/depreciations', component: AnalyticsDepreciationComponent, canActivate: [AuthGuard, ManagerGuard] },
+  { path: 'analytics/orders', component: AnalyticsOrderComponent, canActivate: [AuthGuard, ManagerGuard] }
 ];
 
 @NgModule({

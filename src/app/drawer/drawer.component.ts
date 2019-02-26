@@ -61,7 +61,8 @@ export class DrawerComponent implements OnInit {
     } else if (this.auth.isManager()) {
       this.links = [
         { link: '/dashboard', icon: 'dashboard', text: 'Dashboard' },
-        { link: '/announcements', icon: 'announcement', text: 'Note' }
+        { link: '/announcements', icon: 'announcement', text: 'Note' },
+        { link: '/analytics/materials', icon: 'ballot', text: 'Materials' }
       ];
     }
   }

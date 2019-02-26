@@ -66,7 +66,10 @@ import { ManifestsUpdateComponent } from './manifests-update/manifests-update.co
     ManifestsUpdateComponent
   ],
   exports: [
-    ProductsTableComponent
+    ProductsTableComponent,
+    MaterialShowCardComponent,
+    MaterialBoughtFromComponent,
+    MaterialRecordedPriceComponent
   ]
 })
 export class WarehouseModule { }

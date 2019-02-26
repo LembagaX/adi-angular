@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { Chart } from 'angular-highcharts';
 import { Material } from 'src/app/response/material';
 
@@ -7,7 +7,7 @@ import { Material } from 'src/app/response/material';
   templateUrl: './material-recorded-price.component.html',
   styleUrls: ['./material-recorded-price.component.scss']
 })
-export class MaterialRecordedPriceComponent implements OnInit {
+export class MaterialRecordedPriceComponent implements OnInit, OnChanges {
 
   public chart: Chart;
 
@@ -19,9 +19,13 @@ export class MaterialRecordedPriceComponent implements OnInit {
     this.buildChart('spline');
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    this.material = changes['material'].currentValue;
+    this.buildChart('spline');
+  }
+
   public buildChart(type: string) {
     const series = [];
-    console.log(this.material);
     this.material.providers.forEach(provider => {
       series.push({
         id: provider.id,

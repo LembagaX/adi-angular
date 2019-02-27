@@ -75,9 +75,12 @@ export class MaterialPurchasingComponent implements OnInit {
       amount: new FormControl({ value: 0, disabled: true }, [Validators.required]),
       note: new FormControl('', [])
     });
-    this.name = new FormControl('', [Validators.required]);
-    this.price = new FormControl('', [Validators.required]);
-    this.quantity = new FormControl('', [Validators.required]);
+    this.name = new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(120)]);
+    this.price = new FormControl('', [Validators.required, Validators.min(10)]);
+    this.quantity = new FormControl('', [Validators.required, Validators.min(1)]);
   }
 
   public fetchProviders() {

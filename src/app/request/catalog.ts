@@ -1,4 +1,4 @@
-import { Advertise } from "../response/advertise";
+import { Advertise } from '../response/advertise';
 
 export interface Catalog {
     id?: number;
@@ -7,6 +7,7 @@ export interface Catalog {
     description: string;
     created_at?: string;
     updated_at?: string;
+    hits?: number;
     url?: string;
     advertises?: Advertise[];
 }

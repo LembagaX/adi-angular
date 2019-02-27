@@ -50,7 +50,7 @@ export class CatalogsTableComponent implements OnInit {
       {
         width: '50%'
       });
-    dialog.afterClosed().subscribe(() => {
+      dialog.afterClosed().subscribe(() => {
       this.refetch();
     });
   }

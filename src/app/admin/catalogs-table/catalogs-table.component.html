@@ -28,6 +28,11 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
             <td mat-cell *matCellDef="let row"> {{ row.title }} </td>
           </ng-container>
+
+          <ng-container matColumnDef="views">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Views </th>
+            <td mat-cell *matCellDef="let row"> {{ row.hits }} </td>
+          </ng-container>
         
           <ng-container matColumnDef="created_at">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Created at </th>
@@ -55,8 +60,8 @@
             </td>
           </ng-container>
         
-          <tr mat-header-row *matHeaderRowDef="['id', 'title', 'created_at', 'actions']"></tr><!--  -->
-          <tr mat-row *matRowDef="let row; columns: ['id', 'title', 'created_at', 'actions'];"></tr>
+          <tr mat-header-row *matHeaderRowDef="['id', 'title', 'created_at', 'actions', 'views']"></tr><!--  -->
+          <tr mat-row *matRowDef="let row; columns: ['id', 'title', 'created_at', 'actions', 'views'];"></tr>
         </table>
         <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons class="mat-elevation-z8"></mat-paginator>
       </div>

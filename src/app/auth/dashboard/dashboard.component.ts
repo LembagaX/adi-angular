@@ -7,6 +7,8 @@ import { MaterialService } from 'src/app/material.service';
 import { CategoryService } from 'src/app/category.service';
 import { AnnouncementService } from 'src/app/announcement.service';
 import { Announcement } from 'src/app/response/announcement';
+import { LogService } from 'src/app/log.service';
+import { Log } from 'src/app/response/log';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,6 +24,7 @@ export class DashboardComponent implements OnInit {
   public materials: number;
   public categories: number;
   public announcements: Announcement[];
+  public log: Log;
 
   constructor(
     private _auth: AuthService,
@@ -29,7 +32,8 @@ export class DashboardComponent implements OnInit {
     private _customer: CustomerService,
     private _material: MaterialService,
     private _category: CategoryService,
-    private _announcement: AnnouncementService
+    private _announcement: AnnouncementService,
+    private _log: LogService
   ) {}
 
   ngOnInit() {
@@ -40,6 +44,7 @@ export class DashboardComponent implements OnInit {
     this.buildMeterials();
     this.buildCategories();
     this.buildAnnouncements();
+    this.fetchLog();
   }
 
   private buildAnnouncements() {
@@ -60,5 +65,9 @@ export class DashboardComponent implements OnInit {
 
   private buildMeterials() {
     this._material.index().subscribe(result => this.materials = result.length);
+  }
+
+  private fetchLog() {
+    this._log.index().subscribe(response => this.log = response[0]);
   }
 }

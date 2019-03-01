@@ -9,6 +9,8 @@ import { AnnouncementService } from 'src/app/announcement.service';
 import { Announcement } from 'src/app/response/announcement';
 import { LogService } from 'src/app/log.service';
 import { Log } from 'src/app/response/log';
+import { MatDialog } from '@angular/material';
+import { LogsDialogComponent } from 'src/app/partials/logs-dialog/logs-dialog.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,7 +26,7 @@ export class DashboardComponent implements OnInit {
   public materials: number;
   public categories: number;
   public announcements: Announcement[];
-  public log: Log;
+  public logs: Log[];
 
   constructor(
     private _auth: AuthService,
@@ -33,7 +35,8 @@ export class DashboardComponent implements OnInit {
     private _material: MaterialService,
     private _category: CategoryService,
     private _announcement: AnnouncementService,
-    private _log: LogService
+    private _log: LogService,
+    private _dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -68,6 +71,13 @@ export class DashboardComponent implements OnInit {
   }
 
   private fetchLog() {
-    this._log.index().subscribe(response => this.log = response[0]);
+    this._log.index().subscribe(response => this.logs = response);
+  }
+
+  public showLogs() {
+    this._dialog.open(LogsDialogComponent, {
+      data: this.logs,
+      width: '90%'
+    });
   }
 }

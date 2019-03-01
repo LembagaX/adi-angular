@@ -15,12 +15,14 @@
                                 <div class="col-md-12">
                                     <p class="text-secondary">Welcome <strong class="text-primary">{{ user.email }}</strong></p>
                                     <p class="text-secondary">Currently signed in with ability <strong>{{ role }}</strong></p>
-                                    <p class="text-secondary" *ngIf="log">
-                                        Last signed in <strong>{{ log.created_at | date: 'medium':'GMT+7' }}</strong>
+                                    <p class="text-secondary" *ngIf="logs">
+                                        Last signed in <strong>{{ logs[0].created_at | date: 'medium':'GMT+7' }}</strong>
                                         <small>
                                             <mat-icon
+                                                (click)="showLogs()"
                                                 matTooltip="More Logs"
-                                                color="primary">more_horiz</mat-icon>
+                                                color="primary">more_horiz
+                                            </mat-icon>
                                         </small>
                                     </p>
                                 </div>

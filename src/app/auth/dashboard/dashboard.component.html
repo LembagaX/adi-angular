@@ -2,6 +2,11 @@
 <div class="container-fluid space-top">
     <div class="row">
         <div class="col-md-10 offset-md-2">
+            <div class="row" *ngIf="role !== 'Operational Staff'">
+                <div class="col-md-12" *ngFor="let announcement of announcements">
+                    <app-announcements [announcement]="announcement"></app-announcements>
+                </div>
+            </div>
             <app-dashboard-admin *ngIf="role === 'Administrator'"></app-dashboard-admin>
             <app-dashboard-warehouse *ngIf="role === 'Warehouse Staff'"></app-dashboard-warehouse>
             <app-dashboard-manager *ngIf="role === 'Operational Staff'"></app-dashboard-manager>

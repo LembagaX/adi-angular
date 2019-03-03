@@ -27,6 +27,7 @@ import { DashboardWarehouseComponent } from './dashboard-warehouse/dashboard-war
 import { ManufacturesExpantionPanelComponent } from './manufactures-expantion-panel/manufactures-expantion-panel.component';
 import { MaterialsExpantionPanelComponent } from './materials-expantion-panel/materials-expantion-panel.component';
 import { DashboardManagerComponent } from './dashboard-manager/dashboard-manager.component';
+import { AnnouncementsComponent } from './announcements/announcements.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { DashboardManagerComponent } from './dashboard-manager/dashboard-manager
     DashboardWarehouseComponent,
     ManufacturesExpantionPanelComponent,
     MaterialsExpantionPanelComponent,
-    DashboardManagerComponent
+    DashboardManagerComponent,
+    AnnouncementsComponent
   ],
   imports: [
     CommonModule,
@@ -81,7 +83,8 @@ import { DashboardManagerComponent } from './dashboard-manager/dashboard-manager
     DashboardAdminComponent,
     DashboardWarehouseComponent,
     MaterialsExpantionPanelComponent,
-    DashboardManagerComponent
+    DashboardManagerComponent,
+    AnnouncementsComponent
   ],
   entryComponents: [
     LoadingPopupComponent,

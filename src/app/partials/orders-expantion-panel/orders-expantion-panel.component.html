@@ -1,0 +1,16 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <mat-icon>payment</mat-icon>
+    </mat-panel-title>
+    <mat-panel-description>
+      Orders
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <p>Manage and Create the Orders</p>
+  <p *ngIf="orders">Orders created today : <strong class="text-primary">{{ orders.length }}</strong></p>
+  <mat-action-row>
+    <button routerLink="/orders" mat-button color="primary">Manage Orders</button>
+    <button routerLink="/orders/create" mat-button color="accent">New Orders</button>
+  </mat-action-row>
+</mat-expansion-panel>

@@ -1,0 +1,16 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <mat-icon>account_circle</mat-icon>
+    </mat-panel-title>
+    <mat-panel-description>
+      My Account
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <p>Name : <strong>{{ user.name }}</strong></p>
+  <p>Email : <strong>{{ user.email }}</strong></p>
+  <p>Ability : <strong>{{ role }}</strong></p>
+  <mat-action-row>
+    <button (click)="logout()" mat-button color="primary">Logout</button>
+  </mat-action-row>
+</mat-expansion-panel>

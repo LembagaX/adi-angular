@@ -1,0 +1,20 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <mat-icon>layers</mat-icon>
+    </mat-panel-title>
+    <mat-panel-description>
+      Products
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <p>Manage Product Data, Price and Assembly</p>
+  <p *ngIf="products">Unset Price Product :
+    <strong class="text-danger">{{ unprice.length }}</strong> of <strong>{{ products.length }}</strong>
+  </p>
+  <p *ngIf="products">Product without Assembly :
+    <strong class="text-danger">{{ unattach.length }}</strong> of <strong>{{ products.length }}</strong>
+  </p>
+  <mat-action-row>
+    <button routerLink="/products" mat-button color="primary">Manage Products</button>
+  </mat-action-row>
+</mat-expansion-panel>

@@ -3,75 +3,33 @@
     <div class="row">
         <div class="col-md-10 offset-md-2">
             <div class="row">
-                <div class="col-md-12" *ngFor="let announcement of announcements">
-                    <div class="alert alert-{{ announcement.color }}" role="alert">
-                        {{ announcement.message }} — {{ announcement.user.name }}
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <app-current-user-expantion-panel></app-current-user-expantion-panel>
+                        </div>
+
+                        <div class="col-md-12 space-top">
+                            <app-history-expantion-panel></app-history-expantion-panel>
+                        </div>
+
+                        <div class="col-md-12 space-top">
+                            <app-catalogs-expantion-panel></app-catalogs-expantion-panel>
+                        </div>
+
+                        <div class="col-md-12 space-top">
+                            <app-products-expantion-panel></app-products-expantion-panel>
+                        </div>
+                        <div class="col-md-12 space-top">
+                            <app-orders-expantion-panel></app-orders-expantion-panel>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <mat-card>
-                        <mat-card-content>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <p class="text-secondary">Welcome <strong class="text-primary">{{ user.email }}</strong></p>
-                                    <p class="text-secondary">Currently signed in with ability <strong>{{ role }}</strong></p>
-                                    <p class="text-secondary" *ngIf="logs">
-                                        Last signed in <strong>{{ logs[0].created_at | date: 'medium':'GMT+7' }}</strong>
-                                        <small>
-                                            <mat-icon
-                                                (click)="showLogs()"
-                                                matTooltip="More Logs"
-                                                color="primary">more_horiz
-                                            </mat-icon>
-                                        </small>
-                                    </p>
-                                </div>
-                            </div>
-                        </mat-card-content>
-                    </mat-card>
+                <div class="col-md-5">
+                    <app-categories-expantion-panel></app-categories-expantion-panel>
                 </div>
-                <div class="col-md-3 space-top">
-                    <mat-progress-bar *ngIf="!providers" mode="indeterminate"></mat-progress-bar>
-                    <app-card-icon
-                        icon="layers"
-                        title="Providers"
-                        body="All Providers"
-                        [point]="providers"
-                        type="primary">
-                    </app-card-icon>
-                </div>
-
-                <div class="col-md-3 space-top">
-                    <mat-progress-bar *ngIf="!customers" mode="indeterminate"></mat-progress-bar>
-                    <app-card-icon
-                        icon="verified_user"
-                        title="Customers"
-                        body="Verified Customer"
-                        [point]="customers"
-                        type="primary">
-                    </app-card-icon>
-                </div>
-
-                <div class="col-md-3 space-top">
-                    <mat-progress-bar *ngIf="!materials" mode="indeterminate"></mat-progress-bar>
-                    <app-card-icon
-                        icon="build"
-                        title="Materials"
-                        body="Recorded Materials"
-                        [point]="materials"
-                        type="primary">
-                    </app-card-icon>
-                </div>
-
-                <div class="col-md-3 space-top">
-                    <mat-progress-bar *ngIf="!categories" mode="indeterminate"></mat-progress-bar>
-                    <app-card-icon
-                        icon="category"
-                        title="Categories"
-                        body="Recorded Materials Categpry"
-                        [point]="categories"
-                        type="primary">
-                    </app-card-icon>
+                <div class="col-md-4">
+                    <app-users-expantion-panel></app-users-expantion-panel>
                 </div>
             </div>
         </div>

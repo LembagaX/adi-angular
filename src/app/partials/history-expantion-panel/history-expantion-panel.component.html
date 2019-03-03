@@ -1,0 +1,16 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <mat-icon>history</mat-icon>
+    </mat-panel-title>
+    <mat-panel-description>
+      History
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <p *ngIf="logs">Last sign at : <strong>{{ logs[0].created_at | date: 'medium':'GMT+7' }}</strong></p>
+  <mat-action-row>
+    <button
+      (click)="showLogs()"
+      mat-button color="primary">Show History</button>
+  </mat-action-row>
+</mat-expansion-panel>

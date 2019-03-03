@@ -14,6 +14,14 @@ import { MaterialTableComponent } from './material-table/material-table.componen
 import { CategoriesChartComponent } from './categories-chart/categories-chart.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { LogsDialogComponent } from './logs-dialog/logs-dialog.component';
+import { CurrentUserExpantionPanelComponent } from './current-user-expantion-panel/current-user-expantion-panel.component';
+import { CategoriesExpantionPanelComponent } from './categories-expantion-panel/categories-expantion-panel.component';
+import { UsersExpantionPanelComponent } from './users-expantion-panel/users-expantion-panel.component';
+import { UsersChartComponent } from './users-chart/users-chart.component';
+import { HistoryExpantionPanelComponent } from './history-expantion-panel/history-expantion-panel.component';
+import { CatalogsExpantionPanelComponent } from './catalogs-expantion-panel/catalogs-expantion-panel.component';
+import { ProductsExpantionPanelComponent } from './products-expantion-panel/products-expantion-panel.component';
+import { OrdersExpantionPanelComponent } from './orders-expantion-panel/orders-expantion-panel.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +34,15 @@ import { LogsDialogComponent } from './logs-dialog/logs-dialog.component';
     ConfirmationDialogComponent,
     ErrorDialogComponent,
     CategoriesChartComponent,
-    LogsDialogComponent
+    LogsDialogComponent,
+    CurrentUserExpantionPanelComponent,
+    CategoriesExpantionPanelComponent,
+    UsersExpantionPanelComponent,
+    UsersChartComponent,
+    HistoryExpantionPanelComponent,
+    CatalogsExpantionPanelComponent,
+    ProductsExpantionPanelComponent,
+    OrdersExpantionPanelComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +59,15 @@ import { LogsDialogComponent } from './logs-dialog/logs-dialog.component';
     ConfirmationDialogComponent,
     ErrorDialogComponent,
     CategoriesChartComponent,
-    LogsDialogComponent
+    LogsDialogComponent,
+    CurrentUserExpantionPanelComponent,
+    CategoriesExpantionPanelComponent,
+    UsersExpantionPanelComponent,
+    UsersChartComponent,
+    HistoryExpantionPanelComponent,
+    CatalogsExpantionPanelComponent,
+    ProductsExpantionPanelComponent,
+    OrdersExpantionPanelComponent
   ],
   entryComponents: [
     LoadingPopupComponent,

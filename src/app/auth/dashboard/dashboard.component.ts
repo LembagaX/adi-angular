@@ -10,7 +10,6 @@ import { Announcement } from 'src/app/response/announcement';
 import { LogService } from 'src/app/log.service';
 import { Log } from 'src/app/response/log';
 import { MatDialog } from '@angular/material';
-import { LogsDialogComponent } from 'src/app/partials/logs-dialog/logs-dialog.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -72,12 +71,5 @@ export class DashboardComponent implements OnInit {
 
   private fetchLog() {
     this._log.index().subscribe(response => this.logs = response);
-  }
-
-  public showLogs() {
-    this._dialog.open(LogsDialogComponent, {
-      data: this.logs,
-      width: '90%'
-    });
   }
 }

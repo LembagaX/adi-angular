@@ -4,6 +4,7 @@
         <div class="col-md-10 offset-md-2">
             <app-dashboard-admin *ngIf="role === 'Administrator'"></app-dashboard-admin>
             <app-dashboard-warehouse *ngIf="role === 'Warehouse Staff'"></app-dashboard-warehouse>
+            <app-dashboard-manager *ngIf="role === 'Operational Staff'"></app-dashboard-manager>
         </div>
     </div>
 </div>

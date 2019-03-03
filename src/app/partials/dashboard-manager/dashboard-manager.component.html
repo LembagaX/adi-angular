@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-md-4">
+    <div class="row">
+      <div class="col-md-12">
+        <app-current-user-expantion-panel></app-current-user-expantion-panel>
+      </div>
+
+      <div class="col-md-12 space-top">
+        <app-history-expantion-panel></app-history-expantion-panel>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <mat-expansion-panel expanded="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon>notification_important</mat-icon>
+        </mat-panel-title>
+        <mat-panel-description>
+          Notifications
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="row">
+        <div class="col-md-12" *ngIf="products.length != 0">
+          <div class="alert alert-danger" role="alert">
+            {{ products.length }} Products stock almost empty (< 100). Please Note to Notify the Warehouses <small>- System</small>
+          </div>
+        </div>
+
+        <div class="col-md-12" *ngIf="materials.length != 0">
+          <div class="alert alert-warning" role="alert">
+            {{ materials.length }} Material stock almost empty (< 200) <small>- System</small>
+          </div>
+        </div>
+      </div>
+      <mat-action-row>
+        <button routerLink="/announcements" mat-button color="primary">Create Note</button>
+        <button routerLink="/analytics/orders" mat-button color="accent">Order Graph</button>
+        <button routerLink="/analytics/materials" mat-button color="secondary">Material Graph</button>
+        <button routerLink="/analytics/depreciations" mat-button color="warn">Depreciation Graph</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </div>
+</div>

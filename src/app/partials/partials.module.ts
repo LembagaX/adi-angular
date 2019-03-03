@@ -22,6 +22,10 @@ import { HistoryExpantionPanelComponent } from './history-expantion-panel/histor
 import { CatalogsExpantionPanelComponent } from './catalogs-expantion-panel/catalogs-expantion-panel.component';
 import { ProductsExpantionPanelComponent } from './products-expantion-panel/products-expantion-panel.component';
 import { OrdersExpantionPanelComponent } from './orders-expantion-panel/orders-expantion-panel.component';
+import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
+import { DashboardWarehouseComponent } from './dashboard-warehouse/dashboard-warehouse.component';
+import { ManufacturesExpantionPanelComponent } from './manufactures-expantion-panel/manufactures-expantion-panel.component';
+import { MaterialsExpantionPanelComponent } from './materials-expantion-panel/materials-expantion-panel.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +46,11 @@ import { OrdersExpantionPanelComponent } from './orders-expantion-panel/orders-e
     HistoryExpantionPanelComponent,
     CatalogsExpantionPanelComponent,
     ProductsExpantionPanelComponent,
-    OrdersExpantionPanelComponent
+    OrdersExpantionPanelComponent,
+    DashboardAdminComponent,
+    DashboardWarehouseComponent,
+    ManufacturesExpantionPanelComponent,
+    MaterialsExpantionPanelComponent
   ],
   imports: [
     CommonModule,
@@ -67,7 +75,10 @@ import { OrdersExpantionPanelComponent } from './orders-expantion-panel/orders-e
     HistoryExpantionPanelComponent,
     CatalogsExpantionPanelComponent,
     ProductsExpantionPanelComponent,
-    OrdersExpantionPanelComponent
+    OrdersExpantionPanelComponent,
+    DashboardAdminComponent,
+    DashboardWarehouseComponent,
+    MaterialsExpantionPanelComponent
   ],
   entryComponents: [
     LoadingPopupComponent,

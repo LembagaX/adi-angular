@@ -1,0 +1,15 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <mat-icon>ballot</mat-icon>
+    </mat-panel-title>
+    <mat-panel-description>
+      Materials
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <p *ngIf="materials">Material stock bellow 200 : <strong>{{ materials.length }}</strong></p>
+  <mat-action-row>
+    <button routerLink="/materials" mat-button color="primary">Manage</button>
+    <button routerLink="/materials/purchasing" mat-button color="accent">Purchase</button>
+  </mat-action-row>
+</mat-expansion-panel>
